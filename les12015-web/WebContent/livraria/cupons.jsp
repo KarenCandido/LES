@@ -33,6 +33,7 @@
         	<a href="perfil.html"><li>Perfil</li></a>
         	<a href="alterar_senha.html"><li>Alterar Senha</li></a>
         	<a href="endereco.html"><li>Endereços</li></a>
+        	<a href="cartoes.html"><li>Cartões</li></a>
         	<a href="pedidos.html"><li>Pedidos</li></a>
         	<a href="cupons.html"><li>Cupons</li></a>
         	<a href="trocas.html"><li>Trocas</li></a>

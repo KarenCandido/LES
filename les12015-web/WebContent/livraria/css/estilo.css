@@ -25,10 +25,10 @@ body { width:100%; margin:0 auto; height:100%; display:table; font-family: 'Nexa
 .lateral input[type=button]			{ width:83%; margin:0 auto; margin:1% 0; background:#3a5460; color:#FFF; text-transform:uppercase; border:none; height:35px; outline:none}
 .lateral input[type=button]:hover 	{background:#b01116; font-family: 'Nexa Light Regular';}
 
-::-webkit-input-placeholder {font-family: 'Nexa Light Regular';}
-:-moz-placeholder 			{font-family: 'Nexa Light Regular';}
-::-moz-placeholder 			{font-family: 'Nexa Light Regular';}
-:-ms-input-placeholder 		{font-family: 'Nexa Light Regular';}
+::-webkit-input-placeholder {font-family: 'Nexa Light Regular'; color:#a7a9ab;}
+:-moz-placeholder 			{font-family: 'Nexa Light Regular';color:#a7a9ab;}
+::-moz-placeholder 			{font-family: 'Nexa Light Regular';color:#a7a9ab;}
+:-ms-input-placeholder 		{font-family: 'Nexa Light Regular';color:#a7a9ab;}
 
 .titulo 					{ font-size:30px; text-align:center; color:#b01116;  font-family: 'Nexa_Free_Bold'; text-transform:uppercase;}
 .rodape 					{ width:100%; margin:0 auto; display:table; height:10px; background:#b01116; position:fixed; bottom:0;}
@@ -46,8 +46,8 @@ input[type=button]:hover 	{ background:#b01116; font-family: 'Nexa Light Regular
 
 /*CADASTRO DE DADOS*/
 .cadastro_dados								{ width:600px; display:table; margin:0 auto; margin-top:50px;}
-.cadastro_dados input[type=text]			{ margin:0 auto; padding:10px 5px; border:1px solid #a7a9ab; margin:1% 0; text-align:left}
-.cadastro_dados select						{ margin:0 auto; padding:9px 5px; border:1px solid #a7a9ab; margin:1% 0; text-align:left}
+.cadastro_dados input[type=text]			{ margin:0 auto; padding:10px 5px; border:1px solid #a7a9ab; margin:1% 0; color:#a7a9ab; text-align:left}
+.cadastro_dados select						{ margin:0 auto; padding:9px 5px; border:1px solid #a7a9ab; margin:1% 0; text-align:left; color:#a7a9ab;}
 .cadastro_dados #cad_email					{ width:98%;}
 .cadastro_dados #cad_senha					{ width:50%;}
 .cadastro_dados #cad_confirma_senha			{ width:50%;}
@@ -61,8 +61,8 @@ input[type=button]:hover 	{ background:#b01116; font-family: 'Nexa Light Regular
 
 /*CADASTRO DE ENDEREÇO*/
 .cad_endereco							{ width:800px; display:table; margin:0 auto; margin-top:50px;}
-.cad_endereco input[type=text]			{ margin:0 auto; padding:10px 5px; border:1px solid #a7a9ab; margin:1% 0; text-align:left}
-.cad_endereco select					{ margin:0 auto; padding:9px 5px; border:1px solid #a7a9ab; margin:1% 0; text-align:left}
+.cad_endereco input[type=text]			{ margin:0 auto; padding:10px 5px; border:1px solid #a7a9ab; margin:1% 0; text-align:left; color:#a7a9ab;}
+.cad_endereco select					{ margin:0 auto; padding:9px 5px; border:1px solid #a7a9ab; margin:1% 0; text-align:left; color:#a7a9ab;}
 .cad_endereco #end_cep					{ width:40%;}
 .cad_endereco #end_residencia			{ width:33%; float:right}
 .cad_endereco #end_logradouro			{ width:45%; float:left; margin-right:2%}

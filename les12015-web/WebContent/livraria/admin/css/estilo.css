@@ -1,0 +1,119 @@
+body { width:100%; margin:0 auto; height:100%; display:table; font-family: 'Nexa Light Regular'; font-size:18px;}
+
+/*PADRÃO*/
+.wrapper 							{ width:100%; margin:0 auto; display:table; margin-bottom:80px;}
+#wrapper							{ width:50%; margin:0 auto; display:table; margin-top:100px;}
+
+.centro 							{ width:80%; float:right; display:table; margin:0 auto;}
+.lateral 							{ width:18%; float:left; margin:0 auto; padding:2% 1% 0 1%; border-right:5px solid #b01116;height:100%; position:fixed; background:#3a5460; color:#FFF; font-size:14px;}
+.lateral  ul li 					{ list-style:none;  padding:2% 1%; width:98%; float:left; font-size:18px;color:#FFF;}
+.lateral  ul li:hover				{ color:#3a5460; background:#FFF;}
+.lateral .logo 						{ width:300px; margin:0 auto;  margin-bottom:50px;}
+
+.lateral input[type=text]			{ width:80%; margin:0 auto; padding:10px 5px; border:1px solid #a7a9ab; margin:1% 0;}
+.lateral input[type=button]			{ width:83%; margin:0 auto; margin:1% 0; background:#3a5460; color:#FFF; text-transform:uppercase; border:none; height:35px; outline:none}
+.lateral input[type=button]:hover 	{background:#b01116; font-family: 'Nexa Light Regular';}
+
+::-webkit-input-placeholder {font-family: 'Nexa Light Regular';}
+:-moz-placeholder 			{font-family: 'Nexa Light Regular';}
+::-moz-placeholder 			{font-family: 'Nexa Light Regular';}
+:-ms-input-placeholder 		{font-family: 'Nexa Light Regular';}
+
+.titulo 					{ font-size:30px; text-align:center; color:#b01116;  font-family: 'Nexa_Free_Bold'; text-transform:uppercase;}
+.rodape 					{ width:100%; margin:0 auto; display:table; height:10px; background:#b01116; position:fixed; bottom:0;}
+
+input[type=button]			{ width:20%; margin:0 auto; margin:1%; background:#3a5460; color:#FFF; text-transform:uppercase; border:none; height:35px; outline:none;}
+input[type=button]:hover 	{ background:#b01116; font-family: 'Nexa Light Regular';}
+input[type=text]			{ margin:0 auto; padding:15px 10px; border:1px solid #a7a9ab; margin:1% 0; text-align:left; width:46%;}
+select						{ margin:0 auto; padding:15px 10px; border:1px solid #a7a9ab; margin:1% 0; text-align:left}
+
+/*ESTATISTICAS*/
+.estatisticas 				{ margin:0 auto; text-align:center; display:table; margin-bottom:25px;}
+
+/*CLIENTES*/
+.clientes table					{ border:none; margin-top:20px;}
+.clientes tr td  				{ border:1px solid #ccc; width:13%; padding:0.2% 1%;}
+.clientes #bt_detalhes			{ width:100%; padding:3% 0;}
+.clientes #bt_excluir			{ width:100%; padding:3% 0;}
+
+/*CLIENTES DETALHES*/
+.clientes_detalhes #cli_email 	{ width:95.5%;}
+.clientes_detalhes #cli_nome 	{ width:95.5%;}
+.clientes_detalhes #cli_cpf 	{ width:32%}
+.clientes_detalhes #cli_dt_nasc { width:32%}
+.clientes_detalhes #cli_sexo 	{ width:27%}
+
+/*COMPRAS*/
+.compras 						{ width:70%; margin:0 auto; margin-top:100px;}
+.compras table					{ border:none; margin-top:20px;}
+.compras tr td  				{ border:1px solid #ccc; width:13%; padding:0.2% 1%;}
+.compras #bt_detalhes			{ width:100%; padding:3% 0;}
+.compras #bt_cancelar			{ width:100%; padding:3% 0;}
+
+/*DETALHES DAS COMPRAS*/
+.compras_detalhes #com_num_ped,
+.compras_detalhes #com_cliente		{ width:35%;}
+.compras_detalhes #bt_ver_cliente	{ height:45px;}
+.compras_detalhes #com_produtos		{ width:95%; height:250px; padding:10px;}
+.compras_detalhes #com_status,
+.compras_detalhes #com_valor		{ width:47.2%;}
+.compras_detalhes #com_cartao,
+.compras_detalhes #com_cupom		{ width:48.5%;}	
+.compras_detalhes #com_endereco		{ width:95%;}
+.compras_detalhes #bt_voltar		{ float:left}
+.compras_detalhes #bt_salvar		{ float:right;}
+
+/*ESTOQUE*/
+.estoque 						{ width:80%; margin:0 auto; display:table; margin-top:100px;}
+.estoque table					{ border:none; margin-top:20px;}
+.estoque tr td  				{ border:1px solid #ccc; width:13%; padding:0.2% 1%;}
+.estoque #bt_detalhes			{ width:100%;height:40px;}
+.estoque #bt_excluir			{ width:100%; height:40px;}
+.estoque #add_produto			{ height:40px; float:right; padding:0px; }
+
+/*ADICIONAR PRODUTO*/
+.add_produtos #prod_titulo 			{ width:97%;}
+.add_produtos #prod_quantidade 		{ width:20%;}
+.add_produtos #prod_preco			{ width:49%; margin-left:30px;} 
+.add_produtos #prod_justificativa 	{ float:right; width:50%;}
+.add_produtos input[type=radio]		{ margin-top:25px; margin-left:15px;}
+.add_produtos #bt_voltar			{ float:left}
+.add_produtos #bt_salvar,
+.add_produtos #bt_excluir, 
+.add_produtos #bt_cancelar			{ float:right;}		
+
+/*LIVROS*/
+.livros 						{ width:80%; margin:0 auto; display:table; margin-top:100px;}
+.livros table					{ border:none; margin-top:20px;}
+.livros tr td  					{ border:1px solid #ccc; width:13%; padding:0.2% 1%;}
+.livros #bt_detalhes			{ width:100%;height:40px; padding:0 25px;}
+.livros #bt_excluir				{ width:100%; height:40px; padding:0 25px;}
+.livros #add_produto			{ height:40px; float:right; padding:0px; }
+
+/*CADASTRO DE LIVROS*/
+.add_livros #livro_titulo 			{ width:100%;}
+.add_livros #inputs_adicionais		{ border:none; width:100%; margin:0 auto; display:table; margin-left:-15px;}
+.add_livros #inputs_adicionais a 	{ width:5%; display:table; color:#666; text-decoration:none; margin:15px; line-height:50px; }
+
+.add_livros #livro_autor			{ width:85%; margin-right:10px; float:left; display:table}
+.add_livros #adicionar 				{ width:5%; height:45px; float:right; display:table}
+.add_livros #livro_editora			{ width:100%; }	
+.add_livros	input[type=checkbox]	{ margin:15px;}
+.add_livros #livro_ano,
+.add_livros #livro_edicao			{ width:20%;}
+.add_livros #livro_isbn				{ width:50%;}
+.add_livros #livro_codigo			{ width:50%;}
+.add_livros #livro_preco_custo		{ width:43%;}
+.add_livros #livro_altura,
+.add_livros #livro_largura,
+.add_livros #livro_peso,
+.add_livros #livro_profundidade		{ width:21.5%;}
+.add_livros select 					{ width:100%;}
+.add_livros #bt_voltar				{ float:left}
+.add_livros #bt_salvar,
+.add_livros #bt_excluir, 
+.add_livros #bt_cancelar			{ float:right;}		
+
+
+
+

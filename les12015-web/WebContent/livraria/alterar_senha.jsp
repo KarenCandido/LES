@@ -33,6 +33,7 @@
         	<a href="perfil.html"><li>Perfil</li></a>
         	<a href="alterar_senha.html"><li>Alterar Senha</li></a>
         	<a href="endereco.html"><li>Endereços</li></a>
+        	<a href="cartoes.html"><li>Cartões</li></a>
         	<a href="pedidos.html"><li>Pedidos</li></a>
         	<a href="cupons.html"><li>Cupons</li></a>
         	<a href="trocas.html"><li>Trocas</li></a>
@@ -43,12 +44,13 @@
     <div class="centro">
     	<p class="titulo"> Alterar Senha </p>
         <div class="cadastro_dados">
-            <input type="text" id="cad_email" placeholder="Endereço de E-mail"><br>
-            <input type="text" id="cad_senha" placeholder="Senha"> - minimo 8 caracteres<br>
-            <input type="text" id="cad_confirma_senha" placeholder="Confirmar Senha"> - letras maiusculas e minusculas<br>
-            <input type="button" id="bt_cancelar" value="Cancelar" >
-            <input type="button" id="bt_salvar" value="Salvar" >
-    
+        	<form>
+                <input type="text" id="cad_email" placeholder="Endereço de E-mail"><br>
+                <input type="text" id="cad_senha" placeholder="Senha"> - minimo 8 caracteres<br>
+                <input type="text" id="cad_confirma_senha" placeholder="Confirmar Senha"> - letras maiusculas e minusculas<br>
+                <input type="button" id="bt_cancelar" value="Cancelar" >
+                <input type="button" id="bt_salvar" value="Salvar" >
+    		</form>
         </div>
     </div>
 </div> 
