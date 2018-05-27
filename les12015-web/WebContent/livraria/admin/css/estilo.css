@@ -22,6 +22,9 @@ body { width:100%; margin:0 auto; height:100%; display:table; font-family: 'Nexa
 .titulo 					{ font-size:30px; text-align:center; color:#b01116;  font-family: 'Nexa_Free_Bold'; text-transform:uppercase;}
 .rodape 					{ width:100%; margin:0 auto; display:table; height:10px; background:#b01116; position:fixed; bottom:0;}
 
+input[type=submit]			{ width:20%; margin:0 auto; margin:1%; background:#3a5460; color:#FFF; text-transform:uppercase; border:none; height:35px; outline:none;}
+input[type=submit]:hover 	{ background:#b01116; font-family: 'Nexa Light Regular';}
+
 input[type=button]			{ width:20%; margin:0 auto; margin:1%; background:#3a5460; color:#FFF; text-transform:uppercase; border:none; height:35px; outline:none;}
 input[type=button]:hover 	{ background:#b01116; font-family: 'Nexa Light Regular';}
 input[type=text]			{ margin:0 auto; padding:15px 10px; border:1px solid #a7a9ab; margin:1% 0; text-align:left; width:46%;}
@@ -111,6 +114,7 @@ select						{ margin:0 auto; padding:15px 10px; border:1px solid #a7a9ab; margin
 .add_livros select 					{ width:100%;}
 .add_livros #bt_voltar				{ float:left}
 .add_livros #bt_salvar,
+.add_livros #bt_alterar,
 .add_livros #bt_excluir, 
 .add_livros #bt_cancelar			{ float:right;}		
 

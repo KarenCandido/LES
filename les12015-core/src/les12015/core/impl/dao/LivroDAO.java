@@ -39,7 +39,7 @@ public class LivroDAO extends AbstractJdbcDAO {
 			pst = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 
 			pst.setString(1, livro.getTitulo());
-			pst.setString(2, livro.getEdicao().getAno());
+			pst.setInt(2, livro.getEdicao().getAno());
 			pst.setInt(3, livro.getEdicao().getNumero());
 			pst.setString(4, livro.getIsbn());
 			pst.setInt(5, livro.getEdicao().getNumeroPagina());
@@ -70,7 +70,7 @@ public class LivroDAO extends AbstractJdbcDAO {
 				sql = new StringBuilder();
 				sql.append("INSERT INTO tb_livro_cat(fk_livro, fk_categoria)");
 				sql.append(" VALUES (?,?)");
-				
+
 				pst = connection.prepareStatement(sql.toString());
 
 				pst.setInt(1, livro.getId());
@@ -84,7 +84,7 @@ public class LivroDAO extends AbstractJdbcDAO {
 				sql = new StringBuilder();
 				sql.append("INSERT INTO tb_livro_autor(fk_livro, fk_autor)");
 				sql.append(" VALUES (?,?)");
-				
+
 				pst = connection.prepareStatement(sql.toString());
 
 				pst.setInt(1, livro.getId());
@@ -92,7 +92,7 @@ public class LivroDAO extends AbstractJdbcDAO {
 				pst.executeUpdate();
 				connection.commit();
 			}
-			
+
 		} catch (SQLException e) {
 			try {
 				connection.rollback();
@@ -135,7 +135,7 @@ public class LivroDAO extends AbstractJdbcDAO {
 			pst = connection.prepareStatement(sql.toString());
 
 			pst.setString(1, livro.getTitulo());
-			pst.setString(2, livro.getEdicao().getAno());
+			pst.setInt(2, livro.getEdicao().getAno());
 			pst.setInt(3, livro.getEdicao().getNumero());
 			pst.setString(4, livro.getIsbn());
 			pst.setInt(5, livro.getEdicao().getNumeroPagina());
@@ -155,7 +155,7 @@ public class LivroDAO extends AbstractJdbcDAO {
 			pst.executeUpdate();
 
 			connection.commit();
-			
+
 			sql = new StringBuilder();
 			sql.append("DELETE FROM tb_livro_cat WHERE fk_livro = ?");
 			pst = connection.prepareStatement(sql.toString());
@@ -163,13 +163,13 @@ public class LivroDAO extends AbstractJdbcDAO {
 			pst.setInt(1, livro.getId());
 			pst.executeUpdate();
 			connection.commit();
-		
+
 			for (Categoria c : livro.getCategorias()) {
 
 				sql = new StringBuilder();
 				sql.append("INSERT INTO tb_livro_cat(fk_livro, fk_categoria)");
 				sql.append(" VALUES (?,?)");
-				
+
 				pst = connection.prepareStatement(sql.toString());
 
 				pst.setInt(1, livro.getId());
@@ -178,7 +178,6 @@ public class LivroDAO extends AbstractJdbcDAO {
 				connection.commit();
 			}
 
-			
 			sql = new StringBuilder();
 			sql.append("DELETE FROM tb_livro_autor WHERE fk_livro = ?");
 			pst = connection.prepareStatement(sql.toString());
@@ -191,7 +190,7 @@ public class LivroDAO extends AbstractJdbcDAO {
 				sql = new StringBuilder();
 				sql.append("INSERT INTO tb_livro_autor(fk_livro, fk_autor)");
 				sql.append(" VALUES (?,?)");
-				
+
 				pst = connection.prepareStatement(sql.toString());
 
 				pst.setInt(1, livro.getId());
@@ -199,7 +198,7 @@ public class LivroDAO extends AbstractJdbcDAO {
 				pst.executeUpdate();
 				connection.commit();
 			}
-			
+
 		} catch (SQLException e) {
 			try {
 				connection.rollback();
@@ -274,85 +273,81 @@ public class LivroDAO extends AbstractJdbcDAO {
 
 		String sql = "SELECT * FROM Livro WHERE";
 
-		if(livro.getId() != null)
-		    sql += " id_livro = ? AND";
-	    if(livro.getTitulo() != null)
-		    sql += " titulo = ? AND";
-		if(livro.getEditora() != null && livro.getEditora().getNomeEditora() != null)
-	    	sql += " id_editora = ? AND";
-		if(livro.getAutores() != null && !livro.getAutores().isEmpty())
-			sql += " id_autor = ? AND";
-	    if(livro.getCategorias() != null && !livro.getCategorias().isEmpty())
-			sql += " id_categoria = ? AND";
-	    if(livro.getEditora() != null && livro.getEditora().getNomeEditora() != null)
+		if (livro.getId() != null)
+			sql += " id_livro = ? AND";
+		if (livro.getTitulo() != null)
+			sql += " titulo = ? AND";
+		if (livro.getEditora() != null && livro.getEditora().getNomeEditora() != null)
 			sql += " id_editora = ? AND";
-	    if(livro.getEdicao() != null && livro.getEdicao().getAno() != null)
+		if (livro.getAutores() != null && !livro.getAutores().isEmpty())
+			sql += " id_autor = ? AND";
+		if (livro.getCategorias() != null && !livro.getCategorias().isEmpty())
+			sql += " id_categoria = ? AND";
+		if (livro.getEditora() != null && livro.getEditora().getNomeEditora() != null)
+			sql += " id_editora = ? AND";
+		if (livro.getEdicao() != null && livro.getEdicao().getAno() != 0)
 			sql += " ano = ? AND";
-	    if(livro.getEdicao() != null && livro.getEdicao().getNumero() != 0)
+		if (livro.getEdicao() != null && livro.getEdicao().getNumero() != 0)
 			sql += " id_edicao = ? AND";
-	    if(livro.getIsbn() != null)
+		if (livro.getIsbn() != null)
 			sql += " isbn = ? AND";
 		////////////////////////////////////
-		if(sql.endsWith(" AND"))
-		    sql = sql.substring(0, sql.length() - 4) + ";";
-		
+		if (sql.endsWith(" AND"))
+			sql = sql.substring(0, sql.length() - 4) + ";";
+
 		else
-		    sql = "SELECT * FROM tb_livro;";
-		
-		try
-		{
+			//SELECT autor.id_autor, autor.nome_autor "
+//			+ "FROM tb_livro_autor as livro_autor "
+//			+ "JOIN tb_autor as autor ON autor.id_autor = livro_autor.fk_autor " + "WHERE fk_livro=?;
+			sql = "SELECT * "
+					+ "FROM tb_livro "
+					+ "JOIN tb_status_livro ON tb_status_livro.id_status = tb_livro.fk_status;";
+
+		try {
 			openConnection();
 			pst = connection.prepareStatement(sql);
-		    int i = 1;
-		    
-		    if(livro.getId() != null)
-		    {
-			pst.setInt(i, livro.getId());
-			i++;
-		    }
-		    
-		    if(livro.getTitulo() != null)
-		    {
-			pst.setString(i, livro.getTitulo());
-			i++;
-		    }
-		   
-		    if(livro.getAutores() != null && !livro.getAutores().isEmpty())
-		    {
-			pst.setInt(i, livro.getAutores().get(0).getId());
-			i++;
-		    }
-		    
-		    if(livro.getCategorias() != null && !livro.getCategorias().isEmpty())
-		    {
-			pst.setInt(i, livro.getCategorias().get(0).getId());
-			i++;
-		    }
-		    
-		    if(livro.getEditora() != null && livro.getEditora().getNomeEditora() != null)
-		    {
-			pst.setString(i, livro.getEditora().getNomeEditora());
-			i++;
-		    }
-		    
-		    if(livro.getEdicao() != null && livro.getEdicao().getAno() != null)
-		    {
-			pst.setString(i, livro.getEdicao().getAno());
-			i++;
-		    }
-		    
-		    if(livro.getEdicao() != null && livro.getEdicao().getNumero() != 0)
-		    {
-			pst.setInt(i, livro.getEdicao().getNumero());
-			i++;
-		    }
-		    
-		    if(livro.getIsbn() != null)
-		    {
-			pst.setString(i, livro.getIsbn());
-			i++;
-		    }
-		    
+			int i = 1;
+
+			if (livro.getId() != null) {
+				pst.setInt(i, livro.getId());
+				i++;
+			}
+
+			if (livro.getTitulo() != null) {
+				pst.setString(i, livro.getTitulo());
+				i++;
+			}
+
+			if (livro.getAutores() != null && !livro.getAutores().isEmpty()) {
+				pst.setInt(i, livro.getAutores().get(0).getId());
+				i++;
+			}
+
+			if (livro.getCategorias() != null && !livro.getCategorias().isEmpty()) {
+				pst.setInt(i, livro.getCategorias().get(0).getId());
+				i++;
+			}
+
+			if (livro.getEditora() != null && livro.getEditora().getNomeEditora() != null) {
+				pst.setString(i, livro.getEditora().getNomeEditora());
+				i++;
+			}
+
+			if (livro.getEdicao() != null && livro.getEdicao().getAno() != 0) {
+				pst.setInt(i, livro.getEdicao().getAno());
+				i++;
+			}
+
+			if (livro.getEdicao() != null && livro.getEdicao().getNumero() != 0) {
+				pst.setInt(i, livro.getEdicao().getNumero());
+				i++;
+			}
+
+			if (livro.getIsbn() != null) {
+				pst.setString(i, livro.getIsbn());
+				i++;
+			}
+
 			ResultSet rs = pst.executeQuery();
 			List<EntidadeDominio> livros = new ArrayList<EntidadeDominio>();
 			while (rs.next()) {
@@ -363,7 +358,7 @@ public class LivroDAO extends AbstractJdbcDAO {
 
 				l.setId(rs.getInt("id_livro"));
 				l.setTitulo(rs.getString("titulo"));
-				e.setAno(rs.getString("ano"));
+				e.setAno(rs.getInt("ano"));
 				e.setNumero(rs.getInt("edicao"));
 				l.setIsbn(rs.getString("isbn"));
 				e.setNumeroPagina(rs.getInt("numero_pagina"));
@@ -391,24 +386,27 @@ public class LivroDAO extends AbstractJdbcDAO {
 
 				// Consultar autores do livro
 				l.setAutores(new ArrayList<Autor>());
-				pst = connection.prepareStatement("SELECT * FROM LivroAutor WHERE id_livro=?;");
+				pst = connection.prepareStatement(("SELECT autor.id_autor, autor.nome_autor "
+						+ "FROM tb_livro_autor as livro_autor "
+						+ "JOIN tb_autor as autor ON autor.id_autor = livro_autor.fk_autor " + "WHERE fk_livro=?;"));
 				pst.setInt(1, l.getId());
 				ResultSet rs2 = pst.executeQuery();
-				while (rs2.next())
-				{
-				    Autor a = new Autor(rs2.getInt("id_autor"));
-				    l.getAutores().add((Autor)new AutorDAO().consultar(a).get(0));
+				while (rs2.next()) {
+					Autor a = new Autor(rs2.getString("nome_autor"));
+					l.getAutores().add(a);
 				}
-				
+
 				// Consultar categorias do livro
-				l.setCategorias(new ArrayList<CategoriaLivro>());
-				pst = conn.prepareStatement("SELECT * FROM LivroCat WHERE id_livro=?;");
+				l.setCategorias(new ArrayList<Categoria>());
+				pst = connection.prepareStatement("SELECT categoria.id_categoria, categoria.nome_categoria "
+						+ "FROM tb_livro_cat as livro_cat "
+						+ "JOIN tb_categoria_livro as categoria ON categoria.id_categoria = livro_cat.fk_categoria "
+						+ "WHERE fk_livro=?;");
 				pst.setInt(1, l.getId());
 				rs2 = pst.executeQuery();
-				while (rs2.next())
-				{
-				    CategoriaLivro c = new CategoriaLivro(rs2.getInt("id_categoria"));
-				    l.getCategorias().add((CategoriaLivro)new CategoriaLivroDAO().consultar(c).get(0));
+				while (rs2.next()) {
+					Categoria c = new Categoria(rs2.getString("nome_categoria"));
+					l.getCategorias().add(c);
 				}
 				livros.add(l);
 			}

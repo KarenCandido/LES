@@ -84,8 +84,7 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Autor</label>
 								<div class="col-sm-4">
-									<select required class="form-control select2" id="autor"
-										name="autor">
+									<select multiple required class="form-control select2" id="autor" name="autor">
 										<c:forEach items="${autores}" var="a">
 											<option value="${a.getId()}"
 												${livro.getAutor().getId() == a.getId() ? 'selected' : ''}>${a.getNomeAutor()}</option>
@@ -142,6 +141,16 @@
 										value="${livro.getCodigoBarras()}">
 								</div>
 							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Preço</label>
+								<div class="col-sm-6">
+									<input required type="text" class="form-control"
+										id="precoVenda" name="precoVenda"
+										placeholder="Entre com o código de barras do livro"
+										value="${livro.getPrecoVenda()}">
+								</div>
+							</div>
 
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Status</label>
@@ -196,8 +205,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Grupo de
-									Precificação</label>
+								<label class="col-sm-2 control-label">Grupo de Precificação</label>
 								<div class="col-sm-4">
 									<select required class="form-control select2"
 										id="grupoPrecificacao" name="grupoPrecificacao">

@@ -1,27 +1,27 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Livraria Fatec - Endere√ßos </title>
-<link rel="stylesheet" type="text/css" href="css/estilo.css">
-<link rel="stylesheet" type="text/css" href="css/fonte/fonte.css">
-
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Livraria Fatec - EndereÁos </title>
+<link rel="stylesheet" type="text/css" href="css/estilo.css"></link>
+<link rel="stylesheet" type="text/css" href="css/fonte/fonte.css"></link>
 </head>
 
 <body>
-
-<div class="topo">
+	<div class="topo">
 	<div class="logo">
     	<img src="imagens/logo.png" width="100%">
 	</div>
 	<div class="menu">
 		<div id="menu">
         	<ul>
-        		<a href="index.html"><li>Home</li></a>
-        		<a href="quem_somos.html"><li>Quem Somos</li></a>
-        		<a href="livros.html"><li>Livros</li></a>
-        		<a href="contato.html"><li>Contato</li></a>
-        		<a href="login.html"><li>Login</li></a>
+        		<a href="index.jsp"><li>Home</li></a>
+        		<a href="quem_somos.jsp"><li>Quem Somos</li></a>
+        		<a href="livros.jsp"><li>Livros</li></a>
+        		<a href="contato.jsp"><li>Contato</li></a>
+        		<a href="login.jsp"><li>Login</li></a>
             </ul>
         </div>
 	</div>
@@ -30,41 +30,41 @@
 <div class="wrapper">
 	<div class="lateral">
 		<ul>
-        	<a href="perfil.html"><li>Perfil</li></a>
-        	<a href="alterar_senha.html"><li>Alterar Senha</li></a>
-        	<a href="endereco.html"><li>Endere√ßos</li></a>
-        	<a href="cartoes.html"><li>Cart√µes</li></a>
-        	<a href="pedidos.html"><li>Pedidos</li></a>
-        	<a href="cupons.html"><li>Cupons</li></a>
-        	<a href="trocas.html"><li>Trocas</li></a>
+        	<a href="perfil.jsp"><li>Perfil</li></a>
+        	<a href="alterar_senha.jsp"><li>Alterar Senha</li></a>
+        	<a href="endereco.jsp"><li>EndereÁos</li></a>
+        	<a href="cartoes.jsp"><li>Cartıes</li></a>
+        	<a href="pedidos.jsp"><li>Pedidos</li></a>
+        	<a href="cupons.jsp"><li>Cupons</li></a>
+        	<a href="trocas.jsp"><li>Trocas</li></a>
         	<li>Sair</li>
         
         </ul>
 	</div>
     <div class="centro">
-    	<p class="titulo"> Endere√ßos </p>
+    	<p class="titulo"> EndereÁos </p>
     	<div class="cad_endereco">
             <select id="end_endereco">
-                <option value="Tipo de Endere√ßo"> Tipo de Endere√ßo</option>
-                <option value="Endere√ßo de Cobran√ßa"> Endere√ßo de Cobran√ßa</option>
-                <option value="Endere√ßo de Entrega"> Endere√ßo de Entrega</option>
+                <option value="Tipo de EndereÁo"> Tipo de EndereÁo</option>
+                <option value="EndereÁo de CobranÁa"> EndereÁo de CobranÁa</option>
+                <option value="EndereÁo de Entrega"> EndereÁo de Entrega</option>
             </select><br>
 
         	<input type="text" id="end_cep" placeholder="CEP"> Consultar CEP
-            <input type="text" id="end_residencia" placeholder="Tipo de Resid√™ncia">
+            <input type="text" id="end_residencia" placeholder="Tipo de ResidÍncia">
             <input type="text" id="end_logradouro" placeholder="Logradouro">
-            <input type="text" id="end_numero" placeholder="N¬∫">
+            <input type="text" id="end_numero" placeholder="N∫">
             <input type="text" id="end_bairro" placeholder="Bairro"><br>
             <input type="text" id="end_cidade" placeholder="Cidade">
             <select id="end_estado">
                 <option value="Estado"> Estado...</option>
-                <option value="S√£o Paulo"> S√£o Paulo</option>
+                <option value="S„o Paulo"> S„o Paulo</option>
             </select>
             <select id="end_pais">
-                <option value="Pa√≠s"> Pa√≠s...</option>
+                <option value="PaÌs"> PaÌs...</option>
                 <option value="Brasil"> Brasil</option>
             </select>
-            <input type="text" id="end_obs" placeholder="Observa√ß√£o">
+            <input type="text" id="end_obs" placeholder="ObservaÁ„o">
             <input type="button" id="bt_adicionar" value="Adicionar Outro" >
             <input type="button" id="bt_cancelar" value="Cancelar" >
             <input type="button" id="bt_excluir" value="Excluir" >

@@ -9,7 +9,6 @@ public class Livro extends EntidadeDominio {
 
 	private String codigoBarras;
 	private Double precoVenda;
-	private boolean status;
 	private String isbn;
 	private int qtde_estoque;
 	private int qtde_venda;
@@ -55,13 +54,6 @@ public class Livro extends EntidadeDominio {
 		this.precoVenda = precoVenda;
 	}
 
-	public boolean isStatus() {
-		return status;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
 
 	public String getIsbn() {
 		return isbn;

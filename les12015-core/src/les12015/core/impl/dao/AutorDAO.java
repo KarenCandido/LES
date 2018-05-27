@@ -9,7 +9,7 @@ import java.util.List;
 import les12015.dominio.Autor;
 import les12015.dominio.EntidadeDominio;
 
-public class AutorDAO extends AbstractJdbcDAO{
+public class AutorDAO extends AbstractJdbcDAO {
 
 	public AutorDAO(String table, String idTable) {
 		super(table, idTable);
@@ -19,13 +19,13 @@ public class AutorDAO extends AbstractJdbcDAO{
 	@Override
 	public void salvar(EntidadeDominio entidade) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void alterar(EntidadeDominio entidade) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

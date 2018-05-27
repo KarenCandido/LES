@@ -1,11 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Livraria Fatec - Administrador - Clientes </title>
-<link rel="stylesheet" type="text/css" href="css/estilo.css">
-<link rel="stylesheet" type="text/css" href="css/fonte/fonte.css">
-<script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+<link rel="stylesheet" type="text/css" href="css/estilo.css"></link>
+<link rel="stylesheet" type="text/css" href="css/fonte/fonte.css"></link>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"></script>
+<script type="text/javascript">
 
 </head>
 <body>
@@ -17,7 +20,7 @@
         </div>
 
 		<ul>
-        	<a href="estatisticas.html"><li>EstatÃ­sticas</li></a>
+        	<a href="estatisticas.html"><li>Estatísticas</li></a>
         	<a href="clientes.html"><li>Clientes</li></a>
         	<a href="compras.html"><li>Compras</li></a>
         	<a href="estoque.html"><li>Estoque</li></a>

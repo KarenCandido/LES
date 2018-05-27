@@ -1,11 +1,19 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@ page import="les12015.core.util.ConverteDate"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ page
+	import="les12015.core.aplicacao.Resultado, les12015.dominio.*, java.util.*"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Livraria Fatec - Administrador - Livros </title>
-<link rel="stylesheet" type="text/css" href="css/estilo.css">
-<link rel="stylesheet" type="text/css" href="css/fonte/fonte.css">
+<link rel="stylesheet" type="text/css" href="css/estilo.css"></link>
+<link rel="stylesheet" type="text/css" href="css/fonte/fonte.css"></link>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"></script>
 </head>
+
 <body>
 <div class="wrapper">
 	<div class="lateral">
@@ -15,11 +23,11 @@
         </div>
 
 		<ul>
-        	<a href="estatisticas.html"><li>EstatÃ­sticas</li></a>
-        	<a href="clientes.html"><li>Clientes</li></a>
-        	<a href="compras.html"><li>Compras</li></a>
-        	<a href="estoque.html"><li>Estoque</li></a>
-        	<a href="livros.html"><li>Livros</li></a>
+        	<a href="estatisticas.jsp"><li>Estatísticas</li></a>
+        	<a href="clientes.jsp"><li>Clientes</li></a>
+        	<a href="compras.jsp"><li>Compras</li></a>
+        	<a href="estoque.jsp"><li>Estoque</li></a>
+        	<a href="CRUDLivros?&operacao=GETALLBOOKS"><li>Livros</li></a>
         	<li>Sair</li>
         
         </ul>
@@ -30,13 +38,22 @@
         	<input type="text" id="busca_clientes" placeholder="Pesquisa"><br>
         	<table>
         		<tr>
-        			<td style="width:65%;">Livro nÂº #0000</td>
+        			<td style="width:65%;">Título</td>
         			<td style="width:15%;">Quantidade</td>
-                    <td style="border:none;width:15%;"><a href=""><input type="button" id="bt_detalhes" value="DETALHES"></a></td>
-                    <td style="border:none; width:15%;"><input type="button" id="bt_excluir" value="EXCLUIR"></td>
+                    <td></td>
+                    <td></td>
         		</tr>
+        		<c:forEach items="${livros}" var="l">
+        		<tr>
+        			<td>${l.getTitulo()}</td>
+        			<td></td>
+        			<td style="border:none;width:15%;"><a href="CRUDLivros?&operacao=VISUALIZAR"><input type="button" id="bt_detalhes" value="DETALHES"></a></td>
+                    <td style="border:none; width:15%;"><a href="CRUDLivros?&operacao=EXCLUIR"><input type="button" id="bt_excluir" value="EXCLUIR"></a></td>
+        		</tr>
+        		
+        		</c:forEach>
         	</table>
-             <a href="detalhes_livros.html"><input type="button" id="add_produto" value="Adicionar Outro"></a>
+             <a href="CRUDLivros?&operacao=NEWBOOK"><input type="button" id="add_produto" value="Adicionar Outro"></a>
         </div>	
     </div>
 </div> 

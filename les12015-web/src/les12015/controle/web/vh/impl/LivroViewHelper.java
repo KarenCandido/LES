@@ -26,6 +26,7 @@ import les12015.dominio.Editora;
 import les12015.dominio.EntidadeDominio;
 import les12015.dominio.GrupoPrecificacao;
 import les12015.dominio.Livro;
+import les12015.dominio.StatusLivro;
 
 public class LivroViewHelper implements IViewHelper {
 
@@ -46,14 +47,14 @@ public class LivroViewHelper implements IViewHelper {
 			String altura = request.getParameter("altura");
 			String largura = request.getParameter("largura");
 			String profundidade = request.getParameter("profundidade");
-			String peso = request.getParameter("peso"); // falta na jsp
+			String peso = request.getParameter("peso");
 			String codigo_barras = request.getParameter("codigoBarras");
-			String preco_custo = request.getParameter("precoCusto");// falta na jsp
+			String preco_venda = request.getParameter("precoVenda");
 			String id_grupoPrecificacao = request.getParameter("grupoPrecificacao");
 			String id_editora = request.getParameter("editora");
-			String id_categoria = request.getParameter("categoria");
+			String[] id_categoria = request.getParameterValues("categoria");
 			String status = request.getParameter("status");
-			String id_autor = request.getParameter("autor");
+			String[] id_autor = request.getParameterValues("autor");
 
 			livro = new Livro();
 			Edicao e = new Edicao();
@@ -66,7 +67,7 @@ public class LivroViewHelper implements IViewHelper {
 				livro.setTitulo(titulo);
 			}
 			if (ano != null && !ano.isEmpty()) {
-				e.setAno(ano);
+				e.setAno(Integer.parseInt(ano));
 			}
 
 			if (edicao != null && !edicao.isEmpty()) {
@@ -99,11 +100,20 @@ public class LivroViewHelper implements IViewHelper {
 			if (codigo_barras != null && !codigo_barras.isEmpty()) {
 				livro.setCodigoBarras(codigo_barras);
 			}
-			if (preco_custo != null && !preco_custo.isEmpty()) {
-				livro.setPrecoCusto(Double.parseDouble(preco_custo));
+			if (preco_venda != null && !preco_venda.isEmpty()) {
+				livro.setPrecoVenda(Double.parseDouble(preco_venda));
 			}
 			if (status != null && !status.isEmpty()) {
-				livro.setStatus(Boolean.parseBoolean(status));
+				livro.setStatusLivro(new StatusLivro());
+				livro.getStatusLivro().setStatus(Boolean.parseBoolean(status));
+				/*
+				 * MUDAR ESSE TRECHO DO CODIGO HARD CODED!!!!!!
+				 */
+				
+				if(Boolean.parseBoolean(status))
+					livro.getStatusLivro().setId(1);
+				else
+					livro.getStatusLivro().setId(2);
 			}
 
 			e.setDimensoes(d);
@@ -121,17 +131,25 @@ public class LivroViewHelper implements IViewHelper {
 				livro.setEditora(editora);
 			}
 
-			Categoria categoria = new Categoria();
-			if (id_categoria != null && !id_categoria.isEmpty()) {
-				categoria.setId(Integer.parseInt(id_categoria));
-				livro.setCategoriaLivro(categoria);
+			ArrayList<Categoria> categorias = new ArrayList<Categoria>();
+			if (id_categoria != null) {
+				for(String a: id_categoria) {
+					Categoria categoria = new Categoria();
+					categoria.setId(Integer.parseInt(a));
+					categorias.add(categoria);
+				}
 			}
-
-			Autor autor = new Autor();
-			if (id_autor != null && !id_autor.isEmpty()) {
-				autor.setId(Integer.parseInt(id_autor));
-				livro.setAutor(autor);
+			livro.setCategorias(categorias);
+			
+			ArrayList<Autor> autores = new ArrayList<Autor>();
+			if (id_autor != null) {
+				for(String a: id_autor) {
+					Autor autor = new Autor();
+					autor.setId(Integer.parseInt(a));
+					autores.add(autor);
+				}
 			}
+			livro.setAutores(autores);
 		} else {
 			HttpSession session = request.getSession();
 			@SuppressWarnings("unchecked")
@@ -172,7 +190,7 @@ public class LivroViewHelper implements IViewHelper {
 			livros = livroDAO.consultar(null);
 
 			request.getSession().setAttribute("livros", livros);
-			d = request.getRequestDispatcher("../Livro/ListaLivro.jsp");
+			d = request.getRequestDispatcher("livros.jsp");
 		}
 
 		if (resultado.getMsg() == null && operacao.equals("ALTERAR")) {
@@ -183,7 +201,7 @@ public class LivroViewHelper implements IViewHelper {
 			livros = livroDAO.consultar(null);
 
 			request.getSession().setAttribute("livros", livros);
-			d = request.getRequestDispatcher("../Livro/ListaLivro.jsp");
+			d = request.getRequestDispatcher("livros.jsp");
 		}
 
 		if (resultado.getMsg() == null && operacao.equals("INATIVAR")) {
@@ -194,7 +212,7 @@ public class LivroViewHelper implements IViewHelper {
 			livros = livroDAO.consultar(null);
 
 			request.getSession().setAttribute("livros", livros);
-			d = request.getRequestDispatcher("../Livro/ListaLivro.jsp");
+			d = request.getRequestDispatcher("livros.jsp");
 		}
 		if (operacao.equals("GETALLBOOKS")) {
 
@@ -203,12 +221,12 @@ public class LivroViewHelper implements IViewHelper {
 			livros = livroDAO.consultar(null);
 
 			request.getSession().setAttribute("livros", livros);
-			d = request.getRequestDispatcher("../Livro/ListaLivro.jsp");
+			d = request.getRequestDispatcher("livros.jsp");
 
 		}
 		if (operacao.equals("CONSULTAR")) {
 			request.getSession().setAttribute("livros", resultado.getEntidades());
-			d = request.getRequestDispatcher("../Livro/ListaLivro2.jsp");
+			d = request.getRequestDispatcher("livros.jsp");
 
 		}
 
@@ -216,20 +234,20 @@ public class LivroViewHelper implements IViewHelper {
 
 			loadingForm(request);
 
-			d = request.getRequestDispatcher("FormLivro.jsp");
+			d = request.getRequestDispatcher("detalhes_livros.jsp");
 
 		}
 
 		if (resultado.getMsg() == null && operacao.equals("VISUALIZAR")) {
 			loadingForm(request);
 			request.setAttribute("livro", resultado.getEntidades().get(0));
-			d = request.getRequestDispatcher("FormLivro.jsp");
+			d = request.getRequestDispatcher("detalhes_livros.jsp");
 		}
 
 		if (resultado.getMsg() == null && operacao.equals("EXCLUIR")) {
 
 			request.getSession().setAttribute("livros", null);
-			d = request.getRequestDispatcher("ListaLivro.jsp");
+			d = request.getRequestDispatcher("livros.jsp");
 		}
 
 		d.forward(request, response);

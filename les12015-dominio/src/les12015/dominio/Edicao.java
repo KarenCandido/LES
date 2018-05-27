@@ -2,17 +2,17 @@ package les12015.dominio;
 
 public class Edicao {
 	
-	private String ano;
+	private int ano;
 	private int numero;
 	
 	private int numeroPagina;
 	private Dimensoes dimensoes;
 	
 	
-	public String getAno() {
+	public int getAno() {
 		return ano;
 	}
-	public void setAno(String ano) {
+	public void setAno(int ano) {
 		this.ano = ano;
 	}
 	public int getNumero() {
