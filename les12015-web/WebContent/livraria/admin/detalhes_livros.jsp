@@ -68,28 +68,33 @@ window.onmousedown = function (e) {
 	        	<form action="CRUDLivros" method="post">
 	                <input type="text" id="titulo" name="titulo" placeholder="Titulo" value="${livro.getTitulo()}"><br>
 					
-					<textarea type="text" id="sinopse" name="sinopse" placeholder="Sinopse" 
+					<textarea id="sinopse" name="sinopse" placeholder="Sinopse" 
 	                		value="${livro.getSinopse()}"></textarea>
 					
+					<c:set var="autorIds" value='${livro.getAutores().stream().map(Autor::getId).collect(Collectors.toList())}'/>
 					<select multiple required id="autor" name="autor" placeholder="Autor">
 						<c:forEach items="${autores}" var="a">
 							<option value="${a.getId()}"
-								${livro.getAutor().getId() == a.getId() ? 'selected' : ''}>${a.getNomeAutor()}</option>
+								${autorIds.contains(a.getId()) ? 'selected' : ''}>${a.getNomeAutor()}
+							</option>
 						</c:forEach>
 					</select>
-	                <select required id="editora"name="editora">
-						<c:forEach items="${editoras}" var="e">
-							<option value="${e.getId()}"
-								${livro.getEditora().getId() == e.getId() ? 'selected' : ''}>${e.getNomeEditora()}</option>
-						</c:forEach>
-					</select>
+					
+<!-- 	                <select required id="editora"name="editora"> -->
+<%-- 						<c:forEach items="${editoras}" var="e"> --%>
+<%-- 							<option value="${e.getId()}">${livro.getEditora().getNome()}</option> --%>
+<%-- 								${livro.getEditora().getId() == e.getId() ? 'selected' : ''}>${e.getNomeEditora()} --%>
+<!-- 							</option> -->
+<%-- 						</c:forEach> --%>
+<!-- 					</select> -->
 	                
-	                <select multiple required id="categoria" name="categoria">
-						<c:forEach items="${categorias}" var="c">
-							<option value="${c.getId()}"
-								${livro.getCategoriaLivro().getId() == c.getId() ? 'selected' : ''}>${c.getNomeCategoria()}</option>
-						</c:forEach>
-					</select>
+<!-- 	                <select multiple required id="categoria" name="categoria"> -->
+<%-- 						<c:forEach items="${categorias}" var="c"> --%>
+<%-- 							<option value="${c.getId()}">${livro.getCategoriaLivro().getNome()}</option> --%>
+<%-- 								${livro.getCategoriaLivro().contains(c.getId()) ? 'selected' : ''}>${c.getNomeCategoria()} --%>
+<!-- 							</option> -->
+<%-- 						</c:forEach> --%>
+<!-- 					</select> -->
 	                <input type="text" id="ano" name="ano" placeholder="Ano"
 	                		value="${livro.getEdicao().getAno()}">
 	                
@@ -127,16 +132,6 @@ window.onmousedown = function (e) {
 								- ${g.getPorcentagemLucro()}</option>
 						</c:forEach>
 					</select>
-					
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Status</label>
-						<div class="col-sm-10">
-						<label><input ${livro.isStatus() == true ? 'checked' : '' } type="radio"
-									name="status" value="true">Ativo</label>
-						<label><input ${livro.isStatus() == false ? 'checked' : '' } type="radio"
-									name="status" value="false">Inativo</label>
-						</div>
-					</div>
 	                <input type="button" id="bt_voltar" value="VOLTAR" onclick="history.back()" >
 	                <input type="button" id="bt_cancelar" value="CANCELAR" onclick="history.back()"  >
 	                <input type="button" id="bt_excluir" value="EXCLUIR" >

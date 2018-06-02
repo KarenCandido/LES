@@ -1,6 +1,6 @@
 body { width:100%; margin:0 auto; height:100%; display:table; font-family: 'Nexa Light Regular'; font-size:18px;}
 
-/*PADR√ÉO*/
+/*PADR√O*/
 .wrapper 							{ width:100%; margin:0 auto; display:table; margin-bottom:80px;}
 #wrapper							{ width:50%; margin:0 auto; display:table; margin-top:100px;}
 
@@ -8,7 +8,8 @@ body { width:100%; margin:0 auto; height:100%; display:table; font-family: 'Nexa
 .lateral 							{ width:18%; float:left; margin:0 auto; padding:2% 1% 0 1%; border-right:5px solid #b01116;height:100%; position:fixed; background:#3a5460; color:#FFF; font-size:14px;}
 .lateral  ul li 					{ list-style:none;  padding:2% 1%; width:98%; float:left; font-size:18px;color:#FFF;}
 .lateral  ul li:hover				{ color:#3a5460; background:#FFF;}
-.lateral .logo 						{ width:300px; margin:0 auto;  margin-bottom:50px;}
+.lateral .logo 						{ width:200px; margin:0 auto;  margin-bottom:50px;}
+
 
 .lateral input[type=text]			{ width:80%; margin:0 auto; padding:10px 5px; border:1px solid #a7a9ab; margin:1% 0;}
 .lateral input[type=button]			{ width:83%; margin:0 auto; margin:1% 0; background:#3a5460; color:#FFF; text-transform:uppercase; border:none; height:35px; outline:none}
@@ -27,8 +28,10 @@ input[type=submit]:hover 	{ background:#b01116; font-family: 'Nexa Light Regular
 
 input[type=button]			{ width:20%; margin:0 auto; margin:1%; background:#3a5460; color:#FFF; text-transform:uppercase; border:none; height:35px; outline:none;}
 input[type=button]:hover 	{ background:#b01116; font-family: 'Nexa Light Regular';}
+
 input[type=text]			{ margin:0 auto; padding:15px 10px; border:1px solid #a7a9ab; margin:1% 0; text-align:left; width:46%;}
 select						{ margin:0 auto; padding:15px 10px; border:1px solid #a7a9ab; margin:1% 0; text-align:left}
+textarea					{ margin:0 auto; padding:15px 10px; border:1px solid #a7a9ab; margin:1% 0; text-align:left; width:100%; display:table; height:180px;}
 
 /*ESTATISTICAS*/
 .estatisticas 				{ margin:0 auto; text-align:center; display:table; margin-bottom:25px;}

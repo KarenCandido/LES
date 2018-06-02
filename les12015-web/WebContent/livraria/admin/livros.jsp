@@ -40,15 +40,15 @@
         		<tr>
         			<td style="width:65%;">Título</td>
         			<td style="width:15%;">Quantidade</td>
-                    <td></td>
-                    <td></td>
+                    <td style="border:none"></td>
+                    <td style="border:none"></td>
         		</tr>
         		<c:forEach items="${livros}" var="l">
         		<tr>
         			<td>${l.getTitulo()}</td>
         			<td></td>
-        			<td style="border:none;width:15%;"><a href="CRUDLivros?&operacao=VISUALIZAR"><input type="button" id="bt_detalhes" value="DETALHES"></a></td>
-                    <td style="border:none; width:15%;"><a href="CRUDLivros?&operacao=EXCLUIR"><input type="button" id="bt_excluir" value="EXCLUIR"></a></td>
+        			<td style="border:none;width:15%;"><a href="CRUDLivros?&operacao=VISUALIZAR&idLivro=${l.getId()}"><input type="button" id="bt_detalhes" value="DETALHES"></a></td>
+                    <td style="border:none; width:15%;"><a href="CRUDLivros?&operacao=EXCLUIR&idLivro=${l.getId()}"><input type="button" id="bt_excluir" value="EXCLUIR"></a></td>
         		</tr>
         		
         		</c:forEach>
