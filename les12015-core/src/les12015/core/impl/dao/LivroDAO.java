@@ -128,8 +128,8 @@ public class LivroDAO extends AbstractJdbcDAO {
 
 			StringBuilder sql = new StringBuilder();
 			sql.append("UPDATE tb_livro SET (titulo, ano, edicao, isbn, numero_pagina, sinopse, altura, largura, peso,"
-					+ "profundidade, codigo_barras, preco_venda, qtde_estoque, qtde_venda, fk_grupo, fk_editora, fk_status)");
-			sql.append(" = ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+					+ "profundidade, codigo_barras, preco_venda, qtde_estoque, qtde_venda, fk_grupo, fk_editora)");
+			sql.append(" = (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			sql.append(" WHERE id_livro = ?");
 
 			pst = connection.prepareStatement(sql.toString());
@@ -150,7 +150,8 @@ public class LivroDAO extends AbstractJdbcDAO {
 			pst.setDouble(14, livro.getQtde_venda());
 			pst.setInt(15, livro.getGrupoPrecificacao().getId());
 			pst.setInt(16, livro.getEditora().getId());
-			pst.setInt(17, livro.getStatusLivro().getId());
+			pst.setInt(17, livro.getId());
+
 
 			pst.executeUpdate();
 
@@ -214,6 +215,55 @@ public class LivroDAO extends AbstractJdbcDAO {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public void excluir(EntidadeDominio entidade) {
+		openConnection();
+		PreparedStatement pst=null;
+		StringBuilder sb = new StringBuilder();
+		try {
+			connection.setAutoCommit(false);
+			// Excluir dado da tabela tb_livro_cat
+			sb = new StringBuilder();
+			sb.append("DELETE FROM tb_livro_cat WHERE fk_livro = ?");
+			pst = connection.prepareStatement(sb.toString());
+			pst.setInt(1, entidade.getId());
+			pst.executeUpdate();
+			connection.commit();
+
+			// Excluir dado da tabela tb_livro_autor
+			sb = new StringBuilder();
+			sb.append("DELETE FROM tb_livro_autor WHERE fk_livro = ?");
+			pst = connection.prepareStatement(sb.toString());
+			pst.setInt(1, entidade.getId());
+			pst.executeUpdate();
+			connection.commit();
+			
+			// Excluir dado da tabela tb_livro
+			sb = new StringBuilder();
+			sb.append("DELETE FROM tb_livro WHERE id_livro = ?");
+			pst = connection.prepareStatement(sb.toString());
+			pst.setInt(1, entidade.getId());
+			pst.executeUpdate();
+			connection.commit();
+		} catch (SQLException e) {
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();			
+		}finally{
+			
+			try {
+				pst.close();
+				if(ctrlTransaction)
+					connection.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}		
 	}
 
 	public void inativar(EntidadeDominio entidade) {
@@ -392,7 +442,7 @@ public class LivroDAO extends AbstractJdbcDAO {
 				pst.setInt(1, l.getId());
 				ResultSet rs2 = pst.executeQuery();
 				while (rs2.next()) {
-					Autor a = new Autor(rs2.getString("nome_autor"));
+					Autor a = new Autor(rs2.getInt("id_autor"), rs2.getString("nome_autor"));
 					l.getAutores().add(a);
 				}
 
@@ -405,7 +455,7 @@ public class LivroDAO extends AbstractJdbcDAO {
 				pst.setInt(1, l.getId());
 				rs2 = pst.executeQuery();
 				while (rs2.next()) {
-					Categoria c = new Categoria(rs2.getString("nome_categoria"));
+					Categoria c = new Categoria(rs2.getInt("id_categoria"), rs2.getString("nome_categoria"));
 					l.getCategorias().add(c);
 				}
 				livros.add(l);

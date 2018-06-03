@@ -7,8 +7,8 @@ public class Categoria extends EntidadeDominio{
 			super();
 		}
 
-		public Categoria(String nomeCategoria) {
-			super();
+		public Categoria(Integer id, String nomeCategoria) {
+			super(id);
 			this.nomeCategoria = nomeCategoria;
 		}
 

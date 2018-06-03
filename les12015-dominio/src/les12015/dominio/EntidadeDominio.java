@@ -7,6 +7,15 @@ import projeto.IEntidade;
 
 public class EntidadeDominio implements IEntidade{
 	
+	public EntidadeDominio() {
+		super();
+	}
+	
+	public EntidadeDominio(Integer id) {
+		super();
+		this.id = id;
+	}
+	
 	private Integer id;
 	private Date dtCadastro;
 	

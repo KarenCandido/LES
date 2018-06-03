@@ -1,6 +1,7 @@
 package les12015.dominio;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Livro extends EntidadeDominio {
 	private String titulo;
@@ -113,6 +114,14 @@ public class Livro extends EntidadeDominio {
 	public ArrayList<Categoria> getCategorias() {
 		return categorias;
 	}
+	
+	public List<Integer> getCategoriaIds() {
+		List<Integer> categoriaIds = new ArrayList<Integer>();
+		for(Categoria categoria: this.getCategorias()){
+			categoriaIds.add(categoria.getId());
+		}
+		return categoriaIds;
+	}
 
 	public void setCategorias(ArrayList<Categoria> categorias) {
 		this.categorias = categorias;
@@ -120,6 +129,14 @@ public class Livro extends EntidadeDominio {
 
 	public ArrayList<Autor> getAutores() {
 		return autores;
+	}
+	
+	public List<Integer> getAutorIds() {
+		List<Integer> autorIds = new ArrayList<Integer>();
+		for(Autor autor: this.getAutores()) {
+			autorIds.add(autor.getId());
+		}
+		return autorIds;
 	}
 
 	public void setAutores(ArrayList<Autor> autores) {

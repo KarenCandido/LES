@@ -6,8 +6,8 @@ public class Autor extends EntidadeDominio{
 		super();
 	}
 	
-	public Autor(String nomeAutor) {
-		super();
+	public Autor(Integer id, String nomeAutor) {
+		super(id);
 		this.nomeAutor = nomeAutor;
 	}
 

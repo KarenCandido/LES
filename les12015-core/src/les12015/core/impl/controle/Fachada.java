@@ -229,11 +229,9 @@ public class Fachada implements IFachada {
 			} catch (SQLException e) {
 				e.printStackTrace();
 				resultado.setMsg("Não foi possível realizar o registro!");
-
 			}
 		} else {
 			resultado.setMsg(msg);
-
 		}
 
 		return resultado;

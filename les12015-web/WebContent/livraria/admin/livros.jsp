@@ -29,7 +29,6 @@
         	<a href="estoque.jsp"><li>Estoque</li></a>
         	<a href="CRUDLivros?&operacao=GETALLBOOKS"><li>Livros</li></a>
         	<li>Sair</li>
-        
         </ul>
 	</div>
     <div class="centro">

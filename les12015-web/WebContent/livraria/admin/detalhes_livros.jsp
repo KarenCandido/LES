@@ -1,4 +1,6 @@
 <%@ page import="les12015.core.util.ConverteDate"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page
@@ -57,44 +59,44 @@ window.onmousedown = function (e) {
 	        	<a href="clientes.jsp"><li>Clientes</li></a>
 	        	<a href="compras.jsp"><li>Compras</li></a>
 	        	<a href="estoque.jsp"><li>Estoque</li></a>
-	        	<a href="livros.jsp"><li>Livros</li></a>
+	        	<a href="CRUDLivros?&operacao=GETALLBOOKS"><li>Livros</li></a>
 	        	<li>Sair</li>
-	        
 	        </ul>
 		</div>
 	    <div class="centro">
 	    	<div class="add_livros" id="wrapper">
 	            <p class="titulo"> Livros </p>
 	        	<form action="CRUDLivros" method="post">
+	        		<input type="hidden" id="idLivro" name="idLivro" value="${livro.getId()}">
 	                <input type="text" id="titulo" name="titulo" placeholder="Titulo" value="${livro.getTitulo()}"><br>
 					
 					<textarea id="sinopse" name="sinopse" placeholder="Sinopse" 
 	                		value="${livro.getSinopse()}"></textarea>
-					
-					<c:set var="autorIds" value='${livro.getAutores().stream().map(Autor::getId).collect(Collectors.toList())}'/>
+
 					<select multiple required id="autor" name="autor" placeholder="Autor">
 						<c:forEach items="${autores}" var="a">
-							<option value="${a.getId()}"
-								${autorIds.contains(a.getId()) ? 'selected' : ''}>${a.getNomeAutor()}
+							<option value="${a.getId()}" ${livro.getAutorIds().contains(a.getId()) ? 'selected' : ''}>
+								${a.getNomeAutor()}
 							</option>
 						</c:forEach>
 					</select>
 					
-<!-- 	                <select required id="editora"name="editora"> -->
-<%-- 						<c:forEach items="${editoras}" var="e"> --%>
-<%-- 							<option value="${e.getId()}">${livro.getEditora().getNome()}</option> --%>
-<%-- 								${livro.getEditora().getId() == e.getId() ? 'selected' : ''}>${e.getNomeEditora()} --%>
-<!-- 							</option> -->
-<%-- 						</c:forEach> --%>
-<!-- 					</select> -->
+	                <select required id="editora"name="editora">
+						<c:forEach items="${editoras}" var="e">
+							<option value="${e.getId()}" ${livro.getEditora().getId() == e.getId() ? 'selected' : ''}>
+								${e.getNomeEditora()}
+							</option>
+						</c:forEach>
+					</select>
 	                
-<!-- 	                <select multiple required id="categoria" name="categoria"> -->
-<%-- 						<c:forEach items="${categorias}" var="c"> --%>
-<%-- 							<option value="${c.getId()}">${livro.getCategoriaLivro().getNome()}</option> --%>
-<%-- 								${livro.getCategoriaLivro().contains(c.getId()) ? 'selected' : ''}>${c.getNomeCategoria()} --%>
-<!-- 							</option> -->
-<%-- 						</c:forEach> --%>
-<!-- 					</select> -->
+	                <select multiple required id="categoria" name="categoria">
+						<c:forEach items="${categorias}" var="c">
+							<option value="${c.getId()}" ${livro.getCategoriaIds().contains(c.getId()) ? 'selected' : ''}>
+								${c.getNomeCategoria()}
+							</option>
+						</c:forEach>
+					</select>
+					
 	                <input type="text" id="ano" name="ano" placeholder="Ano"
 	                		value="${livro.getEdicao().getAno()}">
 	                
