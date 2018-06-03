@@ -36,7 +36,7 @@ public class ClienteDAO extends AbstractJdbcDAO {
 
 			pst = connection.prepareStatement(sql_insert_usuario.toString(), Statement.RETURN_GENERATED_KEYS);
 			pst.setString(1, cliente.getNome());
-			pst.setString(2, cliente.getDtNasc());
+			pst.setTimestamp(2, cliente.getDataNascimento());
 			pst.setString(3, cliente.getEmail());
 			pst.setString(4, cliente.getCpf());
 			pst.setString(5, cliente.getGenero());
@@ -114,7 +114,7 @@ public class ClienteDAO extends AbstractJdbcDAO {
 			pst = connection.prepareStatement(sql.toString());
 
 			pst.setString(1, cliente.getNome());
-			pst.setString(2, cliente.getDtNasc());
+			pst.setTimestamp(2, cliente.getDataNascimento());
 			pst.setString(3, cliente.getEmail());
 			pst.setString(4, cliente.getCpf());
 			pst.setString(5, cliente.getGenero());
@@ -238,7 +238,7 @@ public class ClienteDAO extends AbstractJdbcDAO {
 
 				c.setId(rs.getInt("id"));
 				c.setNome(rs.getString("nome"));
-				c.setDtNasc(rs.getString("dt_nasc"));
+				c.setDataNascimento(rs.getTimestamp("dt_nasc"));
 				c.setEmail(rs.getString("email"));
 				c.setCpf(rs.getString("cpf"));
 				c.setGenero(rs.getString("genero"));

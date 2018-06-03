@@ -1,59 +1,39 @@
 package les12015.dominio;
 
 public class Usuario extends EntidadeDominio {
-	private String nome;
-	private String dtNasc;
 	private String email;
-	private String cpf;
-	private String genero;
-	private boolean status;
+	private String senha;
+	private String tipoUsuario;
 
-	public String getNome() {
-		return nome;
-	}
+    public Usuario() {
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public Usuario(Integer id, String email) {
+        super(id);
+        this.email = email;
+    }
 
-	public String getDtNasc() {
-		return dtNasc;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setDtNasc(String dtNasc) {
-		this.dtNasc = dtNasc;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getSenha() {
+        return senha;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
-	public String getCpf() {
-		return cpf;
-	}
+    public String getTipoUsuario() {
+        return tipoUsuario;
+    }
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getGenero() {
-		return genero;
-	}
-
-	public void setGenero(String genero) {
-		this.genero = genero;
-	}
-
-	public boolean isStatus() {
-		return status;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
 }

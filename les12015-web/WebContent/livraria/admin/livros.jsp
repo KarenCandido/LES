@@ -12,6 +12,11 @@
 <link rel="stylesheet" type="text/css" href="css/estilo.css"></link>
 <link rel="stylesheet" type="text/css" href="css/fonte/fonte.css"></link>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"></script>
+<script type="text/javascript"><script>
+function confirmAlert() {
+    confirm("Confirmar Exclusão");
+}
+</script>
 </head>
 
 <body>
@@ -47,7 +52,7 @@
         			<td>${l.getTitulo()}</td>
         			<td></td>
         			<td style="border:none;width:15%;"><a href="CRUDLivros?&operacao=VISUALIZAR&idLivro=${l.getId()}"><input type="button" id="bt_detalhes" value="DETALHES"></a></td>
-                    <td style="border:none; width:15%;"><a href="CRUDLivros?&operacao=EXCLUIR&idLivro=${l.getId()}"><input type="button" id="bt_excluir" value="EXCLUIR"></a></td>
+                    <td style="border:none; width:15%;"><a href="CRUDLivros?&operacao=EXCLUIR&idLivro=${l.getId()}" onclick="confirmAlert()"><input type="button" id="bt_excluir" onclick="confirmAlert()" value="EXCLUIR"></a></td>
         		</tr>
         		
         		</c:forEach>

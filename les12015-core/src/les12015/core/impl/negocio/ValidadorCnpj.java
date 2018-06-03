@@ -2,7 +2,6 @@ package les12015.core.impl.negocio;
 
 import les12015.core.IStrategy;
 import les12015.dominio.EntidadeDominio;
-import projeto.Fornecedor;
 
 public class ValidadorCnpj implements IStrategy {
 

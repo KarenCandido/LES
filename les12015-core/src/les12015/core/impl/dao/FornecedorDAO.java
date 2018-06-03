@@ -8,7 +8,6 @@ import java.util.List;
 
 import les12015.dominio.EntidadeDominio;
 import projeto.Endereco;
-import projeto.Fornecedor;
 
 public class FornecedorDAO extends AbstractJdbcDAO {
 	

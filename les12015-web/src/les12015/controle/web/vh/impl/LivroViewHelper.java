@@ -1,32 +1,19 @@
 package les12015.controle.web.vh.impl;
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import les12015.controle.web.vh.IViewHelper;
+import les12015.core.aplicacao.Resultado;
+import les12015.core.impl.dao.*;
+import les12015.dominio.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import les12015.controle.web.vh.IViewHelper;
-import les12015.core.aplicacao.Resultado;
-import les12015.core.impl.dao.AutorDAO;
-import les12015.core.impl.dao.CategoriaDAO;
-import les12015.core.impl.dao.EditoraDAO;
-import les12015.core.impl.dao.GrupoDAO;
-import les12015.core.impl.dao.LivroDAO;
-import les12015.dominio.Autor;
-import les12015.dominio.Categoria;
-import les12015.dominio.Dimensoes;
-import les12015.dominio.Edicao;
-import les12015.dominio.Editora;
-import les12015.dominio.EntidadeDominio;
-import les12015.dominio.GrupoPrecificacao;
-import les12015.dominio.Livro;
-import les12015.dominio.StatusLivro;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LivroViewHelper implements IViewHelper {
 
@@ -38,6 +25,7 @@ public class LivroViewHelper implements IViewHelper {
 		if (!operacao.equals("VISUALIZAR")) {
 
 			String id = request.getParameter("idLivro");
+			String idStatus = request.getParameter("idStatus");
 			String titulo = request.getParameter("titulo");
 			String ano = request.getParameter("ano");
 			String edicao = request.getParameter("edicao");
@@ -54,14 +42,19 @@ public class LivroViewHelper implements IViewHelper {
 			String id_editora = request.getParameter("editora");
 			String[] id_categoria = request.getParameterValues("categoria");
 			String status = request.getParameter("status");
+			String statusJustificativa = request.getParameter("statusJustificativa");
 			String[] id_autor = request.getParameterValues("autor");
 
 			livro = new Livro();
 			Edicao e = new Edicao();
 			Dimensoes d = new Dimensoes();
+            StatusLivro statusLivro = new StatusLivro();
 
 			if (id != null && !id.isEmpty()) {
 				livro.setId(Integer.parseInt(id));
+			}
+			if (idStatus != null && !idStatus.isEmpty()) {
+                statusLivro.setId(Integer.parseInt(idStatus));
 			}
 			if (titulo != null && !titulo.isEmpty()) {
 				livro.setTitulo(titulo);
@@ -104,18 +97,13 @@ public class LivroViewHelper implements IViewHelper {
 				livro.setPrecoVenda(Double.parseDouble(preco_venda));
 			}
 			if (status != null && !status.isEmpty()) {
-				livro.setStatusLivro(new StatusLivro());
-				livro.getStatusLivro().setStatus(Boolean.parseBoolean(status));
-				/*
-				 * MUDAR ESSE TRECHO DO CODIGO HARD CODED!!!!!!
-				 */
-				
-				if(Boolean.parseBoolean(status))
-					livro.getStatusLivro().setId(1);
-				else
-					livro.getStatusLivro().setId(2);
+                statusLivro.setStatus(Boolean.parseBoolean(status));
+			}
+			if (statusJustificativa != null && !statusJustificativa.isEmpty()) {
+                statusLivro.setJustificativa(statusJustificativa);
 			}
 
+            livro.setStatusLivro(statusLivro);
 			e.setDimensoes(d);
 			livro.setEdicao(e);
 

@@ -3,7 +3,7 @@ package les12015.dominio;
 
 import java.util.Date;
 
-import projeto.IEntidade;
+import les12015.dominio.IEntidade;
 
 public class EntidadeDominio implements IEntidade{
 	
@@ -32,7 +32,4 @@ public class EntidadeDominio implements IEntidade{
 		this.dtCadastro = dtCadastro;
 	}
 	
-	
-	
-
 }

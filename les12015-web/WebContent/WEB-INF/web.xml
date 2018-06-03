@@ -25,12 +25,7 @@
 
 	<servlet-mapping>
 		<servlet-name>Servlet</servlet-name>
-<!-- 		<url-pattern>/Livro/CRUDLivro</url-pattern> -->
 		<url-pattern>/Livraria/admin/CRUDLivros</url-pattern>
 		<url-pattern>/Cliente/CRUDCliente</url-pattern>
-
 	</servlet-mapping>
-
-
-
 </web-app>

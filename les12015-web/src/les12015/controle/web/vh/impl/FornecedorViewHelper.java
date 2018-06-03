@@ -10,8 +10,6 @@ import les12015.dominio.EntidadeDominio;
 import projeto.Cidade;
 import projeto.Endereco;
 import projeto.Estado;
-import projeto.Fornecedor;
-
 
 
 public class FornecedorViewHelper implements IViewHelper {
