@@ -57,7 +57,7 @@ function confirmAlert() {
         		
         		</c:forEach>
         	</table>
-             <a href="CRUDLivros?&operacao=NEWBOOK"><input type="button" id="add_produto" value="Adicionar Outro"></a>
+             <a href="CRUDLivros?&operacao=NOVO"><input type="button" id="add_produto" value="Adicionar Outro"></a>
         </div>	
     </div>
 </div> 

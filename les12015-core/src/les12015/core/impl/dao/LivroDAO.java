@@ -263,20 +263,20 @@ public class LivroDAO extends AbstractJdbcDAO {
 			pst.executeUpdate();
 			connection.commit();
 			
-			// Excluir dado da tabela tb_livro
+			// Excluir dado da tabela tb_livro_status
 			sb = new StringBuilder();
+            Livro livro = (Livro) consultar(entidade).get(0);
 			sb.append("DELETE FROM tb_status_livro WHERE id_status = ?");
 			pst = connection.prepareStatement(sb.toString());
-			pst.setInt(1, entidade.getId());
+			pst.setInt(1, livro.getStatusLivro().getId());
 			pst.executeUpdate();
 			connection.commit();
 
 			// Excluir dado da tabela tb_livro
-            Livro livro = (Livro) consultar(entidade);
 			sb = new StringBuilder();
 			sb.append("DELETE FROM tb_livro WHERE id_livro = ?");
 			pst = connection.prepareStatement(sb.toString());
-			pst.setInt(1, livro.getStatusLivro().getId());
+			pst.setInt(1, entidade.getId());
 			pst.executeUpdate();
 			connection.commit();
 		} catch (SQLException e) {

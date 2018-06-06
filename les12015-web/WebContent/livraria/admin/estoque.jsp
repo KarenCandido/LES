@@ -23,8 +23,8 @@
 	    	<a href="estatisticas.html"><li>Estatísticas</li></a>
 	    	<a href="clientes.html"><li>Clientes</li></a>
 	    	<a href="compras.html"><li>Compras</li></a>
-	    	<a href="estoque.html"><li>Estoque</li></a>
-	    	<a href="livros.html"><li>Livros</li></a>
+	    	<a href="estoque.jsp"><li>Estoque</li></a>
+        	<a href="CRUDLivros?&operacao=GETALLBOOKS"><li>Livros</li></a>
 	    	<li>Sair</li>
 	    
 	    </ul>
@@ -39,12 +39,20 @@
 	    			<td>Produto nº #0000</td>
 	    			<td>Quantidade</td>
 	    			<td>Status</td>
-	                <td style="border:none"><a href="detalhes_livros.html"><input type="button" id="bt_detalhes" value="DETALHES"></a></td>
-	                <td style="border:none"><input type="button" id="bt_excluir" value="EXCLUIR"></td>
-	               
+	                <td></td>
+	                <td></td>
 	    		</tr>
+	    		<c:forEach items="${estoques}" var="e">
+        		<tr>
+        			<td>${e.getLivro().getTitulo()}</td>
+        			<td>${e.getQtdeEntrada()}</td>
+        			<td>${e.getLivro().getStatusLivro().isStatus()}</td>
+        			<td style="border:none"><a href="detalhes_livros.jsp"><input type="button" id="bt_detalhes" value="DETALHES"></a></td>
+	                <td style="border:none"><input type="button" id="bt_excluir" value="EXCLUIR"></td>
+                </tr>
+                </c:forEach>
 	    	</table>
-	         <a href="adicionar_livro.html"><input type="button" id="add_produto" value="Adicionar Outro"></a>
+	         <a href="CRUDEstoque?&operacao=NOVO"><input type="button" id="add_produto" value="Adicionar Outro"></a>
 	    </div>	
 	</div>
 	</div> 

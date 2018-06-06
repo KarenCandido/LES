@@ -218,7 +218,7 @@ public class LivroViewHelper implements IViewHelper {
 
 		}
 
-		if (operacao.equals("NEWBOOK")) {
+		if (operacao.equals("NOVO")) {
 			loadingForm(request);
 			d = request.getRequestDispatcher("detalhes_livros.jsp");
 

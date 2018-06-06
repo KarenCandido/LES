@@ -174,7 +174,7 @@ public class ClienteViewHelper implements IViewHelper {
 		}
 
 		// ENVIAR PARA O FORM CLIENTE
-		if (operacao.equals("NEWBOOK")) {
+		if (operacao.equals("NOVO")) {
 
 			loadingForm(request);
 

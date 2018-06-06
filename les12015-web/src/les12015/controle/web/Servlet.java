@@ -1,27 +1,22 @@
 package les12015.controle.web;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import les12015.controle.web.command.ICommand;
+import les12015.controle.web.command.impl.*;
+import les12015.controle.web.vh.IViewHelper;
+import les12015.controle.web.vh.impl.ClienteViewHelper;
+import les12015.controle.web.vh.impl.EstoqueViewHelper;
+import les12015.controle.web.vh.impl.LivroViewHelper;
+import les12015.core.aplicacao.Resultado;
+import les12015.dominio.EntidadeDominio;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import les12015.controle.web.command.ICommand;
-import les12015.controle.web.command.impl.AlterarCommand;
-import les12015.controle.web.command.impl.ConsultarCommand;
-import les12015.controle.web.command.impl.ExcluirCommand;
-import les12015.controle.web.command.impl.InativarCommand;
-import les12015.controle.web.command.impl.NewBookCommand;
-import les12015.controle.web.command.impl.SalvarCommand;
-import les12015.controle.web.command.impl.VisualizarCommand;
-import les12015.controle.web.vh.IViewHelper;
-import les12015.controle.web.vh.impl.ClienteViewHelper;
-import les12015.controle.web.vh.impl.LivroViewHelper;
-import les12015.core.aplicacao.Resultado;
-import les12015.dominio.EntidadeDominio;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Servlet implementation class Servlet
@@ -49,7 +44,7 @@ public class Servlet extends HttpServlet {
 		commands.put("VISUALIZAR", new VisualizarCommand());
 		commands.put("ALTERAR", new AlterarCommand());
 		commands.put("GETALLBOOKS", new ConsultarCommand());
-		commands.put("NEWBOOK", new NewBookCommand());
+		commands.put("NOVO", new NovoCommand());
 		commands.put("INATIVAR", new InativarCommand());
 
 		/*
@@ -65,7 +60,8 @@ public class Servlet extends HttpServlet {
 		 */
 //		vhs.put("/les12015-web/Livro/CRUDLivro", new LivroViewHelper());
 		vhs.put("/les12015-web/Livraria/admin/CRUDLivros", new LivroViewHelper());
-		vhs.put("/les12015-web/Cliente/CRUDCliente", new ClienteViewHelper());
+		vhs.put("/les12015-web/Livraria/CRUDCliente", new ClienteViewHelper());
+		vhs.put("/les12015-web/Livraria/admin/CRUDEstoque", new EstoqueViewHelper());
 
 	}
 
@@ -126,7 +122,12 @@ public class Servlet extends HttpServlet {
 		 * Executa o método setView do view helper específico para definir como deverá
 		 * ser apresentado o resultado para o usuário
 		 */
-		vh.setView(resultado, request, response);
+		try {
+			vh.setView(resultado, request, response);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 }

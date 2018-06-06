@@ -2,6 +2,7 @@
 package les12015.controle.web.vh;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,6 @@ public interface IViewHelper {
 	public EntidadeDominio getEntidade(HttpServletRequest request);
 	
 	public void setView(Resultado resultado, 
-			HttpServletRequest request, HttpServletResponse response)throws IOException, ServletException;
+			HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, SQLException;
 	
 }

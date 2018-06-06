@@ -5,16 +5,14 @@ import les12015.core.IFachada;
 import les12015.core.IStrategy;
 import les12015.core.aplicacao.Resultado;
 import les12015.core.impl.dao.ClienteDAO;
+import les12015.core.impl.dao.EstoqueDAO;
 import les12015.core.impl.dao.FornecedorDAO;
 import les12015.core.impl.dao.LivroDAO;
 import les12015.core.impl.negocio.ComplementarDtCadastro;
 import les12015.core.impl.negocio.ValidadorCnpj;
 import les12015.core.impl.negocio.ValidadorCpf;
 import les12015.core.impl.negocio.ValidadorDadosObrigatoriosFornecedor;
-import les12015.dominio.Cliente;
-import les12015.dominio.EntidadeDominio;
-import les12015.dominio.Fornecedor;
-import les12015.dominio.Livro;
+import les12015.dominio.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -50,11 +48,13 @@ public class Fachada implements IFachada {
         FornecedorDAO forDAO = new FornecedorDAO();
         ClienteDAO cliDAO = new ClienteDAO();
         LivroDAO livroDAO = new LivroDAO();
+        EstoqueDAO estoqueDAO = new EstoqueDAO();
 
         /* Adicionando cada dao no MAP indexando pelo nome da classe */
         daos.put(Fornecedor.class.getName(), forDAO);
         daos.put(Cliente.class.getName(), cliDAO);
         daos.put(Livro.class.getName(), livroDAO);
+        daos.put(Estoque.class.getName(), estoqueDAO);
 
         /* Criando instâncias de regras de negócio a serem utilizados */
         ValidadorDadosObrigatoriosFornecedor vrDadosObrigatoriosFornecedor = new ValidadorDadosObrigatoriosFornecedor();
@@ -303,7 +303,7 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public Resultado newBook(EntidadeDominio entidade) {
+    public Resultado novo(EntidadeDominio entidade) {
         resultado = new Resultado();
         return resultado;
     }

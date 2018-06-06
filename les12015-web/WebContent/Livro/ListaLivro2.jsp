@@ -20,7 +20,7 @@
 					<div class="box-header">
 						<h3 class="box-title">Consulta</h3>
 						<div class="box-tools pull-right">
-							<a href="CRUDLivro?&operacao=NEWBOOK"><button type="button"
+							<a href="CRUDLivro?&operacao=NOVO"><button type="button"
 									class="btn btn-block btn-default">
 									<i class="fa fa-plus-circle"></i>
 								</button></a>

@@ -6,11 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.List;
 
+import les12015.dominio.Endereco;
 import les12015.dominio.EntidadeDominio;
-import projeto.Endereco;
 
 public class EnderecoDAO extends AbstractJdbcDAO {
 
