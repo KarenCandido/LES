@@ -50,7 +50,7 @@ function confirmAlert() {
         		<c:forEach items="${livros}" var="l">
         		<tr>
         			<td>${l.getTitulo()}</td>
-        			<td></td>
+        			<td>${l.getQtde_venda()}</td>
         			<td style="border:none;width:15%;"><a href="CRUDLivros?&operacao=VISUALIZAR&idLivro=${l.getId()}"><input type="button" id="bt_detalhes" value="DETALHES"></a></td>
                     <td style="border:none; width:15%;"><a href="CRUDLivros?&operacao=EXCLUIR&idLivro=${l.getId()}" onclick="confirmAlert()"><input type="button" id="bt_excluir" onclick="confirmAlert()" value="EXCLUIR"></a></td>
         		</tr>

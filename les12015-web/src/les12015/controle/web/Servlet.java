@@ -6,6 +6,7 @@ import les12015.controle.web.vh.IViewHelper;
 import les12015.controle.web.vh.impl.ClienteViewHelper;
 import les12015.controle.web.vh.impl.EstoqueViewHelper;
 import les12015.controle.web.vh.impl.LivroViewHelper;
+import les12015.controle.web.vh.impl.PedidoViewHelper;
 import les12015.core.aplicacao.Resultado;
 import les12015.dominio.EntidadeDominio;
 
@@ -41,11 +42,13 @@ public class Servlet extends HttpServlet {
 		commands.put("SALVAR", new SalvarCommand());
 		commands.put("EXCLUIR", new ExcluirCommand());
 		commands.put("CONSULTAR", new ConsultarCommand());
+		commands.put("EXIBIR", new ConsultarCommand());
 		commands.put("VISUALIZAR", new VisualizarCommand());
 		commands.put("ALTERAR", new AlterarCommand());
 		commands.put("GETALLBOOKS", new ConsultarCommand());
 		commands.put("NOVO", new NovoCommand());
 		commands.put("INATIVAR", new InativarCommand());
+		commands.put("ADICIONAR_ITEM", new AdicionarItemCommand());
 
 		/*
 		 * Utilizando o ViewHelper para tratar especificações de qualquer tela e
@@ -58,10 +61,12 @@ public class Servlet extends HttpServlet {
 		 * A chave do mapa é o mapeamento da servlet para cada form que está configurado
 		 * no web.xml e sendo utilizada no action do html
 		 */
-//		vhs.put("/les12015-web/Livro/CRUDLivro", new LivroViewHelper());
+
 		vhs.put("/les12015-web/Livraria/admin/CRUDLivros", new LivroViewHelper());
-		vhs.put("/les12015-web/Livraria/CRUDCliente", new ClienteViewHelper());
-		vhs.put("/les12015-web/Livraria/admin/CRUDEstoque", new EstoqueViewHelper());
+        vhs.put("/les12015-web/Livraria/admin/CRUDEstoque", new EstoqueViewHelper());
+        vhs.put("/les12015-web/Livraria/CRUDCliente", new ClienteViewHelper());
+		vhs.put("/les12015-web/Livraria/CRUDCompra", new PedidoViewHelper());
+		vhs.put("/les12015-web/Livraria/ShowLivros", new LivroViewHelper());
 
 	}
 

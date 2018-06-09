@@ -170,6 +170,8 @@ public class LivroViewHelper implements IViewHelper {
 		HttpSession session = request.getSession();
 		String operacao = request.getParameter("operacao");
 
+		
+		// SALVAR LIVRO
 		if (resultado.getMsg() == null && operacao.equals("SALVAR")) {
 			resultado.setMsg("Livro cadastrado com sucesso!");
 
@@ -181,6 +183,7 @@ public class LivroViewHelper implements IViewHelper {
 			d = request.getRequestDispatcher("livros.jsp");
 		}
 
+		// ALTERAR LIVRO
 		if (resultado.getMsg() == null && operacao.equals("ALTERAR")) {
 			resultado.setMsg("Livro alterado com sucesso!");
 
@@ -192,6 +195,7 @@ public class LivroViewHelper implements IViewHelper {
 			d = request.getRequestDispatcher("livros.jsp");
 		}
 
+		// INATIVAR LIVRO
 		if (resultado.getMsg() == null && operacao.equals("INATIVAR")) {
 			resultado.setMsg("Livro alterado com sucesso!");
 
@@ -202,6 +206,8 @@ public class LivroViewHelper implements IViewHelper {
 			request.getSession().setAttribute("livros", livros);
 			d = request.getRequestDispatcher("livros.jsp");
 		}
+		
+		// PEGAR TODOS OS LIVROS
 		if (operacao.equals("GETALLBOOKS")) {
 
 			LivroDAO livroDAO = new LivroDAO();
@@ -212,24 +218,36 @@ public class LivroViewHelper implements IViewHelper {
 			d = request.getRequestDispatcher("livros.jsp");
 
 		}
+		
+		// CONSULTAR LIVRO
 		if (operacao.equals("CONSULTAR")) {
 			request.getSession().setAttribute("livros", resultado.getEntidades());
 			d = request.getRequestDispatcher("livros.jsp");
 
 		}
 
+		// EXIBIR LIVROS PARA O USUARIO
+		if (operacao.equals("EXIBIR")) {
+			request.getSession().setAttribute("livros", resultado.getEntidades());
+			d = request.getRequestDispatcher("index.jsp");
+
+		}
+
+		// NOVO LIVRO
 		if (operacao.equals("NOVO")) {
 			loadingForm(request);
 			d = request.getRequestDispatcher("detalhes_livros.jsp");
 
 		}
 
+		// VISUALIZAR LIVRO
 		if (resultado.getMsg() == null && operacao.equals("VISUALIZAR")) {
 			loadingForm(request);
 			request.setAttribute("livro", resultado.getEntidades().get(0));
 			d = request.getRequestDispatcher("detalhes_livros.jsp");
 		}
 
+		// EXCLUIR LIVRO
 		if (resultado.getMsg() == null && operacao.equals("EXCLUIR")) {
 			request.getSession().setAttribute("livros", null);
 			d = request.getRequestDispatcher("CRUDLivros?&operacao=GETALLBOOKS");

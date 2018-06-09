@@ -12,6 +12,6 @@ public interface IFachada {
 	public Resultado visualizar(EntidadeDominio entidade);
 	public Resultado novo(EntidadeDominio entidade);
 	public Resultado inativar(EntidadeDominio entidade);
-	
-	
+	public Resultado adicionar(EntidadeDominio entidade);
+
 }

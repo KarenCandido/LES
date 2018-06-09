@@ -33,7 +33,7 @@
     	<div class="add_produtos" id="wrapper">
             <p class="titulo"> Estoque </p>
         	<form>
-       
+            <input type="hidden" id="idEstoque" name="idEstoque" value="${estoque.getId()}">
             <select required id="idLivro" name="idLivro">
                 <c:forEach items="${livros}" var="l">
                     <option value="${l.getId()}" ${livro.getId().contains(l.getId()) ? 'selected' : ''}>
@@ -53,7 +53,7 @@
                              
 				<select required id="idFornecedor" name="idFornecedor">
 	                <c:forEach items="${fornecedores}" var="f">
-	                    <option value="${f.getId()}" ${fornecedor.getId().contains(f.getId()) ? 'selected' : ''}>
+	                    <option value="${f.getId()}" ${estoque.getFornecedor().getId() == f.getId() ? 'selected' : ''}>
 	                        ${f.getNome()}
 	                    </option>
 	                </c:forEach>
@@ -61,7 +61,7 @@
 	            
                <input type="button" id="bt_voltar" value="Voltar" onclick="history.back()" >
                <input type="button" id="bt_cancelar" value="Cancelar" onclick="history.back()"  >
-               <input type="button" id="bt_excluir" value="EXCLUIR">
+               <a href="CRUDEstoque?&operacao=EXCLUIR&idEstoque=${estoque.getId()}"><input type="button" id="bt_excluir" value="EXCLUIR"></a>
                 <c:if test="${estoque.getId() != null}">
                     <input type='submit' id='bt_alterar' value='ALTERAR' id='operacao' name='operacao'>
                 </c:if>

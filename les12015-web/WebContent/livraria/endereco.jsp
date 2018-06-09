@@ -17,12 +17,12 @@
 	<div class="menu">
 		<div id="menu">
         	<ul>
-        		<a href="index.jsp"><li>Home</li></a>
-        		<a href="quem_somos.jsp"><li>Quem Somos</li></a>
-        		<a href="livros.jsp"><li>Livros</li></a>
-        		<a href="contato.jsp"><li>Contato</li></a>
-        		<a href="login.jsp"><li>Login</li></a>
-            </ul>
+				<a href="index.jsp"><li>Home</li></a>
+				<a href="quem_somos.jsp"><li>Quem Somos</li></a>
+				<a href="livros.jsp"><li>Livros</li></a>
+				<a href="contato.jsp"><li>Contato</li></a>
+				<a href="login.jsp"><li>Login</li></a>
+			</ul>
         </div>
 	</div>
 </div>

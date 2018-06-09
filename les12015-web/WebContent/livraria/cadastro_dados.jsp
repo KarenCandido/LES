@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Livraria Fatec - Cadastro de Dados </title>
+<title>Livraria Fatec - Cadastro de Dados</title>
 <link rel="stylesheet" type="text/css" href="css/estilo.css"></link>
 <link rel="stylesheet" type="text/css" href="css/fonte/fonte.css"></link>
 </head>
@@ -31,8 +31,8 @@
 	    <p class="titulo"> Cadastro de dados </p>
 		<div class="cadastro_dados">
 	        <input type="text" id="cad_email" placeholder="Endereço de E-mail"><br>
-	        <input type="text" id="cad_senha" placeholder="Senha"> - minimo 8 caracteres<br>
-	        <input type="text" id="cad_confirma_senha" placeholder="Confirmar Senha"> - letras maiusculas e minusculas<br>
+	        <input type="text" id="cad_senha" placeholder="Senha"> - mínimo de 8 caracteres<br>
+	        <input type="text" id="cad_confirma_senha" placeholder="Confirmar Senha"> - letras maiúsculas e minúsculas<br>
 	        <input type="text" id="cad_nome" placeholder="Nome">
 	        <input type="text" id="cad_cpf" placeholder="CPF">
 	        <input type="text" id="cad_dt_nasc" placeholder="Data de nascimento">

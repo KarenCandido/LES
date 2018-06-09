@@ -27,7 +27,6 @@
         	<a href="CRUDEstoque?&operacao=CONSULTAR"><li>Estoque</li></a>
         	<a href="CRUDLivros?&operacao=CONSULTAR"><li>Livros</li></a>
 	    	<li>Sair</li>
-	    
 	    </ul>
 	</div>
 	<div class="centro">
@@ -40,8 +39,8 @@
 	    			<td>Produto nº #0000</td>
 	    			<td>Quantidade</td>
 	    			<td>Status</td>
-	                <td></td>
-	                <td></td>
+	                <td style="border:none"></td>
+                    <td style="border:none"></td>
 	    		</tr>
 	    		
 	    		<c:forEach items="${estoques}" var="e">

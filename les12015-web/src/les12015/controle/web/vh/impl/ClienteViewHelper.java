@@ -17,7 +17,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class ClienteViewHelper implements IViewHelper {
 
 	/**
@@ -130,11 +129,11 @@ public class ClienteViewHelper implements IViewHelper {
 			resultado.setMsg("Cliente cadastrado com sucesso!");
 
 			ClienteDAO clienteDAO = new ClienteDAO();
-			List<EntidadeDominio> clientes = new ArrayList<EntidadeDominio>(); // criando uma lista de livro
+			List<EntidadeDominio> clientes = new ArrayList<EntidadeDominio>(); // criando uma lista de cliente
 			clientes = clienteDAO.consultar(null);
 
 			request.getSession().setAttribute("clientes", clientes);
-			d = request.getRequestDispatcher("../Cliente/ListaCliente.jsp");
+			d = request.getRequestDispatcher("index.jsp");
 		}
 
 		// ALTERAR CLIENTE
@@ -142,56 +141,58 @@ public class ClienteViewHelper implements IViewHelper {
 			resultado.setMsg("Cliente alterado com sucesso!");
 
 			ClienteDAO clienteDAO = new ClienteDAO();
-			List<EntidadeDominio> clientes = new ArrayList<EntidadeDominio>(); // criando uma lista de livro
+			List<EntidadeDominio> clientes = new ArrayList<EntidadeDominio>(); // criando uma lista de cliente
 			clientes = clienteDAO.consultar(null);
 
 			request.getSession().setAttribute("clientes", clientes);
-			d = request.getRequestDispatcher("../Cliente/ListaCliente.jsp");
+			d = request.getRequestDispatcher("perfil.jsp");
+		}
+
+		// VISUALIZAR CLIENTE
+		if (resultado.getMsg() == null && operacao.equals("VISUALIZAR")) {
+			loadingForm(request);
+			request.setAttribute("cliente", resultado.getEntidades().get(0));
+			d = request.getRequestDispatcher("perfil.jsp");
 		}
 
 		// INATIVAR CLIENTE
 		if (resultado.getMsg() == null && operacao.equals("INATIVAR")) {
-			resultado.setMsg("Cliente alterado com sucesso!");
+			resultado.setMsg("Cliente inativado com sucesso!");
 
 			ClienteDAO clienteDAO = new ClienteDAO();
-			List<EntidadeDominio> clientes = new ArrayList<EntidadeDominio>(); // criando uma lista de livro
+			List<EntidadeDominio> clientes = new ArrayList<EntidadeDominio>(); // criando uma lista de cliente
 			clientes = clienteDAO.consultar(null);
 
 			request.getSession().setAttribute("clientes", clientes);
-			d = request.getRequestDispatcher("../Cliente/ListaCliente.jsp");
+			d = request.getRequestDispatcher("index.jsp");
 		}
 
 		// MOSTRAR TODOS
-		if (operacao.equals("GETALLCLIENTS")) {
+		// if (operacao.equals("GETALLCLIENTS")) {
 
-			ClienteDAO clienteDAO = new ClienteDAO();
-			List<EntidadeDominio> clientes = new ArrayList<EntidadeDominio>(); // criando uma lista de livro
-			clientes = clienteDAO.consultar(null);
+		// ClienteDAO clienteDAO = new ClienteDAO();
+		// List<EntidadeDominio> clientes = new ArrayList<EntidadeDominio>(); // criando
+		// uma lista de livro
+		// clientes = clienteDAO.consultar(null);
 
-			request.getSession().setAttribute("clientes", clientes);
-			d = request.getRequestDispatcher("../Cliente/ListaCliente.jsp");
+		// request.getSession().setAttribute("clientes", clientes);
+		// d = request.getRequestDispatcher("clientes.jsp");
 
-		}
+		// }
 
 		// ENVIAR PARA O FORM CLIENTE
 		if (operacao.equals("NOVO")) {
 
 			loadingForm(request);
-
-			d = request.getRequestDispatcher("FormCliente.jsp");
+			d = request.getRequestDispatcher("cadastro_dados.jsp");
 
 		}
 
-		if (resultado.getMsg() == null && operacao.equals("VISUALIZAR")) {
-			loadingForm(request);
-			request.setAttribute("cliente", resultado.getEntidades().get(0));
-			d = request.getRequestDispatcher("FormCliente.jsp");
-		}
-
+		// EXCLUIR CLIENTE
 		if (resultado.getMsg() == null && operacao.equals("EXCLUIR")) {
 
 			request.getSession().setAttribute("clientes", null);
-			d = request.getRequestDispatcher("FormCliente.jsp");
+			d = request.getRequestDispatcher("index.jsp");
 		}
 
 		d.forward(request, response);

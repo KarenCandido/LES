@@ -15,7 +15,7 @@ body { width:100%; margin:0 auto; height:100%; display:table; font-family: 'Nexa
 #menu ul a:hover 	{ font-family: 'Nexa_Free_Bold'; text-transform:uppercase}
 
 /*PADRÃO*/
-.wrapper 					{ width:100%; margin:0 auto; display:table; margin-top:40px;}
+.wrapper 							{ width:100%; margin:0 auto; display:table; margin-top:40px;}
 .centro 							{ width:80%; float:right; display:table; margin:0 auto;}
 .lateral 							{ width:18%; float:left; margin:0 auto; padding:0 1%; border-right:5px solid #b01116;height:100%; position:fixed;}
 .lateral  ul li 					{ list-style:none; color:#3a5460; padding:2% 1%; width:98%; float:left;}
@@ -32,6 +32,11 @@ body { width:100%; margin:0 auto; height:100%; display:table; font-family: 'Nexa
 
 .titulo 					{ font-size:30px; text-align:center; color:#b01116;  font-family: 'Nexa_Free_Bold'; text-transform:uppercase;}
 .rodape 					{ width:100%; margin:0 auto; display:table; height:10px; background:#b01116; position:fixed; bottom:0;}
+.vermelho 					{color:#b01116;}
+
+
+input[type=submit]			{ width:20%; margin:0 auto; margin:1%; background:#3a5460; color:#FFF; text-transform:uppercase; border:none; height:35px; outline:none;}
+input[type=submit]:hover 	{ background:#b01116; font-family: 'Nexa Light Regular';}
 
 input[type=button]			{ width:20%; margin:0 auto; margin:1%; background:#3a5460; color:#FFF; text-transform:uppercase; border:none; height:35px; outline:none;}
 input[type=button]:hover 	{ background:#b01116; font-family: 'Nexa Light Regular';}
@@ -43,6 +48,13 @@ input[type=button]:hover 	{ background:#b01116; font-family: 'Nexa Light Regular
 .login input[type=button]:hover 	{background:#b01116; font-family: 'Nexa Light Regular';}
 .login a							{ font-weight:bold; text-decoration:none;color:#3a5460}
 .login a:hover 						{ color:#b01116;}
+
+/*HOME*/
+#home .bloco						{ width:22%; float:left; display:table; margin:1%; color:#3a5460;}	
+#home .bloco #bloco					{ width:90%; margin:0 auto; padding:5%; display:table; border:1px solid #b01116;}
+#home .bloco #bloco .preco 			{ font-size:35px;}
+#home .bloco .add_carrinho 			{ width:100%; margin-top:10px; padding:15px 0;border:1px solid #b01116; background:url(../imagens/carrinho2.jpg); transition:0.5s; height:25px;}
+#home .bloco .add_carrinho:hover	{ background:url(../imagens/carrinho.jpg);}
 
 /*CADASTRO DE DADOS*/
 .cadastro_dados								{ width:600px; display:table; margin:0 auto; margin-top:50px;}
@@ -62,22 +74,38 @@ input[type=button]:hover 	{ background:#b01116; font-family: 'Nexa Light Regular
 /*CADASTRO DE ENDEREÇO*/
 .cad_endereco							{ width:800px; display:table; margin:0 auto; margin-top:50px;}
 .cad_endereco input[type=text]			{ margin:0 auto; padding:10px 5px; border:1px solid #a7a9ab; margin:1% 0; text-align:left; color:#a7a9ab;}
-.cad_endereco select					{ margin:0 auto; padding:9px 5px; border:1px solid #a7a9ab; margin:1% 0; text-align:left; color:#a7a9ab;}
+.cad_endereco select					{ margin:0 auto; padding:9px 5px; border:1px solid #a7a9ab; margin:1% 0; text-align:left; color:#a7a9ab; margin-left:1%; margin-right:1% }
 .cad_endereco #end_cep					{ width:40%;}
 .cad_endereco #end_residencia			{ width:33%; float:right}
 .cad_endereco #end_logradouro			{ width:45%; float:left; margin-right:2%}
 .cad_endereco #end_numero				{ width:11%; margin-right:2%}
 .cad_endereco #end_bairro				{ width:35%; float:right}
 .cad_endereco #end_cidade				{ margin-right:1%;}
-.cad_endereco select					{ margin-left:1%; margin-right:1%}
 .cad_endereco #end_cidade				{ width:35%; float:left}
 .cad_endereco #end_obs					{ width:35%; float:right}
-.cad_endereco #end_endereco				{ width:35%; margin-left:0;}
+.cad_endereco #end_endereco				{ width:100%; margin-left:0;}
 .cad_endereco #bt_adicionar				{ float:left;}
 .cad_endereco #bt_salvar, 
 .cad_endereco #bt_cancelar, 
 .cad_endereco #bt_excluir				{ width:15%; float:right;}
 
+
+/*CADASTRO DE CARTÕES*/
+.cadastro_cartao							{ width:600px; display:table; margin:0 auto; margin-top:50px;}
+
+.cadastro_cartao input[type=text]			{ width:47%; margin:0 auto; padding:10px 5px; border:1px solid #a7a9ab; margin:1%; text-align:left; color:#a7a9ab;}
+.cadastro_cartao select						{ width:47%; margin:0 auto; padding:10px 5px; border:1px solid #a7a9ab; margin:1%; color:#a7a9ab;}
+.cadastro_cartao #nome_cartao 				{ width:62%;}
+.cadastro_cartao #cod_seguranca				{ width:30%;}
+.cadastro_cartao #bt_adicionar				{ width:190px;}
+
+/*CARRINHO*/
+.carrinho 			{ width:80%; margin:0 auto; display:table}
+.carrinho .col1		{ width:60%; float:left;}
+.carrinho .col1 td	{ background:#f1f1f2; border-color:#f1f1f2;}
+
+.carrinho .col1 .descricao	 	{ float: left; margin-left:10px; display:table; width:70%; margin-top:20px;color:#3a5460;}
+.carrinho .col1 td	img 		{ float:left; display:table;}
 /*PEDIDOS*/
 .pedidos				{ width:85%; margin:0 auto; display:table;}
 .pedidos table			{ border:none}

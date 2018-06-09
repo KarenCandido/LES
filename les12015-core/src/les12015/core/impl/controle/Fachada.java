@@ -240,6 +240,15 @@ public class Fachada implements IFachada {
     }
 
     @Override
+    public Resultado adicionar(EntidadeDominio entidade) {
+        resultado = new Resultado();
+        List<EntidadeDominio> entidades = new ArrayList<EntidadeDominio>();
+        entidades.add(entidade);
+        resultado.setEntidades(entidades);
+        return resultado;
+    }
+
+    @Override
     public Resultado consultar(EntidadeDominio entidade) {
         resultado = new Resultado();
         String nmClasse = entidade.getClass().getName();

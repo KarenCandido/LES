@@ -22,7 +22,6 @@
 	
 			<ul>
 	        	<a href="estatisticas.jsp"><li>Estatísticas</li></a>
-	        	<a href="estatisticas.jsp"><li>Estatísticas</li></a>
 	        	<a href="clientes.jsp"><li>Clientes</li></a>
 	        	<a href="compras.jsp"><li>Compras</li></a>
 	        	<a href="CRUDEstoque?&operacao=CONSULTAR"><li>Estoque</li></a>

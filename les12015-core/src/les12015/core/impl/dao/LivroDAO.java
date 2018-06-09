@@ -21,7 +21,7 @@ public class LivroDAO extends AbstractJdbcDAO {
 		Livro livro = (Livro) entidade;
 
 		try {
-            StatusLivro statusLivro = livro.getStatusLivro();
+			StatusLivro statusLivro = livro.getStatusLivro();
 
 			connection.setAutoCommit(false);
 
@@ -33,12 +33,12 @@ public class LivroDAO extends AbstractJdbcDAO {
 			pst.setBoolean(1, statusLivro.isStatus());
 			pst.setString(2, statusLivro.getJustificativa());
 
-            ResultSet rs = pst.getGeneratedKeys();
-            int idStatus = 0;
-            if (rs.next())
-                idStatus = rs.getInt(1);
-            statusLivro.setId(idStatus);
-            connection.commit();
+			ResultSet rs = pst.getGeneratedKeys();
+			int idStatus = 0;
+			if (rs.next())
+				idStatus = rs.getInt(1);
+			statusLivro.setId(idStatus);
+			connection.commit();
 
 			sql = new StringBuilder();
 			sql.append("INSERT INTO tb_livro(titulo, ano, edicao, isbn, numero_pagina, sinopse, altura, largura, peso,"
@@ -132,22 +132,23 @@ public class LivroDAO extends AbstractJdbcDAO {
 		PreparedStatement pst = null;
 		Livro livro = (Livro) entidade;
 
-		try {StatusLivro statusLivro = livro.getStatusLivro();
+		try {
+			StatusLivro statusLivro = livro.getStatusLivro();
 
-            connection.setAutoCommit(false);
+			connection.setAutoCommit(false);
 
-            StringBuilder sql = new StringBuilder();
-            sql.append("UPDATE tb_status_livro SET (status, justificativa)");
-            sql.append(" = (?, ?)"); // campo a ser inserido
-            sql.append(" WHERE id_status = ?");
+			StringBuilder sql = new StringBuilder();
+			sql.append("UPDATE tb_status_livro SET (status, justificativa)");
+			sql.append(" = (?, ?)"); // campo a ser inserido
+			sql.append(" WHERE id_status = ?");
 
-            pst = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
-            pst.setBoolean(1, statusLivro.isStatus());
-            pst.setString(2, statusLivro.getJustificativa());
-            pst.setInt(3, statusLivro.getId());
+			pst = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
+			pst.setBoolean(1, statusLivro.isStatus());
+			pst.setString(2, statusLivro.getJustificativa());
+			pst.setInt(3, statusLivro.getId());
 
 			pst.executeUpdate();
-            connection.commit();
+			connection.commit();
 
 			sql = new StringBuilder();
 			sql.append("UPDATE tb_livro SET (titulo, ano, edicao, isbn, numero_pagina, sinopse, altura, largura, peso,"
@@ -175,7 +176,6 @@ public class LivroDAO extends AbstractJdbcDAO {
 			pst.setInt(16, livro.getEditora().getId());
 			pst.setInt(17, statusLivro.getId());
 			pst.setInt(18, livro.getId());
-
 
 			pst.executeUpdate();
 
@@ -240,10 +240,10 @@ public class LivroDAO extends AbstractJdbcDAO {
 			}
 		}
 	}
-	
+
 	public void excluir(EntidadeDominio entidade) {
 		openConnection();
-		PreparedStatement pst=null;
+		PreparedStatement pst = null;
 		StringBuilder sb = new StringBuilder();
 		try {
 			connection.setAutoCommit(false);
@@ -262,10 +262,10 @@ public class LivroDAO extends AbstractJdbcDAO {
 			pst.setInt(1, entidade.getId());
 			pst.executeUpdate();
 			connection.commit();
-			
+
 			// Excluir dado da tabela tb_livro_status
 			sb = new StringBuilder();
-            Livro livro = (Livro) consultar(entidade).get(0);
+			Livro livro = (Livro) consultar(entidade).get(0);
 			sb.append("DELETE FROM tb_status_livro WHERE id_status = ?");
 			pst = connection.prepareStatement(sb.toString());
 			pst.setInt(1, livro.getStatusLivro().getId());
@@ -285,18 +285,18 @@ public class LivroDAO extends AbstractJdbcDAO {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-			e.printStackTrace();			
-		}finally{
-			
+			e.printStackTrace();
+		} finally {
+
 			try {
 				pst.close();
-				if(ctrlTransaction)
+				if (ctrlTransaction)
 					connection.close();
-				
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}		
+		}
 	}
 
 	public void inativar(EntidadeDominio entidade) {
@@ -354,9 +354,8 @@ public class LivroDAO extends AbstractJdbcDAO {
 			livro = new Livro();
 		}
 
-		String sql = "SELECT * "
-                + "FROM tb_livro "
-                + "JOIN tb_status_livro ON tb_status_livro.id_status = tb_livro.fk_status WHERE";
+		String sql = "SELECT * " + "FROM tb_livro "
+				+ "JOIN tb_status_livro ON tb_status_livro.id_status = tb_livro.fk_status WHERE";
 
 		if (livro.getId() != null)
 			sql += " id_livro = ? AND";
@@ -381,8 +380,7 @@ public class LivroDAO extends AbstractJdbcDAO {
 			sql = sql.substring(0, sql.length() - 4) + ";";
 
 		else
-			sql = "SELECT * "
-					+ "FROM tb_livro "
+			sql = "SELECT * " + "FROM tb_livro "
 					+ "JOIN tb_status_livro ON tb_status_livro.id_status = tb_livro.fk_status;";
 
 		try {

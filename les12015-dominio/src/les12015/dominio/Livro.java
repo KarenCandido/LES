@@ -55,7 +55,6 @@ public class Livro extends EntidadeDominio {
 		this.precoVenda = precoVenda;
 	}
 
-
 	public String getIsbn() {
 		return isbn;
 	}
@@ -87,6 +86,7 @@ public class Livro extends EntidadeDominio {
 	public void setEdicao(Edicao edicao) {
 		this.edicao = edicao;
 	}
+
 	public Editora getEditora() {
 		return editora;
 	}
@@ -114,10 +114,10 @@ public class Livro extends EntidadeDominio {
 	public ArrayList<Categoria> getCategorias() {
 		return categorias;
 	}
-	
+
 	public List<Integer> getCategoriaIds() {
 		List<Integer> categoriaIds = new ArrayList<Integer>();
-		for(Categoria categoria: this.getCategorias()){
+		for (Categoria categoria : this.getCategorias()) {
 			categoriaIds.add(categoria.getId());
 		}
 		return categoriaIds;
@@ -130,10 +130,10 @@ public class Livro extends EntidadeDominio {
 	public ArrayList<Autor> getAutores() {
 		return autores;
 	}
-	
+
 	public List<Integer> getAutorIds() {
 		List<Integer> autorIds = new ArrayList<Integer>();
-		for(Autor autor: this.getAutores()) {
+		for (Autor autor : this.getAutores()) {
 			autorIds.add(autor.getId());
 		}
 		return autorIds;

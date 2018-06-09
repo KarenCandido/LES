@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import les12015.dominio.Cliente;
 import les12015.dominio.EntidadeDominio;
 
 public class ClienteDAO extends AbstractJdbcDAO {
@@ -20,7 +21,7 @@ public class ClienteDAO extends AbstractJdbcDAO {
 
 		openConnection();
 		PreparedStatement pst = null;
-		les12015.dominio.Cliente cliente = (les12015.dominio.Cliente) entidade;
+		Cliente cliente = (Cliente) entidade;
 
 		try {
 
@@ -101,7 +102,7 @@ public class ClienteDAO extends AbstractJdbcDAO {
 	public void alterar(EntidadeDominio entidade) {
 		openConnection();
 		PreparedStatement pst = null;
-		les12015.dominio.Cliente cliente = (les12015.dominio.Cliente) entidade;
+		Cliente cliente = (Cliente) entidade;
 
 		try {
 			connection.setAutoCommit(false);
@@ -151,7 +152,7 @@ public class ClienteDAO extends AbstractJdbcDAO {
 	public void inativar(EntidadeDominio entidade) {
 		openConnection();
 		PreparedStatement pst = null;
-		les12015.dominio.Cliente cliente = (les12015.dominio.Cliente) entidade;
+		Cliente cliente = (Cliente) entidade;
 
 		try {
 			connection.setAutoCommit(false);
@@ -197,10 +198,10 @@ public class ClienteDAO extends AbstractJdbcDAO {
 	@Override
 	public List<EntidadeDominio> consultar(EntidadeDominio entidade) {
 		PreparedStatement pst = null;
-		les12015.dominio.Cliente cliente = (les12015.dominio.Cliente) entidade;
+		Cliente cliente = (Cliente) entidade;
 
 		if (cliente == null) {
-			cliente = new les12015.dominio.Cliente();
+			cliente = new Cliente();
 		}
 
 		String sql = null;
@@ -234,7 +235,7 @@ public class ClienteDAO extends AbstractJdbcDAO {
 			ResultSet rs = pst.executeQuery();
 			List<EntidadeDominio> clientes = new ArrayList<EntidadeDominio>();
 			while (rs.next()) {
-				les12015.dominio.Cliente c = new les12015.dominio.Cliente();
+				Cliente c = new Cliente();
 
 				c.setId(rs.getInt("id"));
 				c.setNome(rs.getString("nome"));
