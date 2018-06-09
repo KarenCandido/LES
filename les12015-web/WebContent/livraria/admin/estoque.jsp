@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>    
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,11 +21,11 @@
 	    </div>
 	
 		<ul>
-	    	<a href="estatisticas.html"><li>Estatísticas</li></a>
-	    	<a href="clientes.html"><li>Clientes</li></a>
-	    	<a href="compras.html"><li>Compras</li></a>
-	    	<a href="estoque.jsp"><li>Estoque</li></a>
-        	<a href="CRUDLivros?&operacao=GETALLBOOKS"><li>Livros</li></a>
+	    	<a href="estatisticas.jsp"><li>Estatísticas</li></a>
+        	<a href="clientes.jsp"><li>Clientes</li></a>
+        	<a href="compras.jsp"><li>Compras</li></a>
+        	<a href="CRUDEstoque?&operacao=CONSULTAR"><li>Estoque</li></a>
+        	<a href="CRUDLivros?&operacao=CONSULTAR"><li>Livros</li></a>
 	    	<li>Sair</li>
 	    
 	    </ul>
@@ -42,13 +43,14 @@
 	                <td></td>
 	                <td></td>
 	    		</tr>
+	    		
 	    		<c:forEach items="${estoques}" var="e">
         		<tr>
         			<td>${e.getLivro().getTitulo()}</td>
         			<td>${e.getQtdeEntrada()}</td>
         			<td>${e.getLivro().getStatusLivro().isStatus()}</td>
-        			<td style="border:none"><a href="detalhes_livros.jsp"><input type="button" id="bt_detalhes" value="DETALHES"></a></td>
-	                <td style="border:none"><input type="button" id="bt_excluir" value="EXCLUIR"></td>
+        			<td style="border:none"><a href="CRUDEstoque?&operacao=VISUALIZAR&idEstoque=${e.getId()}"><input type="button" id="bt_detalhes" value="DETALHES"></a></td>
+	                <td style="border:none"><a href="CRUDEstoque?&operacao=EXCLUIR&idEstoque=${e.getId()}"><input type="button" id="bt_excluir" value="EXCLUIR"></td>
                 </tr>
                 </c:forEach>
 	    	</table>

@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>]
+ <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Livraria Fatec - Administrador - Estoque </title>
+<title> Livraria Fatec - Administrador - Estoque </title>
 <link rel="stylesheet" type="text/css" href="css/estilo.css"></link>
 <link rel="stylesheet" type="text/css" href="css/fonte/fonte.css"></link>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"></script>
@@ -22,9 +23,9 @@
         	<a href="estatisticas.jsp"><li>Estatísticas</li></a>
         	<a href="clientes.jsp"><li>Clientes</li></a>
         	<a href="compras.jsp"><li>Compras</li></a>
-        	<a href="estoque.jsp"><li>Estoque</li></a>
-        	<a href="CRUDLivros?&operacao=GETALLBOOKS"><li>Livros</li></a>
-        	<li>Sair</li>
+        	<a href="CRUDEstoque?&operacao=CONSULTAR"><li>Estoque</li></a>
+        	<a href="CRUDLivros?&operacao=CONSULTAR"><li>Livros</li></a>
+	    	<li>Sair</li>
         
         </ul>
 	</div>
@@ -32,7 +33,7 @@
     	<div class="add_produtos" id="wrapper">
             <p class="titulo"> Estoque </p>
         	<form>
-<!--         	<input type="text" id="prod_titulo" placeholder="Título"><br> -->
+       
             <select required id="idLivro" name="idLivro">
                 <c:forEach items="${livros}" var="l">
                     <option value="${l.getId()}" ${livro.getId().contains(l.getId()) ? 'selected' : ''}>
@@ -48,8 +49,8 @@
               <input type="text" id="valorCusto" name="valorCusto" placeholder="Preço de Custo" 
                name="qtdeEntrada" value="${estoque.getValorCusto()}" />
                <br>
-              
-               <input type="text" id="fornecedor"  placeholder="Fornecedor"><br><br><br>
+               
+                             
 				<select required id="idFornecedor" name="idFornecedor">
 	                <c:forEach items="${fornecedores}" var="f">
 	                    <option value="${f.getId()}" ${fornecedor.getId().contains(f.getId()) ? 'selected' : ''}>
@@ -60,8 +61,13 @@
 	            
                <input type="button" id="bt_voltar" value="Voltar" onclick="history.back()" >
                <input type="button" id="bt_cancelar" value="Cancelar" onclick="history.back()"  >
-               <input type="button" id="bt_excluir" value="Excluir" >
-               <input type="button" id="bt_salvar" value="Salvar" >
+               <input type="button" id="bt_excluir" value="EXCLUIR">
+                <c:if test="${estoque.getId() != null}">
+                    <input type='submit' id='bt_alterar' value='ALTERAR' id='operacao' name='operacao'>
+                </c:if>
+                <c:if test="${estoque.getId() == null}">
+                    <input type='submit' id='bt_salvar' value='SALVAR' id='operacao' name='operacao'>
+                </c:if>
 
    		</form>
        

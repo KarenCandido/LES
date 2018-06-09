@@ -20,13 +20,12 @@
 	    </div>
 	
 		<ul>
-	    	<a href="estatisticas.html"><li>Estatísticas</li></a>
-	    	<a href="clientes.html"><li>Clientes</li></a>
-	    	<a href="compras.html"><li>Compras</li></a>
-	    	<a href="estoque.html"><li>Estoque</li></a>
-	    	<a href="livros.html"><li>Livros</li></a>
+	    	<a href="estatisticas.jsp"><li>Estatísticas</li></a>
+        	<a href="clientes.jsp"><li>Clientes</li></a>
+        	<a href="compras.jsp"><li>Compras</li></a>
+        	<a href="CRUDEstoque?&operacao=CONSULTAR"><li>Estoque</li></a>
+        	<a href="CRUDLivros?&operacao=CONSULTAR"><li>Livros</li></a>
 	    	<li>Sair</li>
-	    
 	    </ul>
 	</div>
 	<div class="centro">
