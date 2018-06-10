@@ -67,7 +67,7 @@
                 <input type="text" id="titulo" name="titulo" placeholder="Titulo" value="${livro.getTitulo()}"><br>
 
                 <textarea id="sinopse" name="sinopse" placeholder="Sinopse"
-                          value="${livro.getSinopse()}"></textarea>
+                          value="${livro.getSinopse()}">${livro.getSinopse()}</textarea>
 
                 <select multiple required id="autor" name="autor" placeholder="Autor">
                     <c:forEach items="${autores}" var="a">
@@ -150,7 +150,9 @@
 
                 <input type="button" id="bt_voltar" value="VOLTAR" onclick="history.back()">
                 <input type="button" id="bt_cancelar" value="CANCELAR" onclick="history.back()">
-                <input type="button" id="bt_excluir" value="EXCLUIR">
+                <a href="CRUDLivros?&operacao=EXCLUIR&idLivro=${livro.getId()}" onclick="confirmAlert()">
+               	 <input type="button" id="bt_excluir" onclick="confirmAlert()" value="EXCLUIR">
+                </a>
                 <c:if test="${livro.getId() != null}">
                     <input type='submit' id='bt_alterar' value='ALTERAR' id='operacao' name='operacao'>
                 </c:if>

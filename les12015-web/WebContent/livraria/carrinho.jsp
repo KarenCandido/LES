@@ -29,11 +29,12 @@
 		<div class="menu">
 			<div id="menu">
 				<ul>
-					<a href="index.jsp"><li>Home</li></a>
+					<a href="ShowLivros?&operacao=EXIBIR"><li>Home</li></a>
 					<a href="quem_somos.jsp"><li>Quem Somos</li></a>
-					<a href="livros.jsp"><li>Livros</li></a>
-					<a href="contato.jsp"><li>Contato</li></a>
+					<a href="ShowLivros?&operacao=EXIBIR"><li>Livros</li></a>
+<!-- 					<a href="contato.jsp"><li>Contato</li></a> -->
 					<a href="login.jsp"><li>Login</li></a>
+					<a href="CRUDCompra?&operacao=GETITENS"><li>Carrinho</li></a>
 				</ul>
 			</div>
 		</div>
@@ -50,25 +51,33 @@
 						<th><b class="vermelho">QUANTIDADE</b></th>
 						<th><b class="vermelho">SUBTOTAL</b></th>
 					</tr>
-		              <%if(session.getAttribute("item") != null){%>
-                        <c:forEach items="${livros}" var="livro">
-                            <tr>
-                                <td></td>
-                                <td>${item.getLivro().getTitulo()}</td>
-                                <td>${item.getLivro().getPrecoVenda()}</td>
-                                <td>${item.getQtdeLivro()}</td>
-                                <td>R$: ${item.getQtdeLivro()*item.getLivro().getPrecoVenda()} </td>
-                            </tr>
-                        </c:forEach>
-		              </tr>
-		                  <%}else{%>
-		                    <center><h2 style="color: red">Não há produtos adicionados!!</h2></center>
-		                  <%}%>
-		            </tr>
+		              <c:if test="${itens != null}" >
+			              <c:forEach items="${itens}" var="item">
+	                            <tr>
+	                                <td>${item.getLivro().getTitulo()}</td>
+	                                <td>R$ <b class="vermelho">${item.getLivro().getPrecoVenda()}</b></td>
+<%-- 	                                <td><input type="number" id="qtde" name="qtde" min="1" max="${l.getQtde_venda()}"  --%>
+<%-- 	                                	value="${item.getQtdeLivro()}" style="width: 3em;" required></td> --%>
+									<td>${item.getQtdeLivro()}</td>
+	                                <td>R$ <b class="vermelho">${item.getSubTotal()}</b></td>
+	                            </tr>
+	                        </c:forEach>
+		              </c:if>
+                      <c:if test="${itens == null}">
+                   		 <center><h2 style="color: red">Não há produtos adicionados!</h2></center>
+                      </c:if>
 				</table>
 			</div>
-
 			<div class="col2"></div>
+		</div>
+		<div class="carrinho">
+			<div class="col1">
+				<a href="ShowLivros?&operacao=EXIBIR"><input type="button" id="continuar_comprando" 
+					value="Continuar Comprando" style="width: 15em;"></a>
+			</div>
+			<div class="col2">
+				<p>Total: R$ <b class="vermelho">${total}</b></p>
+			</div>
 		</div>
 	</div>
 	<div class="rodape"></div>

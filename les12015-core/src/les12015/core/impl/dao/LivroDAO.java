@@ -32,6 +32,7 @@ public class LivroDAO extends AbstractJdbcDAO {
 			pst = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			pst.setBoolean(1, statusLivro.isStatus());
 			pst.setString(2, statusLivro.getJustificativa());
+			pst.executeUpdate();
 
 			ResultSet rs = pst.getGeneratedKeys();
 			int idStatus = 0;

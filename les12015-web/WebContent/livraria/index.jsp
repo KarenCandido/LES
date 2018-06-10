@@ -24,8 +24,9 @@
 					<a href="ShowLivros?&operacao=EXIBIR"><li>Home</li></a>
 					<a href="quem_somos.jsp"><li>Quem Somos</li></a>
 					<a href="ShowLivros?&operacao=EXIBIR"><li>Livros</li></a>
-					<a href="contato.jsp"><li>Contato</li></a>
+<!-- 					<a href="contato.jsp"><li>Contato</li></a> -->
 					<a href="login.jsp"><li>Login</li></a>
+					<a href="CRUDCompra?&operacao=GETITENS"><li>Carrinho</li></a>
 				</ul>
 			</div>
 		</div>
@@ -49,20 +50,29 @@
 
 		<div class="centro" id="home">
             <c:forEach items="${livros}" var="l">
+				<form>
                     <div class="bloco">
                         <div id="bloco">
+                        	<input type="hidden" id="idLivro" name="idLivro" value="${l.getId()}">
                             <center><img src="imagens/livro.png"></center><br>
-                            <p class="descricao">${l.getTitulo()}</p>
-                            <p class="preco"> R$ <b class="vermelho">${l.getPrecoVenda()}</b></p>
+                            <p class="descricao" >
+                        	<input type="hidden" id="tituloLivro" name="tituloLivro" value="${l.getTitulo()}">
+                            ${l.getTitulo()}
+                            </p>
+                            <p class="preco">
+                        	<input type="hidden" id="precoVenda" name="precoVenda" value="${l.getPrecoVenda()}">
+                             R$ <b class="vermelho">${l.getPrecoVenda()}</b>
+                            </p>
                         </div>
                         <div class="add_carrinho">
-                            <input type='submit' value='ADICIONAR_ITEM' id='operacao' name='operacao'>
+                        	<input type="number" id="qtde" name="qtde" min="1" max="${l.getQtde_venda()}" value="1" style="width: 3em;" required>
+                            <input type='submit' id="operacao" name="operacao" 
+                            	formaction="CRUDCompra?&operacao=ADICIONAR" value='ADICIONAR' style="width: 8em;">
                         </div>
                     </div>
+				</form>
             </c:forEach>
-
 		</div>
-
 	</div>
 	<div class="rodape"></div>
 </body>

@@ -4,9 +4,14 @@ public class ItemPedido extends EntidadeDominio{
     private Livro livro;
     private Pedido pedido;
     private int qtdeLivro;
-    private float precoVenda;
+    private double precoVenda;
+    private double subTotal;
 
-    public ItemPedido() {
+    public double getSubTotal() {
+		return qtdeLivro * precoVenda;
+	}
+    
+	public ItemPedido() {
     }
 
     public ItemPedido(Integer id, Livro livro, Pedido pedido, int qtdeLivro, float precoVenda) {
@@ -41,11 +46,11 @@ public class ItemPedido extends EntidadeDominio{
         this.qtdeLivro = qtdeLivro;
     }
 
-    public float getPrecoVenda() {
+    public double getPrecoVenda() {
         return precoVenda;
     }
 
-    public void setPrecoVenda(float precoVenda) {
+    public void setPrecoVenda(double precoVenda) {
         this.precoVenda = precoVenda;
     }
 }

@@ -1,7 +1,27 @@
 package les12015.controle.web;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import les12015.controle.web.command.ICommand;
-import les12015.controle.web.command.impl.*;
+import les12015.controle.web.command.impl.AdicionarItemCommand;
+import les12015.controle.web.command.impl.AlterarCommand;
+import les12015.controle.web.command.impl.ConsultarCommand;
+import les12015.controle.web.command.impl.ExcluirCommand;
+import les12015.controle.web.command.impl.InativarCommand;
+import les12015.controle.web.command.impl.NovoCommand;
+import les12015.controle.web.command.impl.SalvarCommand;
+import les12015.controle.web.command.impl.VisualizarCommand;
 import les12015.controle.web.vh.IViewHelper;
 import les12015.controle.web.vh.impl.ClienteViewHelper;
 import les12015.controle.web.vh.impl.EstoqueViewHelper;
@@ -9,15 +29,6 @@ import les12015.controle.web.vh.impl.LivroViewHelper;
 import les12015.controle.web.vh.impl.PedidoViewHelper;
 import les12015.core.aplicacao.Resultado;
 import les12015.dominio.EntidadeDominio;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Servlet implementation class Servlet
@@ -48,7 +59,8 @@ public class Servlet extends HttpServlet {
 		commands.put("GETALLBOOKS", new ConsultarCommand());
 		commands.put("NOVO", new NovoCommand());
 		commands.put("INATIVAR", new InativarCommand());
-		commands.put("ADICIONAR_ITEM", new AdicionarItemCommand());
+		commands.put("ADICIONAR", new AdicionarItemCommand());
+		commands.put("GETITENS", null);
 
 		/*
 		 * Utilizando o ViewHelper para tratar especificações de qualquer tela e
@@ -98,6 +110,7 @@ public class Servlet extends HttpServlet {
 
 	protected void doProcessRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+        HttpSession session = request.getSession();
 
 		// Obtêm a uri que invocou esta servlet (O que foi definido no methdo do form
 		// html)
@@ -121,7 +134,14 @@ public class Servlet extends HttpServlet {
 		 * o retorno é uma instância da classe resultado que pode conter mensagens derro
 		 * ou entidades de retorno
 		 */
-		Resultado resultado = command.execute(entidade);
+		Resultado resultado = new Resultado();
+		if(command == null){
+        }else if(command.getClass().equals(AdicionarItemCommand.class)){
+            List<EntidadeDominio> entidades = new ArrayList<EntidadeDominio>();
+            entidades = (List)session.getAttribute("itens");
+            resultado.setEntidades(entidades);
+        }else
+            resultado = command.execute(entidade);
 
 		/*
 		 * Executa o método setView do view helper específico para definir como deverá

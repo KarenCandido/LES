@@ -36,7 +36,7 @@
             <input type="hidden" id="idEstoque" name="idEstoque" value="${estoque.getId()}">
             <select required id="idLivro" name="idLivro">
                 <c:forEach items="${livros}" var="l">
-                    <option value="${l.getId()}" ${livro.getId().contains(l.getId()) ? 'selected' : ''}>
+                    <option value="${l.getId()}" ${l.getId() == estoque.getId() ? 'selected' : ''}>
                         ${l.getTitulo()}
                     </option>
                 </c:forEach>

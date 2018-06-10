@@ -163,16 +163,29 @@ public class EstoqueDAO extends AbstractJdbcDAO {
 		}
 	}
 
-	private void consultarLivro(Estoque e, ResultSet rs2) throws SQLException {
+	private Estoque consultarLivro(Estoque e, ResultSet rs2) throws SQLException {
 		while (rs2.next()) {
+			StatusLivro statusLivro = new StatusLivro();
 			Livro livro = new Livro();
 			livro.setId(rs2.getInt("id_livro"));
 			livro.setTitulo(rs2.getString("titulo"));
-			StatusLivro statusLivro = new StatusLivro();
-			statusLivro.setStatus(rs2.getBoolean("fk_status"));
-			livro.setStatusLivro(statusLivro);
-			e.setLivro(livro);
+			statusLivro.setId(rs2.getInt("fk_status"));
+			
+			PreparedStatement pst = null;
+			openConnection();
+			pst = connection.prepareStatement("SELECT * FROM tb_status_livro WHERE id_status=?");
+			pst.setInt(1, statusLivro.getId());
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				statusLivro.setStatus(rs.getBoolean("status"));
+				statusLivro.setJustificativa(rs.getString("justificativa"));
+				statusLivro.setId(rs.getInt("id_status"));
+				livro.setStatusLivro(statusLivro);
+				e.setLivro(livro);
+			}
 		}
+		return e;
 	}
 
 	@Override
@@ -199,7 +212,7 @@ public class EstoqueDAO extends AbstractJdbcDAO {
 				pst = connection.prepareStatement("SELECT * FROM tb_livro WHERE id_livro=?;");
 				pst.setInt(1, rs.getInt("fk_livro"));
 				ResultSet rs2 = pst.executeQuery();
-				consultarLivro(e, rs2);
+				e = consultarLivro(e, rs2);
 
 				// Isso ta muito tenso Muito mesmo !VC DIZ O CODIGO OU TER USADO DAQLE JEITO
 
@@ -225,12 +238,11 @@ public class EstoqueDAO extends AbstractJdbcDAO {
 		try {
 			openConnection();
 			pst = connection.prepareStatement(sql);
-
 			pst.setInt(1, estoqueId);
 			ResultSet rs = pst.executeQuery();
-			Estoque e = null;
+
+			Estoque e = new Estoque();
 			while (rs.next()) {
-				e = new Estoque();
 				e.setId(rs.getInt("id_estoque"));
 				e.setValorCusto(rs.getFloat("valor_custo"));
 				e.setDataEntrada(rs.getTimestamp("dt_entrada"));
@@ -239,7 +251,7 @@ public class EstoqueDAO extends AbstractJdbcDAO {
 				pst = connection.prepareStatement("SELECT * FROM tb_livro WHERE id_livro=?;");
 				pst.setInt(1, rs.getInt("fk_livro"));
 				ResultSet rs2 = pst.executeQuery();
-				consultarLivro(e, rs2);
+				e = consultarLivro(e, rs2);
 
 				pst = connection.prepareStatement("SELECT * FROM tb_fornecedor WHERE id_fornecedor=?;");
 				pst.setInt(1, rs.getInt("fk_fornecedor"));
@@ -276,7 +288,7 @@ public class EstoqueDAO extends AbstractJdbcDAO {
 				pst = connection.prepareStatement("SELECT * FROM tb_livro WHERE id_livro=?;");
 				pst.setInt(1, rs.getInt("fk_livro"));
 				ResultSet rs2 = pst.executeQuery();
-				consultarLivro(e, rs2);
+				e = consultarLivro(e, rs2);
 
 				pst = connection.prepareStatement("SELECT * FROM tb_fornecedor WHERE id_fornecedor=?;");
 				pst.setInt(1, rs.getInt("fk_fornecedor"));
@@ -296,35 +308,29 @@ public class EstoqueDAO extends AbstractJdbcDAO {
 		Estoque estoque = (Estoque) entidade;
 		
 		openConnection();
-		PreparedStatement pst=null;		
-		StringBuilder sb = new StringBuilder();
-		sb.append("DELETE FROM ");
-		sb.append("tb_estoque");
-		sb.append(" WHERE ");
-		sb.append("id_estoque");
-		sb.append("=");
-		sb.append("?");	
+		PreparedStatement pst=null;	
 		try {
 			connection.setAutoCommit(false);
-			pst = connection.prepareStatement(sb.toString());
-			pst.setInt(1, estoque.getId());
-			pst.executeUpdate();
-			
-			StatusLivro sL = new StatusLivro();
 			
 			estoque = findById(estoque.getId());
 			
-			pst = connection.prepareStatement("SELECT fk_status FROM tb_livro WHERE id_livro=?");
-			pst.setInt(1, estoque.getLivro().getId());
-			ResultSet rs = pst.executeQuery();
-			while (rs.next()) {
-				sL.setId(rs.getInt("fk_status"));
-			}
-			pst = connection.prepareStatement("UPDATE tb_livro SET (status, justificativa) = (?,?) WHERE id_status=?");
+			pst = connection.prepareStatement("UPDATE tb_status_livro SET (status, justificativa) = (?,?) WHERE id_status=?");
 			pst.setBoolean(1, false);
 			pst.setString(2,"");
-			pst.setInt(3, sL.getId());
+			pst.setInt(3, estoque.getLivro().getStatusLivro().getId());
 
+			pst.executeUpdate();
+			
+			
+			StringBuilder sb = new StringBuilder();
+			sb.append("DELETE FROM ");
+			sb.append("tb_estoque");
+			sb.append(" WHERE ");
+			sb.append("id_estoque");
+			sb.append("=");
+			sb.append("?");	
+			pst = connection.prepareStatement(sb.toString());
+			pst.setInt(1, estoque.getId());
 			pst.executeUpdate();
 			
 			connection.commit();
