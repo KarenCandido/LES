@@ -3,7 +3,7 @@ package les12015.dominio;
 public class Usuario extends EntidadeDominio {
 	private String email;
 	private String senha;
-	private String tipoUsuario;
+	private Boolean isAdmin;
 
     public Usuario() {
     }
@@ -29,11 +29,11 @@ public class Usuario extends EntidadeDominio {
         this.senha = senha;
     }
 
-    public String getTipoUsuario() {
-        return tipoUsuario;
+    public Boolean getAdmin() {
+        return isAdmin;
     }
 
-    public void setTipoUsuario(String tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
     }
 }

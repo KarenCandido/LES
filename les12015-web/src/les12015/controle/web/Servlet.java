@@ -1,34 +1,23 @@
 package les12015.controle.web;
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import les12015.controle.web.command.ICommand;
+import les12015.controle.web.command.impl.*;
+import les12015.controle.web.vh.IViewHelper;
+import les12015.controle.web.vh.impl.*;
+import les12015.core.aplicacao.Resultado;
+import les12015.dominio.EntidadeDominio;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import les12015.controle.web.command.ICommand;
-import les12015.controle.web.command.impl.AdicionarItemCommand;
-import les12015.controle.web.command.impl.AlterarCommand;
-import les12015.controle.web.command.impl.ConsultarCommand;
-import les12015.controle.web.command.impl.ExcluirCommand;
-import les12015.controle.web.command.impl.InativarCommand;
-import les12015.controle.web.command.impl.NovoCommand;
-import les12015.controle.web.command.impl.SalvarCommand;
-import les12015.controle.web.command.impl.VisualizarCommand;
-import les12015.controle.web.vh.IViewHelper;
-import les12015.controle.web.vh.impl.ClienteViewHelper;
-import les12015.controle.web.vh.impl.EstoqueViewHelper;
-import les12015.controle.web.vh.impl.LivroViewHelper;
-import les12015.controle.web.vh.impl.PedidoViewHelper;
-import les12015.core.aplicacao.Resultado;
-import les12015.dominio.EntidadeDominio;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Servlet implementation class Servlet
@@ -61,6 +50,8 @@ public class Servlet extends HttpServlet {
 		commands.put("INATIVAR", new InativarCommand());
 		commands.put("ADICIONAR", new AdicionarItemCommand());
 		commands.put("GETITENS", null);
+		commands.put("login", null);
+		commands.put("logout", null);
 
 		/*
 		 * Utilizando o ViewHelper para tratar especificações de qualquer tela e
@@ -79,6 +70,7 @@ public class Servlet extends HttpServlet {
         vhs.put("/les12015-web/Livraria/CRUDCliente", new ClienteViewHelper());
 		vhs.put("/les12015-web/Livraria/CRUDCompra", new PedidoViewHelper());
 		vhs.put("/les12015-web/Livraria/ShowLivros", new LivroViewHelper());
+		vhs.put("/les12015-web/Livraria/Usuario", new UsuarioViewHelper());
 
 	}
 

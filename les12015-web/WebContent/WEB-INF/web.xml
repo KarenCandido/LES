@@ -30,6 +30,7 @@
 		<url-pattern>/Livraria/CRUDCliente</url-pattern>
 		<url-pattern>/Livraria/CRUDCompra</url-pattern>
 		<url-pattern>/Livraria/ShowLivros</url-pattern>
+		<url-pattern>/Livraria/Usuario</url-pattern>
 
 	</servlet-mapping>
 </web-app>

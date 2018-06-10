@@ -4,10 +4,7 @@ import les12015.core.IDAO;
 import les12015.core.IFachada;
 import les12015.core.IStrategy;
 import les12015.core.aplicacao.Resultado;
-import les12015.core.impl.dao.ClienteDAO;
-import les12015.core.impl.dao.EstoqueDAO;
-import les12015.core.impl.dao.FornecedorDAO;
-import les12015.core.impl.dao.LivroDAO;
+import les12015.core.impl.dao.*;
 import les12015.core.impl.negocio.ComplementarDtCadastro;
 import les12015.core.impl.negocio.ValidadorCnpj;
 import les12015.core.impl.negocio.ValidadorCpf;
@@ -49,12 +46,14 @@ public class Fachada implements IFachada {
         ClienteDAO cliDAO = new ClienteDAO();
         LivroDAO livroDAO = new LivroDAO();
         EstoqueDAO estoqueDAO = new EstoqueDAO();
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         /* Adicionando cada dao no MAP indexando pelo nome da classe */
         daos.put(Fornecedor.class.getName(), forDAO);
         daos.put(Cliente.class.getName(), cliDAO);
         daos.put(Livro.class.getName(), livroDAO);
         daos.put(Estoque.class.getName(), estoqueDAO);
+        daos.put(Usuario.class.getName(), usuarioDAO);
 
         /* Criando instâncias de regras de negócio a serem utilizados */
         ValidadorDadosObrigatoriosFornecedor vrDadosObrigatoriosFornecedor = new ValidadorDadosObrigatoriosFornecedor();
@@ -258,7 +257,6 @@ public class Fachada implements IFachada {
         if (msg == null) {
             IDAO dao = daos.get(nmClasse);
             try {
-
                 resultado.setEntidades(dao.consultar(entidade));
             } catch (SQLException e) {
                 e.printStackTrace();

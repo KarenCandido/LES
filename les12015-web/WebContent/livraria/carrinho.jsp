@@ -4,7 +4,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<% request.getSession(); %>
+<%
+	request.getSession();
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,11 +18,7 @@
 	src="http://code.jquery.com/jquery-1.5.1.min.js"></script>
 <script type="text/javascript"></script>
 </head>
- <%
-     List<ItemPedido> listItem = new ArrayList<ItemPedido>();
-     listItem = (List<ItemPedido>) session.getAttribute("item");
-     double total=0;
- %>
+
 <body>
 	<div class="topo">
 		<div class="logo">
@@ -32,7 +30,7 @@
 					<a href="ShowLivros?&operacao=EXIBIR"><li>Home</li></a>
 					<a href="quem_somos.jsp"><li>Quem Somos</li></a>
 					<a href="ShowLivros?&operacao=EXIBIR"><li>Livros</li></a>
-<!-- 					<a href="contato.jsp"><li>Contato</li></a> -->
+					<!-- 					<a href="contato.jsp"><li>Contato</li></a> -->
 					<a href="login.jsp"><li>Login</li></a>
 					<a href="CRUDCompra?&operacao=GETITENS"><li>Carrinho</li></a>
 				</ul>
@@ -51,32 +49,37 @@
 						<th><b class="vermelho">QUANTIDADE</b></th>
 						<th><b class="vermelho">SUBTOTAL</b></th>
 					</tr>
-		              <c:if test="${itens != null}" >
-			              <c:forEach items="${itens}" var="item">
-	                            <tr>
-	                                <td>${item.getLivro().getTitulo()}</td>
-	                                <td>R$ <b class="vermelho">${item.getLivro().getPrecoVenda()}</b></td>
-<%-- 	                                <td><input type="number" id="qtde" name="qtde" min="1" max="${l.getQtde_venda()}"  --%>
-<%-- 	                                	value="${item.getQtdeLivro()}" style="width: 3em;" required></td> --%>
-									<td>${item.getQtdeLivro()}</td>
-	                                <td>R$ <b class="vermelho">${item.getSubTotal()}</b></td>
-	                            </tr>
-	                        </c:forEach>
-		              </c:if>
-                      <c:if test="${itens == null}">
-                   		 <center><h2 style="color: red">Não há produtos adicionados!</h2></center>
-                      </c:if>
+					<c:if test="${itens != null}">
+						<c:forEach items="${itens}" var="item">
+							<tr>
+								<td>${item.getLivro().getTitulo()}</td>
+								<td>R$ <b class="vermelho">${item.getLivro().getPrecoVenda()}</b></td>
+								<%-- 	                                <td><input type="number" id="qtde" name="qtde" min="1" max="${l.getQtde_venda()}"  --%>
+								<%-- 	                                	value="${item.getQtdeLivro()}" style="width: 3em;" required></td> --%>
+								<td>${item.getQtdeLivro()}</td>
+								<td>R$ <b class="vermelho">${item.getSubTotal()}</b></td>
+							</tr>
+						</c:forEach>
+					</c:if>
+					<c:if test="${itens == null}">
+						<center>
+							<h2 style="color: red">Não há produtos adicionados!</h2>
+						</center>
+					</c:if>
 				</table>
 			</div>
 			<div class="col2"></div>
 		</div>
 		<div class="carrinho">
 			<div class="col1">
-				<a href="ShowLivros?&operacao=EXIBIR"><input type="button" id="continuar_comprando" 
-					value="Continuar Comprando" style="width: 15em;"></a>
+				<a href="ShowLivros?&operacao=EXIBIR"><input type="button"
+					id="continuar_comprando" value="Continuar Comprando"
+					style="width: 15em;"></a>
 			</div>
 			<div class="col2">
-				<p>Total: R$ <b class="vermelho">${total}</b></p>
+				<p>
+					Total: R$ <b class="vermelho">${total}</b>
+				</p>
 			</div>
 		</div>
 	</div>
