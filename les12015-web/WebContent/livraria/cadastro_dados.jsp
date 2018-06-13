@@ -37,23 +37,33 @@
 	<div class="wrapper">
 		<p class="titulo">Cadastro de dados</p>
 		<div class="cadastro_dados">
+		<form>
 			<input type="text" id="cad_email" placeholder="Endereço de E-mail"><br>
-			<input type="text" id="cad_senha" placeholder="Senha"> -
-			mínimo de 8 caracteres<br> <input type="text"
-				id="cad_confirma_senha" placeholder="Confirmar Senha"> -
-			letras maiúsculas e minúsculas<br> <input type="text"
-				id="cad_nome" placeholder="Nome"> <input type="text"
-				id="cad_cpf" placeholder="CPF"> <input type="text"
-				id="cad_dt_nasc" placeholder="Data de nascimento"> <select
-				id="cad_sexo">
-				<option value="Selecione">Selecione...</option>
+			<input type="text" id="cad_senha" placeholder="Senha"> - mínimo de 8 caracteres<br>
+					
+			<input type="text" id="cad_confirma_senha" name="cad_confirma_senha" placeholder="Confirmar Senha"> -
+					letras maiúsculas e minúsculas<br>
+			<input type="text" id="Nome" name="Nome" placeholder="Nome" value="${cliente.getNome()}">${cliente.getNome()}>
+			<input type="text" id="CPF" name="CPF" placeholder="CPF" value="${cliente.getCpf()}">${cliente.getCpf()}>
+			<input type="text" id="DtNasc" name="DtNasc" placeholder="Data de nascimento"
+					value="${cliente.getDataNascimento()}">${cliente.getDataNascimento()}>
+			
+			<select id="Genero" name="Genero">
 				<option value="Masculino">Masculino</option>
 				<option value="Feminino">Feminino</option>
-			</select><br> <input type="text" id="cad_telefone" placeholder="Telefone">
-			<input type="text" id="cad_celular" placeholder="Celular"><br>
-			<input type="button" id="bt_cancelar" value="Cancelar"> <input
-				type="button" id="bt_salvar" value="Salvar">
-
+			</select><br>
+			
+			<input type="text" id="DDD" name="DDD" placeholder="DDD" value="${telefone.getDdd()}">${telefone.getDdd()}>
+			<input type="text" id="Telefone" name="Telefone" placeholder="Telefone" value="${telefone.getNumero()}">${telefone.getNumero()}><br>
+			
+			<input type="button" id="bt_cancelar" value="Cancelar">
+			<c:if test="${cliente.getId() != null}">
+                   <input type='submit' id='bt_alterar' value='ALTERAR' id='operacao' name='operacao'>
+            </c:if>
+            <c:if test="${cliente.getId() == null}">
+                   <input type='submit' id='bt_salvar' value='SALVAR' id='operacao' name='operacao'>
+            </c:if>
+		</form>
 		</div>
 	</div>
 	<div class="rodape"></div>

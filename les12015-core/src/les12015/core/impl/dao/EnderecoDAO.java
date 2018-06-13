@@ -169,20 +169,20 @@ public class EnderecoDAO extends AbstractJdbcDAO {
 				i++;
 			}
 
-            if (endereco.getLogradouro() != null){
-                pst.setString(i, endereco.getLogradouro());
-                i++;
-            }
-            if (endereco.getCliente().getId() != null){
-                pst.setInt(i, endereco.getCliente().getId());
-                i++;
-            }
+			if (endereco.getLogradouro() != null) {
+				pst.setString(i, endereco.getLogradouro());
+				i++;
+			}
+			if (endereco.getCliente().getId() != null) {
+				pst.setInt(i, endereco.getCliente().getId());
+				i++;
+			}
 
 			ResultSet rs = pst.executeQuery();
 			List<EntidadeDominio> enderecos = new ArrayList<EntidadeDominio>();
 			while (rs.next()) {
-			    Endereco e = new Endereco();
-			    Cliente cli = new Cliente();
+				Endereco e = new Endereco();
+				Cliente cli = new Cliente();
 				Cidade cid = new Cidade();
 
 				e.setId(rs.getInt("id"));
@@ -224,41 +224,4 @@ public class EnderecoDAO extends AbstractJdbcDAO {
 		return null;
 	}
 
-	public void inativar(EntidadeDominio entidade) {
-        openConnection();
-        PreparedStatement pst = null;
-        Livro endereco = (Livro) entidade;
-
-        try {
-            connection.setAutoCommit(false);
-
-            StringBuilder sql = new StringBuilder();
-            sql.append("UPDATE tb_endereco SET (status)");
-            sql.append(" = (?)");
-            sql.append(" WHERE id = ?");
-
-            pst = connection.prepareStatement(sql.toString());
-
-            pst.setInt(1, endereco.getStatusLivro().getId());
-            pst.setInt(2, endereco.getId());
-
-            pst.executeUpdate();
-
-            connection.commit();
-        } catch (SQLException e) {
-            try {
-                connection.rollback();
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
-            e.printStackTrace();
-        } finally {
-            try {
-                pst.close();
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }

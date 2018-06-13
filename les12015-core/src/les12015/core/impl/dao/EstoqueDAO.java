@@ -214,8 +214,6 @@ public class EstoqueDAO extends AbstractJdbcDAO {
 				ResultSet rs2 = pst.executeQuery();
 				e = consultarLivro(e, rs2);
 
-				// Isso ta muito tenso Muito mesmo !VC DIZ O CODIGO OU TER USADO DAQLE JEITO
-
 				pst = connection.prepareStatement("SELECT * FROM tb_fornecedor WHERE id_fornecedor=?;");
 				pst.setInt(1, rs.getInt("fk_fornecedor"));
 				ResultSet rs3 = pst.executeQuery();

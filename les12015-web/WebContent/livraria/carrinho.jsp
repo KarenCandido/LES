@@ -67,21 +67,22 @@
 						</center>
 					</c:if>
 				</table>
-			</div>
-			<div class="col2"></div>
-		</div>
-		<div class="carrinho">
-			<div class="col1">
 				<a href="ShowLivros?&operacao=EXIBIR"><input type="button"
 					id="continuar_comprando" value="Continuar Comprando"
 					style="width: 15em;"></a>
-			</div>
-			<div class="col2">
-				<p>
+				<p class="total">
 					Total: R$ <b class="vermelho">${total}</b>
 				</p>
+
+			</div>
+			<div class="col2">
+				<!-- coloque aqui as coisas -->
+				SELECT e form!!!!!!<input type="text" id="end_cep" placeholder="CEP"> Cupom
+
+
 			</div>
 		</div>
+
 	</div>
 	<div class="rodape"></div>
 </body>

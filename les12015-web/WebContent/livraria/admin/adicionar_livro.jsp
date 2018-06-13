@@ -70,8 +70,6 @@
                 </c:if>
 
    		</form>
-       
-        
         </div>	
     </div>
 </div> 

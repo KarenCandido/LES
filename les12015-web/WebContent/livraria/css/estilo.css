@@ -61,7 +61,7 @@ input[type=button]:hover 	{ background:#b01116; font-family: 'Nexa Light Regular
 /*CADASTRO DE DADOS*/
 .cadastro_dados								{ width:600px; display:table; margin:0 auto; margin-top:50px;}
 .cadastro_dados input[type=text]			{ margin:0 auto; padding:10px 5px; border:1px solid #a7a9ab; margin:1% 0; color:#a7a9ab; text-align:left}
-.cadastro_dados input[type=password]			{ margin:0 auto; padding:10px 5px; border:1px solid #a7a9ab; margin:1% 0; color:#a7a9ab; text-align:left}
+.cadastro_dados input[type=password]		{ margin:0 auto; padding:10px 5px; border:1px solid #a7a9ab; margin:1% 0; color:#a7a9ab; text-align:left}
 .cadastro_dados select						{ margin:0 auto; padding:9px 5px; border:1px solid #a7a9ab; margin:1% 0; text-align:left; color:#a7a9ab;}
 .cadastro_dados #cad_email					{ width:98%;}
 .cadastro_dados #cad_senha					{ width:50%;}
@@ -111,6 +111,9 @@ input[type=button]:hover 	{ background:#b01116; font-family: 'Nexa Light Regular
 
 .carrinho .col1 .descricao	 	{ float: left; margin-left:10px; display:table; width:70%; margin-top:20px;color:#3a5460;}
 .carrinho .col1 td	img 		{ float:left; display:table;}
+.carrinho .col1 .total			{ float:right;}
+.carrinho .col1 #continuar_comprando	{background:none; border:1px solid #b01116; color:#b01116; margin-top:20px;}
+
 /*PEDIDOS*/
 .pedidos				{ width:85%; margin:0 auto; display:table;}
 .pedidos table			{ border:none}

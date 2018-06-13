@@ -48,31 +48,63 @@
     <div class="centro">
     	<p class="titulo"> Endereços </p>
     	<div class="cad_endereco">
+    	<form>
             <select id="end_endereco">
                 <option value="Tipo de Endereço"> Tipo de Endereço</option>
                 <option value="Endereço de Cobrança"> Endereço de Cobrança</option>
                 <option value="Endereço de Entrega"> Endereço de Entrega</option>
             </select><br>
 
-        	<input type="text" id="end_cep" placeholder="CEP"> Consultar CEP
-            <input type="text" id="end_residencia" placeholder="Tipo de Residência">
-            <input type="text" id="end_logradouro" placeholder="Logradouro">
-            <input type="text" id="end_numero" placeholder="Nº">
-            <input type="text" id="end_bairro" placeholder="Bairro"><br>
-            <input type="text" id="end_cidade" placeholder="Cidade">
-            <select id="end_estado">
-                <option value="Estado"> Estado...</option>
-                <option value="São Paulo"> São Paulo</option>
+        	<input type="text" id="cep" name="cep" placeholder="CEP"
+        			value="${endereco.getCep()}">${endereco.getCep()}> Consultar CEP
+            <input type="text" id="tipo_residencia" name="tipo_residencia" placeholder="Tipo de Residência"
+            		value="${endereco.getTipoResidencia()}">${endereco.getTipoResidencia()}>
+            <input type="text" id="tipo_logradouro" name="tipo_logradouro" placeholder="Tipo de Logradouro"
+            		value="${endereco.getTipoLogradouro()}">${endereco.getTipoLogradouro()}>
+            <input type="text" id="logradouro" name="logradouro" placeholder="Logradouro"
+            		value="${endereco.getLogradouro()}">${endereco.getLogradouro()}>
+            <input type="text" id="numero" name="numero" placeholder="Nº"
+            		value="${endereco.getNumero()}">${endereco.getNumero()}>
+            <input type="text" id="bairro" name="bairro" placeholder="Bairro"><br
+            		value="${endereco.getBairro()}">${endereco.getBairro()}>
+
+            <select id="idCidade" id="idCidade" placeholder="Cidade">
+            		<c:forEach items="${cidades}" var="c">
+	                    <option value="${c.getId()}" ${endereco.getCidade().getId() == c.getId() ? 'selected' : ''}>
+	                        ${c.getNome()}
+	                    </option>
+	                </c:forEach>
+	        </select>
+           
+            <select id="estado" name="estado">
+                	<c:forEach items="${estados}" var="e">
+	                    <option value="${e.getId()}" ${endereco.getCidade().getEstado().getId() == e.getId() ? 'selected' : ''}>
+	                        ${e.getNome()}
+	                    </option>
+	            	</c:forEach>
             </select>
-            <select id="end_pais">
-                <option value="País"> País...</option>
-                <option value="Brasil"> Brasil</option>
+           
+            <select id="pais" name="pais">
+                <c:forEach items="${paises}" var="p">
+	                   <option value="${p.getId()}" ${endereco.getCidade().getEstado().getPais().getId() == p.getId() ? 'selected' : ''}>
+	                        ${p.getNome()}
+	                   </option>
+	            </c:forEach>
             </select>
-            <input type="text" id="end_obs" placeholder="Observação">
+            
+            <input type="text" id="obs" name="obs" placeholder="Observação" value="${endereco.getObs()}">${endereco.getObs()}>>
+            
             <input type="button" id="bt_adicionar" value="Adicionar Outro" >
+            
             <input type="button" id="bt_cancelar" value="Cancelar" >
             <input type="button" id="bt_excluir" value="Excluir" >
-            <input type="button" id="bt_salvar" value="Salvar" >
+            <c:if test="${endereco.getId() != null}">
+                   <input type='submit' id='bt_alterar' value='ALTERAR' id='operacao' name='operacao'>
+            </c:if>
+            <c:if test="${endereco.getId() == null}">
+                   <input type='submit' id='bt_salvar' value='SALVAR' id='operacao' name='operacao'>
+            </c:if>
+        </form>
         </div>
     </div>
 </div> 

@@ -26,7 +26,6 @@
 					<a href="ShowLivros?&operacao=EXIBIR"><li>Home</li></a>
 					<a href="quem_somos.jsp"><li>Quem Somos</li></a>
 					<a href="ShowLivros?&operacao=EXIBIR"><li>Livros</li></a>
-					<!-- 					<a href="contato.jsp"><li>Contato</li></a> -->
 					<a href="login.jsp"><li>Login</li></a>
 					<a href="CRUDCompra?&operacao=GETITENS"><li>Carrinho</li></a>
 				</ul>
@@ -52,23 +51,32 @@
 			<center>
 				<img src="imagens/premium.png">
 			</center>
+			
 			<div class="cadastro_dados">
-				<input type="text" id="cad_email" placeholder="Endereço de E-mail"><br>
-				<input type="text" id="cad_nome" placeholder="Nome"> <input
-					type="text" id="cad_cpf" placeholder="CPF"> <input
-					type="text" id="cad_dt_nasc" placeholder="Data de nascimento">
-				<select id="cad_sexo">
-					<option value="Selecione">Selecione...</option>
+			<form action="">
+				<input type="text" id="email" name="email" placeholder="Endereço de E-mail"><br>
+				<input type="text" id="nome" name="nome" placeholder="Nome">
+				<input type="text" id="cpf" name="cpf" placeholder="CPF">
+				<input type="text" id="dt_nasc" name="dt_nasc" placeholder="Data de nascimento">
+				
+				<select id="genero" name="genero">
 					<option value="Masculino">Masculino</option>
-					<option value="Feminino">Feminina</option>
-				</select><br> <input type="text" id="cad_telefone"
-					placeholder="Telefone"> <input type="text" id="cad_celular"
-					placeholder="Celular"><br> <input type="button"
-					id="bt_cancelar" value="Cancelar"> <input type="button"
-					id="bt_excluir" value="Excluir"> <input type="button"
-					id="bt_salvar" value="Salvar">
-
+					<option value="Feminino">Feminino</option>
+				</select><br>
+				<input type="text" id="DDD" name="DDD" placeholder="DDD">
+				<input type="text" id="Telefone" name="Telefone" placeholder="Telefone"><br>
+				
+				<input type="button" id="bt_cancelar" value="Cancelar">
+				<input type="button" id="bt_excluir" value="Excluir">
+				<c:if test="${cliente.getId() != null}">
+                    <input type='submit' id='bt_alterar' value='ALTERAR' id='operacao' name='operacao'>
+                </c:if>
+                <c:if test="${cliente.getId() == null}">
+                    <input type='submit' id='bt_salvar' value='SALVAR' id='operacao' name='operacao'>
+                </c:if>
+			</form>
 			</div>
+			
 		</div>
 	</div>
 	<div class="rodape"></div>

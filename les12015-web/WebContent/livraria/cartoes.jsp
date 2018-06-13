@@ -49,35 +49,55 @@
 		</div>
 		<div class="centro">
 
-			<p class="titulo">cartões</p>
+			<p class="titulo">Cartões</p>
+			
 			<div class="cadastro_cartao">
-				<input type="checkbox" value="principal"> <b
-					class="vermelho">Cartão Principal</b><br> <input type="text"
-					id="num_cartao" placeholder="Número do Cartão"> <select
-					id="bandeira">
+			<form>
+				<input type="checkbox" value="principal">
+				<b class="vermelho">Cartão Principal</b><br>
+				
+				<input type="text" id="numero" name="numero" placeholder="Número do Cartão"
+						value="${cartao.getNumero()}">${cartao.getNumero()}>
+				
+				<select id="bandeira" name="bandeira">
+					<option value="mastercad">MasterCard</option>
+					<option value="visa">Visa</option>	
+				</select><br>
+				
+				<input type="text" id="nome_impresso" name="nome_impresso" placeholder="Nome Impresso no Cartão" 
+						value="${cartao.getNomeImpresso()}">${cartao.getNomeImpresso()}>
+				<input type="text" id="codigo_seguranca" name="codigo_seguranca" placeholder="Código de Segurança"
+						value="${cartao.getCodigoSeguranca()}">${cartao.getCodigoSeguranca()}><br>
+				<br>
+				
+				<input type="checkbox" value="secundario">
+					<b class="vermelho">Cartão Secundário</b><br>
+					
+				<input type="text" id="numero" name="numero" placeholder="Número do Cartão"
+						value="${cartao.getNumero()}">${cartao.getNumero()}>
+				
+				<select id="bandeira" name="bandeira">
 					<option value="Selecione">Selecione</option>
 					<option value="mastercad">MasterCard</option>
 					<option value="visa">Visa</option>
-				</select><br> <input type="text" id="nome_cartao"
-					placeholder="Nome Impresso no Cartão"> <input type="text"
-					id="cod_seguranca" placeholder="Código de Segurança"><br>
-				<br> <input type="checkbox" value="secundario"> <b
-					class="vermelho">Cartão Secundário</b><br> <input type="text"
-					id="num_cartao" placeholder="Número do Cartão"> <select
-					id="bandeira">
-					<option value="Selecione">Selecione</option>
-					<option value="mastercad">MasterCard</option>
-					<option value="visa">Visa</option>
-				</select><br> <input type="text" id="nome_cartao"
-					placeholder="Nome Impresso no Cartão"> <input type="text"
-					id="cod_seguranca" placeholder="Código de Segurança"><br>
+				</select><br>
+				
+				<input type="text" id="nome_impresso" name="nome_impresso" placeholder="Nome Impresso no Cartão"
+						value="${cartao.getNomeImpresso()}">${cartao.getNomeImpresso()}>
+				<input type="text" id="codigo_seguranca" name="codigo_seguranca" placeholder="Código de Segurança"
+						value="${cartao.getCodigoSeguranca()}">${cartao.getCodigoSeguranca()}><br>
 
 
 				<input type="button" id="bt_adicionar" value="Adicionar Outro">
-				<input type="button" id="bt_salvar" value="Salvar"> <input
-					type="button" id="bt_cancelar" value="Cancelar"> <input
-					type="button" id="bt_excluir" value="Excluir">
-
+				<input type="button" id="bt_cancelar" value="Cancelar">
+				<input type="button" id="bt_excluir" value="Excluir">
+				<c:if test="${cartao.getId() != null}">
+                    <input type='submit' id='bt_alterar' value='ALTERAR' id='operacao' name='operacao'>
+                </c:if>
+                <c:if test="${cartao.getId() == null}">
+                    <input type='submit' id='bt_salvar' value='SALVAR' id='operacao' name='operacao'>
+                </c:if>
+			</form>
 			</div>
 		</div>
 		<div class="rodape"></div>
