@@ -1,7 +1,11 @@
 
 package les12015.core.impl.dao;
 
-import les12015.dominio.*;
+import les12015.controle.web.command.impl.ConsultarCommand;
+import les12015.dominio.Cidade;
+import les12015.dominio.Cliente;
+import les12015.dominio.Endereco;
+import les12015.dominio.EntidadeDominio;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -140,11 +144,15 @@ public class EnderecoDAO extends AbstractJdbcDAO {
 		PreparedStatement pst = null;
 		Endereco endereco = (Endereco) entidade;
 
-		if (endereco == null) {
+		if (endereco == null)
 			endereco = new Endereco();
-		}
+
+		if (endereco.getCliente() == null){
+            Cliente cliente = new Cliente();
+            endereco.setCliente(cliente);
+        }
 		//////////////////////////////////////////////
-		String sql = "SELECT * FROM tb_endereco JOIN tb_cidade.id_cidade=tb_endereco.fk_cidade WHERE";
+		String sql = "SELECT * FROM tb_endereco JOIN tb_cidade ON tb_cidade.id_cidade=tb_endereco.fk_cidade WHERE";
 		//////////////////////////////////////////////
 		if (endereco.getId() != null)
 			sql += " id = ? AND";
@@ -157,7 +165,7 @@ public class EnderecoDAO extends AbstractJdbcDAO {
 			sql = sql.substring(0, sql.length() - 4) + ";";
 
 		else
-			sql = "SELECT * FROM tb_endereco JOIN tb_cidade.id_cidade=tb_endereco.fk_cidade;";
+			sql = "SELECT * FROM tb_endereco JOIN tb_cidade ON tb_cidade.id_cidade=tb_endereco.fk_cidade;";
 
 		try {
 			openConnection();
@@ -196,6 +204,9 @@ public class EnderecoDAO extends AbstractJdbcDAO {
 				e.setObservacao(rs.getString("obs"));
 				cli.setId(rs.getInt("fk_cliente"));
 				cid.setId(rs.getInt("fk_cidade"));
+		        ConsultarCommand consultarCommand = new ConsultarCommand();
+				
+				cid = (Cidade) consultarCommand.execute(cid).getEntidades().get(0);
 
 				e.setCliente(cli);
 				e.setCidade(cid);

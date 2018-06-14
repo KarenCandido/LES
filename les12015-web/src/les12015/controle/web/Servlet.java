@@ -65,12 +65,20 @@ public class Servlet extends HttpServlet {
 		 * no web.xml e sendo utilizada no action do html
 		 */
 
-		vhs.put("/les12015-web/Livraria/admin/CRUDLivros", new LivroViewHelper());
-        vhs.put("/les12015-web/Livraria/admin/CRUDEstoque", new EstoqueViewHelper());
-        vhs.put("/les12015-web/Livraria/CRUDCliente", new ClienteViewHelper());
-		vhs.put("/les12015-web/Livraria/CRUDCompra", new PedidoViewHelper());
-		vhs.put("/les12015-web/Livraria/ShowLivros", new LivroViewHelper());
-		vhs.put("/les12015-web/Livraria/Usuario", new UsuarioViewHelper());
+//		vhs.put("/les12015-web/Livraria/admin/CRUDLivros", new LivroViewHelper());
+//        vhs.put("/les12015-web/Livraria/admin/CRUDEstoque", new EstoqueViewHelper());
+//        vhs.put("/les12015-web/Livraria/CRUDCliente", new ClienteViewHelper());
+//		vhs.put("/les12015-web/Livraria/CRUDCompra", new PedidoViewHelper());
+//		vhs.put("/les12015-web/Livraria/ShowLivros", new LivroViewHelper());
+//		vhs.put("/les12015-web/Livraria/Usuario", new UsuarioViewHelper());
+		vhs.put("/Livraria/admin/CRUDLivros", new LivroViewHelper());
+        vhs.put("/Livraria/admin/CRUDEstoque", new EstoqueViewHelper());
+        vhs.put("/Livraria/CRUDCliente", new ClienteViewHelper());
+		vhs.put("/Livraria/CRUDCompra", new PedidoViewHelper());
+		vhs.put("/Livraria/ShowLivros", new LivroViewHelper());
+		vhs.put("/Livraria/Usuario", new UsuarioViewHelper());
+		vhs.put("/Livraria/CRUDEndereco", new EnderecoViewHelper());
+		vhs.put("/Livraria/CRUDCartao", new CartaoViewHelper());
 
 	}
 

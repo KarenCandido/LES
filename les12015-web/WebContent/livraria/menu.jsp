@@ -13,7 +13,6 @@
                     <a href="ShowLivros?&operacao=EXIBIR"><li>Home</li></a>
                     <a href="quem_somos.jsp"><li>Quem Somos</li></a>
                     <a href="ShowLivros?&operacao=EXIBIR"><li>Livros</li></a>
-                    <!-- 					<a href="contato.jsp"><li>Contato</li></a> -->
                     <a href="login.jsp"><li>Login</li></a>
                     <a href="CRUDCompra?&operacao=GETITENS"><li>Carrinho</li></a>
                 </ul>
@@ -31,8 +30,7 @@
                     <a href="ShowLivros?&operacao=EXIBIR"><li>Home</li></a>
                     <a href="quem_somos.jsp"><li>Quem Somos</li></a>
                     <a href="ShowLivros?&operacao=EXIBIR"><li>Livros</li></a>
-                    <!-- 					<a href="contato.jsp"><li>Contato</li></a> -->
-                    <a href="perfil.jsp"><li>Meu Perfil</li></a>
+                    <a href="CRUDCliente?&operacao=VISUALIZAR"><li>Meu Perfil</li></a>
                     <a href="CRUDCompra?&operacao=GETITENS"><li>Carrinho</li></a>
                 </ul>
             </div>

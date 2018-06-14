@@ -16,45 +16,27 @@
 </head>
 
 <body>
-	<div class="topo">
-		<div class="logo">
-			<img src="imagens/logo.png" width="100%">
-		</div>
-		<div class="menu">
-			<div id="menu">
-				<ul>
-					<a href="ShowLivros?&operacao=EXIBIR"><li>Home</li></a>
-					<a href="quem_somos.jsp"><li>Quem Somos</li></a>
-					<a href="ShowLivros?&operacao=EXIBIR"><li>Livros</li></a>
-					<!-- 					<a href="contato.jsp"><li>Contato</li></a> -->
-					<a href="login.jsp"><li>Login</li></a>
-					<a href="CRUDCompra?&operacao=GETITENS"><li>Carrinho</li></a>
-				</ul>
-			</div>
-		</div>
-	</div>
+<jsp:include page="menu.jsp"/>
 
 	<div class="wrapper">
 		<p class="titulo">Cadastro de dados</p>
 		<div class="cadastro_dados">
 		<form>
-			<input type="text" id="cad_email" placeholder="Endereço de E-mail"><br>
-			<input type="text" id="cad_senha" placeholder="Senha"> - mínimo de 8 caracteres<br>
-					
-			<input type="text" id="cad_confirma_senha" name="cad_confirma_senha" placeholder="Confirmar Senha"> -
-					letras maiúsculas e minúsculas<br>
-			<input type="text" id="Nome" name="Nome" placeholder="Nome" value="${cliente.getNome()}">${cliente.getNome()}>
-			<input type="text" id="CPF" name="CPF" placeholder="CPF" value="${cliente.getCpf()}">${cliente.getCpf()}>
+			<input type="text" id="email" name="email" placeholder="Endereço de E-mail" value="${cliente.getUsuario().getEmail()}"><br>
+			<input type="text" id="senha" name="senha" placeholder="Senha" value="${cliente.getUsuario().getSenha()}"><br>
+			<input type="text" id="Nome" name="Nome" placeholder="Nome" value="${cliente.getNome()}">
+			<input type="text" id="CPF" name="CPF" placeholder="CPF" value="${cliente.getCpf()}">
 			<input type="text" id="DtNasc" name="DtNasc" placeholder="Data de nascimento"
-					value="${cliente.getDataNascimento()}">${cliente.getDataNascimento()}>
+					value="${cliente.getDataNascimento()}">
 			
-			<select id="Genero" name="Genero">
-				<option value="Masculino">Masculino</option>
-				<option value="Feminino">Feminino</option>
+							
+			<select id="genero" name="genero">
+				<option value="Masculino" ${cliente.getGenero().equalsIgnoreCase("Masculino") ? 'selected' : ''}>Masculino</option>
+				<option value="Feminino" ${cliente.getGenero().equalsIgnoreCase("Feminino") ? 'selected' : ''}>Feminino</option>
 			</select><br>
 			
-			<input type="text" id="DDD" name="DDD" placeholder="DDD" value="${telefone.getDdd()}">${telefone.getDdd()}>
-			<input type="text" id="Telefone" name="Telefone" placeholder="Telefone" value="${telefone.getNumero()}">${telefone.getNumero()}><br>
+			<input type="text" id="DDD" name="DDD" placeholder="DDD" value="${telefone.getDdd()}">
+			<input type="text" id="Telefone" name="Telefone" placeholder="Telefone" value="${telefone.getNumero()}"><br>
 			
 			<input type="button" id="bt_cancelar" value="Cancelar">
 			<c:if test="${cliente.getId() != null}">

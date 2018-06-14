@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="/les12015-web/WebContent/WEB-INF/lib/postgresql-42.2.2.jar"/>
 	<classpathentry kind="lib" path="/les12015-web/WebContent/WEB-INF/lib/servlet.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/servlet"/>
+	<classpathentry kind="src" path="/les12015-web"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <jsp:include page="menu.jsp"/>
+	<jsp:include page="menu.jsp"/>
 	<div class="wrapper">
 		<div class="lateral">
 			<input type="text" name="pesquisa" id="pesquisa"

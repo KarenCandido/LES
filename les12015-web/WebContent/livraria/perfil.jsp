@@ -16,37 +16,10 @@
 </head>
 
 <body>
-	<div class="topo">
-		<div class="logo">
-			<img src="imagens/logo.png" width="100%">
-		</div>
-		<div class="menu">
-			<div id="menu">
-				<ul>
-					<a href="ShowLivros?&operacao=EXIBIR"><li>Home</li></a>
-					<a href="quem_somos.jsp"><li>Quem Somos</li></a>
-					<a href="ShowLivros?&operacao=EXIBIR"><li>Livros</li></a>
-					<a href="login.jsp"><li>Login</li></a>
-					<a href="CRUDCompra?&operacao=GETITENS"><li>Carrinho</li></a>
-				</ul>
-			</div>
-		</div>
-	</div>
+<jsp:include page="menu.jsp"/>
 
 	<div class="wrapper">
-		<div class="lateral">
-			<ul>
-				<a href="perfil.jsp"><li>Perfil</li></a>
-				<a href="alterar_senha.jsp"><li>Alterar Senha</li></a>
-				<a href="endereco.jsp"><li>Endereços</li></a>
-				<a href="cartoes.jsp"><li>Cartões</li></a>
-				<a href="pedidos.jsp"><li>Pedidos</li></a>
-				<a href="cupons.jsp"><li>Cupons</li></a>
-				<a href="trocas.jsp"><li>Trocas</li></a>
-				<li>Sair</li>
-
-			</ul>
-		</div>
+		<jsp:include page="perfil_lateral.jsp"/>
 		<div class="centro">
 			<center>
 				<img src="imagens/premium.png">
@@ -54,17 +27,19 @@
 			
 			<div class="cadastro_dados">
 			<form action="">
-				<input type="text" id="email" name="email" placeholder="Endereço de E-mail"><br>
-				<input type="text" id="nome" name="nome" placeholder="Nome">
-				<input type="text" id="cpf" name="cpf" placeholder="CPF">
-				<input type="text" id="dt_nasc" name="dt_nasc" placeholder="Data de nascimento">
+				<input type="text" id="email" name="email" placeholder="Endereço de E-mail" value="${cliente.getUsuario().getEmail()}"><br>
+				<input type="text" id="Nome" name="Nome" placeholder="Nome" value="${cliente.getNome()}">
+				<input type="text" id="CPF" name="CPF" placeholder="CPF" value="${cliente.getCpf()}">
+				<input type="text" id="DtNasc" name="DtNasc" placeholder="Data de nascimento"
+					value="${cliente.getDataNascimento()}">
 				
 				<select id="genero" name="genero">
-					<option value="Masculino">Masculino</option>
-					<option value="Feminino">Feminino</option>
+					<option value="Masculino" ${cliente.getGenero().equalsIgnoreCase("Masculino") ? 'selected' : ''}>Masculino</option>
+					<option value="Feminino" ${cliente.getGenero().equalsIgnoreCase("Feminino") ? 'selected' : ''}>Feminino</option>
 				</select><br>
-				<input type="text" id="DDD" name="DDD" placeholder="DDD">
-				<input type="text" id="Telefone" name="Telefone" placeholder="Telefone"><br>
+				
+				<input type="text" id="DDD" name="DDD" placeholder="DDD" value="${telefone.getDdd()}">
+				<input type="text" id="Telefone" name="Telefone" placeholder="Telefone"value="${telefone.getNumero()}"><br>
 				
 				<input type="button" id="bt_cancelar" value="Cancelar">
 				<input type="button" id="bt_excluir" value="Excluir">

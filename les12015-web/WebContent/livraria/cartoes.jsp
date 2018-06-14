@@ -16,76 +16,54 @@
 </head>
 </head>
 <body>
-	<div class="topo">
-		<div class="logo">
-			<img src="imagens/logo.png" width="100%">
-		</div>
-		<div class="menu">
-			<div id="menu">
-				<ul>
-					<a href="ShowLivros?&operacao=EXIBIR"><li>Home</li></a>
-					<a href="quem_somos.jsp"><li>Quem Somos</li></a>
-					<a href="ShowLivros?&operacao=EXIBIR"><li>Livros</li></a>
-					<!-- 					<a href="contato.jsp"><li>Contato</li></a> -->
-					<a href="login.jsp"><li>Login</li></a>
-					<a href="CRUDCompra?&operacao=GETITENS"><li>Carrinho</li></a>
-				</ul>
-			</div>
-		</div>
-	</div>
+<jsp:include page="menu.jsp"/>
 
 	<div class="wrapper">
-		<div class="lateral">
-			<ul>
-				<a href="perfil.jsp"><li>Perfil</li></a>
-				<a href="alterar_senha.jsp"><li>Alterar Senha</li></a>
-				<a href="endereco.jsp"><li>Endereços</li></a>
-				<a href="cartoes.jsp"><li>Cartões</li></a>
-				<a href="pedidos.jsp"><li>Pedidos</li></a>
-				<a href="cupons.jsp"><li>Cupons</li></a>
-				<a href="trocas.jsp"><li>Trocas</li></a>
-				<li>Sair</li>
-			</ul>
-		</div>
+        <jsp:include page="perfil_lateral.jsp"/>
 		<div class="centro">
 
 			<p class="titulo">Cartões</p>
 			
 			<div class="cadastro_cartao">
 			<form>
+				<input type="text" id="idCartao" name="idCartao" value="${cartao.getId()}" hidden>
+
 				<input type="checkbox" value="principal">
 				<b class="vermelho">Cartão Principal</b><br>
 				
 				<input type="text" id="numero" name="numero" placeholder="Número do Cartão"
-						value="${cartao.getNumero()}">${cartao.getNumero()}>
+						value="${cartao.getNumero()}">
 				
 				<select id="bandeira" name="bandeira">
-					<option value="mastercad">MasterCard</option>
-					<option value="visa">Visa</option>	
+					<option value="2">MasterCard</option>
+					<option value="1">Visa</option>
 				</select><br>
 				
 				<input type="text" id="nome_impresso" name="nome_impresso" placeholder="Nome Impresso no Cartão" 
-						value="${cartao.getNomeImpresso()}">${cartao.getNomeImpresso()}>
+						value="${cartao.getNomeImpresso()}">
 				<input type="text" id="codigo_seguranca" name="codigo_seguranca" placeholder="Código de Segurança"
-						value="${cartao.getCodigoSeguranca()}">${cartao.getCodigoSeguranca()}><br>
+						value="${cartao.getCodigoSeguranca()}"><br>
+				<br>
+				<input type="text" id="dt_vencimento" name="dt_vencimento" placeholder="Data de Vencimento"
+						value="${cartao.getDataVencimento()}"><br>
 				<br>
 				
-				<input type="checkbox" value="secundario">
-					<b class="vermelho">Cartão Secundário</b><br>
+				<%--<input type="checkbox" value="secundario">--%>
+					<%--<b class="vermelho">Cartão Secundário</b><br>--%>
 					
-				<input type="text" id="numero" name="numero" placeholder="Número do Cartão"
-						value="${cartao.getNumero()}">${cartao.getNumero()}>
-				
-				<select id="bandeira" name="bandeira">
-					<option value="Selecione">Selecione</option>
-					<option value="mastercad">MasterCard</option>
-					<option value="visa">Visa</option>
-				</select><br>
-				
-				<input type="text" id="nome_impresso" name="nome_impresso" placeholder="Nome Impresso no Cartão"
-						value="${cartao.getNomeImpresso()}">${cartao.getNomeImpresso()}>
-				<input type="text" id="codigo_seguranca" name="codigo_seguranca" placeholder="Código de Segurança"
-						value="${cartao.getCodigoSeguranca()}">${cartao.getCodigoSeguranca()}><br>
+				<%--<input type="text" id="numero" name="numero" placeholder="Número do Cartão"--%>
+						<%--value="${cartao.getNumero()}">--%>
+				<%----%>
+				<%--<select id="bandeira" name="bandeira">--%>
+					<%--<option value="Selecione">Selecione</option>--%>
+					<%--<option value="mastercad">MasterCard</option>--%>
+					<%--<option value="visa">Visa</option>--%>
+				<%--</select><br>--%>
+				<%----%>
+				<%--<input type="text" id="nome_impresso" name="nome_impresso" placeholder="Nome Impresso no Cartão"--%>
+						<%--value="${cartao.getNomeImpresso()}">--%>
+				<%--<input type="text" id="codigo_seguranca" name="codigo_seguranca" placeholder="Código de Segurança"--%>
+						<%--value="${cartao.getCodigoSeguranca()}"><br>--%>
 
 
 				<input type="button" id="bt_adicionar" value="Adicionar Outro">

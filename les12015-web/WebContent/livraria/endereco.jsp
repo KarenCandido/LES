@@ -13,69 +13,40 @@
 </head>
 
 <body>
-	<div class="topo">
-	<div class="logo">
-    	<img src="imagens/logo.png" width="100%">
-	</div>
-	<div class="menu">
-		<div id="menu">
-        	<ul>
-				<a href="ShowLivros?&operacao=EXIBIR"><li>Home</li></a>
-				<a href="quem_somos.jsp"><li>Quem Somos</li></a>
-				<a href="ShowLivros?&operacao=EXIBIR"><li>Livros</li></a>
-				<!-- 					<a href="contato.jsp"><li>Contato</li></a> -->
-				<a href="login.jsp"><li>Login</li></a>
-				<a href="CRUDCompra?&operacao=GETITENS"><li>Carrinho</li></a>
-			</ul>
-        </div>
-	</div>
-</div>
+<jsp:include page="menu.jsp"/>
 
 <div class="wrapper">
-	<div class="lateral">
-		<ul>
-        	<a href="perfil.jsp"><li>Perfil</li></a>
-        	<a href="alterar_senha.jsp"><li>Alterar Senha</li></a>
-        	<a href="endereco.jsp"><li>Endereços</li></a>
-        	<a href="cartoes.jsp"><li>Cartões</li></a>
-        	<a href="pedidos.jsp"><li>Pedidos</li></a>
-        	<a href="cupons.jsp"><li>Cupons</li></a>
-        	<a href="trocas.jsp"><li>Trocas</li></a>
-        	<li>Sair</li>
-        
-        </ul>
-	</div>
+    <jsp:include page="perfil_lateral.jsp"/>
     <div class="centro">
     	<p class="titulo"> Endereços </p>
     	<div class="cad_endereco">
     	<form>
-            <select id="end_endereco">
-                <option value="Tipo de Endereço"> Tipo de Endereço</option>
-                <option value="Endereço de Cobrança"> Endereço de Cobrança</option>
-                <option value="Endereço de Entrega"> Endereço de Entrega</option>
+            <select id="tipo_endereco" name="tipo_endereco">
+                <option value="Cobrança" ${endereco.getTipoEndereco().equalsIgnoreCase("Cobrança") ? 'selected' : ''}> Endereço de Cobrança</option>
+                <option value="Entrega" ${endereco.getTipoEndereco().equalsIgnoreCase("Entrega") ? 'selected' : ''}> Endereço de Entrega</option>
             </select><br>
 
         	<input type="text" id="cep" name="cep" placeholder="CEP"
-        			value="${endereco.getCep()}">${endereco.getCep()}> Consultar CEP
+        			value="${endereco.getCep()}">
             <input type="text" id="tipo_residencia" name="tipo_residencia" placeholder="Tipo de Residência"
-            		value="${endereco.getTipoResidencia()}">${endereco.getTipoResidencia()}>
+            		value="${endereco.getTipoResidencia()}">
             <input type="text" id="tipo_logradouro" name="tipo_logradouro" placeholder="Tipo de Logradouro"
-            		value="${endereco.getTipoLogradouro()}">${endereco.getTipoLogradouro()}>
+            		value="${endereco.getTipoLogradouro()}">
             <input type="text" id="logradouro" name="logradouro" placeholder="Logradouro"
-            		value="${endereco.getLogradouro()}">${endereco.getLogradouro()}>
+            		value="${endereco.getLogradouro()}">
             <input type="text" id="numero" name="numero" placeholder="Nº"
-            		value="${endereco.getNumero()}">${endereco.getNumero()}>
-            <input type="text" id="bairro" name="bairro" placeholder="Bairro"><br
-            		value="${endereco.getBairro()}">${endereco.getBairro()}>
+            		value="${endereco.getNumero()}">
+            <input type="text" id="bairro" name="bairro" placeholder="Bairro"
+            		value="${endereco.getBairro()}">
 
-            <select id="idCidade" id="idCidade" placeholder="Cidade">
+            <select id="idCidade" name="idCidade" placeholder="Cidade">
             		<c:forEach items="${cidades}" var="c">
 	                    <option value="${c.getId()}" ${endereco.getCidade().getId() == c.getId() ? 'selected' : ''}>
 	                        ${c.getNome()}
 	                    </option>
 	                </c:forEach>
 	        </select>
-           
+
             <select id="estado" name="estado">
                 	<c:forEach items="${estados}" var="e">
 	                    <option value="${e.getId()}" ${endereco.getCidade().getEstado().getId() == e.getId() ? 'selected' : ''}>
@@ -92,7 +63,8 @@
 	            </c:forEach>
             </select>
             
-            <input type="text" id="obs" name="obs" placeholder="Observação" value="${endereco.getObs()}">${endereco.getObs()}>>
+            <input type="text" id="obs" name="obs" placeholder="Observação" value="${endereco.getObservacao()}">
+            <br>
             
             <input type="button" id="bt_adicionar" value="Adicionar Outro" >
             

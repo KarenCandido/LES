@@ -129,11 +129,14 @@ public class CartaoDAO extends AbstractJdbcDAO {
 		if (cartao == null) {
 			cartao = new Cartao();
 		}
+		if (cartao.getBandeiraCartao() == null){
+			BandeiraCartao bC = new BandeiraCartao();
+			cartao.setBandeiraCartao(bC);
+		}
 		//////////////////////////////////////////////
 		String sql = "SELECT * FROM tb_cartao " +
                 "JOIN tb_cliente ON tb_cliente.id_cliente=tb_cartao.fk_cliente " +
-                "JOIN tb_bandeiras_aceitas ON tb.bandeiras_aceitas.id_bandeiras=tb_cartao.fk_bandeira" +
-                "WHERE";
+                "JOIN tb_bandeiras_aceitas ON tb_bandeiras_aceitas.id_bandeiras=tb_cartao.fk_bandeira WHERE";
 		//////////////////////////////////////////////
 		if (cartao.getId() != null)
 			sql += " id = ? AND";
@@ -152,7 +155,7 @@ public class CartaoDAO extends AbstractJdbcDAO {
 		else
             sql = "SELECT * FROM tb_cartao " +
                     "JOIN tb_cliente ON tb_cliente.id_cliente=tb_cartao.fk_cliente " +
-                    "JOIN tb_bandeiras_aceitas ON tb.bandeiras_aceitas.id_bandeiras=tb_cartao.fk_bandeira";
+                    "JOIN tb_bandeiras_aceitas ON tb_bandeiras_aceitas.id_bandeiras=tb_cartao.fk_bandeira";
 
 		try {
 			openConnection();

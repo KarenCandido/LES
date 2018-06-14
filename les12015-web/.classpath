@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/les12015-core"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/les12015-dominio"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="module" value="true"/>
@@ -15,5 +13,7 @@
 	<classpathentry exported="true" kind="lib" path="D:/MAK Classicos/Fatec/8. semestre/Projeto2/les12015-web/WebContent/WEB-INF/lib/jstl-1.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="D:/MAK Classicos/Fatec/8. semestre/Projeto2/les12015-web/WebContent/WEB-INF/lib/postgresql-42.2.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="D:/MAK Classicos/Fatec/8. semestre/Projeto2/les12015-web/WebContent/WEB-INF/lib/servlet.jar"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/les12015-core"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/les12015-dominio"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

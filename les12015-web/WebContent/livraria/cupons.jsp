@@ -16,38 +16,10 @@
 </head>
 
 <body>
-	<div class="topo">
-		<div class="logo">
-			<img src="imagens/logo.png" width="100%">
-		</div>
-		<div class="menu">
-			<div id="menu">
-				<ul>
-					<a href="ShowLivros?&operacao=EXIBIR"><li>Home</li></a>
-					<a href="quem_somos.jsp"><li>Quem Somos</li></a>
-					<a href="ShowLivros?&operacao=EXIBIR"><li>Livros</li></a>
-					<!-- 					<a href="contato.jsp"><li>Contato</li></a> -->
-					<a href="login.jsp"><li>Login</li></a>
-					<a href="CRUDCompra?&operacao=GETITENS"><li>Carrinho</li></a>
-				</ul>
-			</div>
-		</div>
-	</div>
+<jsp:include page="menu.jsp"/>
 
 	<div class="wrapper">
-		<div class="lateral">
-			<ul>
-				<a href="perfil.jsp"><li>Perfil</li></a>
-				<a href="alterar_senha.jsp"><li>Alterar Senha</li></a>
-				<a href="endereco.jsp"><li>Endereços</li></a>
-				<a href="cartoes.jsp"><li>Cartões</li></a>
-				<a href="pedidos.jsp"><li>Pedidos</li></a>
-				<a href="cupons.jsp"><li>Cupons</li></a>
-				<a href="trocas.jsp"><li>Trocas</li></a>
-				<li>Sair</li>
-
-			</ul>
-		</div>
+        <jsp:include page="perfil_lateral.jsp"/>
 		<div class="centro">
 			<p class="titulo">Cupons</p>
 			<div class="cupons">

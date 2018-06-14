@@ -6,6 +6,7 @@ import les12015.core.aplicacao.Resultado;
 import les12015.core.impl.dao.ClienteDAO;
 import les12015.dominio.Cliente;
 import les12015.dominio.EntidadeDominio;
+import les12015.dominio.Usuario;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,36 +30,24 @@ public class ClienteViewHelper implements IViewHelper {
 	 *      javax.servlet.http.HttpServletResponse)
 	 */
 	public EntidadeDominio getEntidade(HttpServletRequest request) {
-		// String nome = request.getParameter("txtNome");
-		// String cpf = request.getParameter("txtCpf");
-		// String id = request.getParameter("txtId");
-		//
-		// Cliente c = new Cliente();
-		// c.setNome(nome);
-		//
-		// if (id != null && !id.trim().equals("")) {
-		// c.setId(Integer.parseInt(id));
-		// }
-		//
-		// c.setCpf(cpf);
-		// return c;
 
 		String operacao = request.getParameter("operacao");
 
 		Cliente cliente = null; // instancia livro
+		Usuario usuario = null;
 		if (!operacao.equals("VISUALIZAR")) {
 
 			String id = request.getParameter("idCliente");
 			String nome = request.getParameter("nome");
 			String dtNasc = request.getParameter("dtNasc");
 			String email = request.getParameter("email");
+			String senha = request.getParameter("senha");
 			String cpf = request.getParameter("cpf");
 			String genero = request.getParameter("genero");
 			String status = request.getParameter("status");
 
 			cliente = new Cliente();
-			// Edicao e = new Edicao();
-			// Dimensoes d = new Dimensoes();
+			usuario = new Usuario();
 
 			if (id != null && !id.isEmpty()) {
 				cliente.setId(Integer.parseInt(id));
@@ -70,13 +59,15 @@ public class ClienteViewHelper implements IViewHelper {
 				cliente.setDataNascimento(Timestamp.valueOf(dtNasc));
 			}
 			if (email != null && !email.isEmpty()) {
-				cliente.setEmail(email);
+				usuario.setEmail(email);
+			}
+			if (senha != null && !senha.isEmpty()) {
+				usuario.setSenha(senha);
 			}
 			if (cpf != null && !cpf.isEmpty()) {
 				cliente.setCpf(cpf);
 			}
 			if (genero != null && !genero.isEmpty()) {
-
 				cliente.setGenero(genero);
 			}
 			if (status != null && !status.isEmpty()) {
@@ -104,7 +95,8 @@ public class ClienteViewHelper implements IViewHelper {
 				cliente = new Cliente();
 			}
 		}
-
+		
+		cliente.setUsuario(usuario);
 		return cliente;
 	}
 
@@ -150,8 +142,8 @@ public class ClienteViewHelper implements IViewHelper {
 
 		// VISUALIZAR CLIENTE
 		if (resultado.getMsg() == null && operacao.equals("VISUALIZAR")) {
-			loadingForm(request);
-			request.setAttribute("cliente", resultado.getEntidades().get(0));
+			Cliente cli = (Cliente) session.getAttribute("login");
+			request.setAttribute("cliente", cli);
 			d = request.getRequestDispatcher("perfil.jsp");
 		}
 
@@ -167,25 +159,11 @@ public class ClienteViewHelper implements IViewHelper {
 			d = request.getRequestDispatcher("index.jsp");
 		}
 
-		// MOSTRAR TODOS
-		// if (operacao.equals("GETALLCLIENTS")) {
-
-		// ClienteDAO clienteDAO = new ClienteDAO();
-		// List<EntidadeDominio> clientes = new ArrayList<EntidadeDominio>(); // criando
-		// uma lista de livro
-		// clientes = clienteDAO.consultar(null);
-
-		// request.getSession().setAttribute("clientes", clientes);
-		// d = request.getRequestDispatcher("clientes.jsp");
-
-		// }
-
 		// ENVIAR PARA O FORM CLIENTE
 		if (operacao.equals("NOVO")) {
 
 			loadingForm(request);
 			d = request.getRequestDispatcher("cadastro_dados.jsp");
-
 		}
 
 		// EXCLUIR CLIENTE
@@ -200,7 +178,8 @@ public class ClienteViewHelper implements IViewHelper {
 	}
 
 	public void loadingForm(HttpServletRequest request) {
-
+		
+		
 		// AutorDAO autdao = new AutorDAO(null, null);
 		// EditoraDAO edao = new EditoraDAO(null, null);
 		// CategoriaDAO catdao = new CategoriaDAO(null, null);
