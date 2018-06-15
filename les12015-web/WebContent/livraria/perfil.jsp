@@ -26,7 +26,9 @@
 			</center>
 			
 			<div class="cadastro_dados">
-			<form action="">
+			<form>
+				<input type="text" id="idCliente" name="idCliente" value="${cliente.getId()}" hidden>
+
 				<input type="text" id="email" name="email" placeholder="Endereço de E-mail" value="${cliente.getUsuario().getEmail()}"><br>
 				<input type="text" id="Nome" name="Nome" placeholder="Nome" value="${cliente.getNome()}">
 				<input type="text" id="CPF" name="CPF" placeholder="CPF" value="${cliente.getCpf()}">
@@ -38,6 +40,7 @@
 					<option value="Feminino" ${cliente.getGenero().equalsIgnoreCase("Feminino") ? 'selected' : ''}>Feminino</option>
 				</select><br>
 				
+				<input type="text" id="idTelefone" name="idTelefone" value="${telefone.getId()}" hidden>
 				<input type="text" id="DDD" name="DDD" placeholder="DDD" value="${telefone.getDdd()}">
 				<input type="text" id="Telefone" name="Telefone" placeholder="Telefone"value="${telefone.getNumero()}"><br>
 				

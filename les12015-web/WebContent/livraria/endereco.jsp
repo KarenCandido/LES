@@ -21,6 +21,8 @@
     	<p class="titulo"> Endereços </p>
     	<div class="cad_endereco">
     	<form>
+            <input type="text" id="idEndereco" name="idEndereco" value="${telefone.getId()}" hidden>
+
             <select id="tipo_endereco" name="tipo_endereco">
                 <option value="Cobrança" ${endereco.getTipoEndereco().equalsIgnoreCase("Cobrança") ? 'selected' : ''}> Endereço de Cobrança</option>
                 <option value="Entrega" ${endereco.getTipoEndereco().equalsIgnoreCase("Entrega") ? 'selected' : ''}> Endereço de Entrega</option>

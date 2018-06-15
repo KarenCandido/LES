@@ -52,6 +52,7 @@ public class Fachada implements IFachada {
         EstadoDAO estadoDAO = new EstadoDAO();
         PaisDAO paisDAO = new PaisDAO();
         CartaoDAO cartaoDAO = new CartaoDAO();
+        TelefoneDAO telefoneDAO = new TelefoneDAO();
 
         /* Adicionando cada dao no MAP indexando pelo nome da classe */
         daos.put(Fornecedor.class.getName(), forDAO);
@@ -64,6 +65,7 @@ public class Fachada implements IFachada {
         daos.put(Estado.class.getName(), estadoDAO);
         daos.put(Pais.class.getName(), paisDAO);
         daos.put(Cartao.class.getName(), cartaoDAO);
+        daos.put(Telefone.class.getName(), telefoneDAO);
 
         /* Criando instâncias de regras de negócio a serem utilizados */
         ValidadorDadosObrigatoriosFornecedor vrDadosObrigatoriosFornecedor = new ValidadorDadosObrigatoriosFornecedor();

@@ -8,7 +8,7 @@
         <a href="pedidos.jsp"><li>Pedidos</li></a>
         <a href="cupons.jsp"><li>Cupons</li></a>
         <a href="trocas.jsp"><li>Trocas</li></a>
-        <a href=""Usuario?&operacao=logout"><li>Sair</li></a>
+        <a href="Usuario?&operacao=logout"><li>Sair</li></a>
 
     </ul>
 </div>

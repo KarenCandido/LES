@@ -10,6 +10,7 @@ public class Cliente extends EntidadeDominio {
     private int ranking;
     private boolean status;
     private Usuario usuario;
+    private Telefone telefone;
 
     public Cliente() {
     }
@@ -19,6 +20,14 @@ public class Cliente extends EntidadeDominio {
         this.usuario.setEmail(email);
         this.nome = nome;
         this.cpf = cpf;
+    }
+
+    public Telefone getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(Telefone telefone) {
+        this.telefone = telefone;
     }
 
     public Usuario getUsuario() {

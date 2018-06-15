@@ -1,6 +1,8 @@
 
 package les12015.core.impl.dao;
 
+import les12015.controle.web.command.impl.AlterarCommand;
+import les12015.controle.web.command.impl.SalvarCommand;
 import les12015.dominio.Cliente;
 import les12015.dominio.EntidadeDominio;
 import les12015.dominio.Usuario;
@@ -64,6 +66,10 @@ public class ClienteDAO extends AbstractJdbcDAO {
 				idCliente = rs.getInt(1);
 			cliente.setId(idCliente);
 
+			cliente.getTelefone().setCliente(cliente);
+            SalvarCommand salvarCommand = new SalvarCommand();
+            salvarCommand.execute(cliente.getTelefone());
+
 			// Salva transação
 			connection.commit();
 
@@ -114,8 +120,12 @@ public class ClienteDAO extends AbstractJdbcDAO {
 			pst.setBoolean(5, cliente.isStatus());
 			pst.setInt(6, cliente.getId());
 			pst.executeUpdate();
-
 			connection.commit();
+
+            cliente.getTelefone().setCliente(cliente);
+            AlterarCommand alterarCommand = new AlterarCommand();
+            alterarCommand.execute(cliente.getTelefone());
+
 		} catch (SQLException e) {
 			try {
 				connection.rollback();
@@ -195,6 +205,9 @@ public class ClienteDAO extends AbstractJdbcDAO {
 		if (cliente == null) {
 			cliente = new Cliente();
 		}
+		if (cliente.getUsuario() == null) {
+            cliente.setUsuario(new Usuario());
+        }
 
         String sql = "SELECT * FROM tb_cliente JOIN tb_usuario ON tb_usuario.id_usuario=tb_cliente.fk_usuario WHERE";
 

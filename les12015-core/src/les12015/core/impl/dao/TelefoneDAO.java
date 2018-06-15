@@ -87,9 +87,10 @@ public class TelefoneDAO extends AbstractJdbcDAO {
 			connection.setAutoCommit(false);
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("UPDATE tb_telefone(ddd, numero, tipo, fk_cliente");
+			sql.append("UPDATE tb_telefone SET (ddd, numero, tipo, fk_cliente)");
 			sql.append(" = (?, ?, ?, ?)"); // campo a ser inserido
 			sql.append(" WHERE id_telefone = ?");
+			pst = connection.prepareStatement(sql.toString());
 
 			pst.setString(1, tel.getDdd());
 			pst.setString(2, tel.getNumero());

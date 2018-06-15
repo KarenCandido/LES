@@ -1,11 +1,13 @@
 
 package les12015.controle.web.vh.impl;
 
+import les12015.controle.web.command.impl.ConsultarCommand;
 import les12015.controle.web.vh.IViewHelper;
 import les12015.core.aplicacao.Resultado;
 import les12015.core.impl.dao.ClienteDAO;
 import les12015.dominio.Cliente;
 import les12015.dominio.EntidadeDominio;
+import les12015.dominio.Telefone;
 import les12015.dominio.Usuario;
 
 import javax.servlet.RequestDispatcher;
@@ -35,19 +37,26 @@ public class ClienteViewHelper implements IViewHelper {
 
 		Cliente cliente = null; // instancia livro
 		Usuario usuario = null;
+		Telefone telefone = null;
 		if (!operacao.equals("VISUALIZAR")) {
 
 			String id = request.getParameter("idCliente");
-			String nome = request.getParameter("nome");
-			String dtNasc = request.getParameter("dtNasc");
+			String nome = request.getParameter("Nome");
+			String dtNasc = request.getParameter("DtNasc");
 			String email = request.getParameter("email");
 			String senha = request.getParameter("senha");
-			String cpf = request.getParameter("cpf");
+			String cpf = request.getParameter("CPF");
 			String genero = request.getParameter("genero");
 			String status = request.getParameter("status");
+			String idTelefone = request.getParameter("idTelefone");
+			String ddd = request.getParameter("DDD");
+			String numero = request.getParameter("Telefone");
+			String tipo = request.getParameter("tipo");
 
 			cliente = new Cliente();
 			usuario = new Usuario();
+            telefone = new Telefone();
+
 
 			if (id != null && !id.isEmpty()) {
 				cliente.setId(Integer.parseInt(id));
@@ -73,6 +82,21 @@ public class ClienteViewHelper implements IViewHelper {
 			if (status != null && !status.isEmpty()) {
 				cliente.setStatus(Boolean.parseBoolean(status));
 			}
+			if (idTelefone != null && !idTelefone.isEmpty()) {
+				telefone.setId(Integer.parseInt(idTelefone));
+			}
+			if (ddd != null && !ddd.isEmpty()) {
+				telefone.setDdd(ddd);
+			}
+			if (numero != null && !numero.isEmpty()) {
+				telefone.setNumero(numero);
+			}
+			if (tipo != null && !tipo.isEmpty()) {
+				telefone.setTipoTelefone(tipo);
+			}
+			if (cliente != null && cliente.getId() != null) {
+				telefone.setCliente(cliente);
+			}
 
 		} else {
 			HttpSession session = request.getSession();
@@ -94,9 +118,27 @@ public class ClienteViewHelper implements IViewHelper {
 			} else {
 				cliente = new Cliente();
 			}
+            @SuppressWarnings("unchecked")
+            List<Telefone> telefones = (List<Telefone>) session.getAttribute("telefones");
+            txtId = request.getParameter("idTelefone");
+            id = 0;
+
+            if (txtId != null && !txtId.trim().equals("")) {
+                id = Integer.parseInt(txtId);
+            }
+
+            if (telefone != null) {
+                for (Telefone t : telefones) {
+                    if (t.getId() == id) {
+                        telefone = t;
+                    }
+                }
+            } else {
+                telefone = new Telefone();
+            }
 		}
-		
-		cliente.setUsuario(usuario);
+
+		cliente.setTelefone(telefone);
 		return cliente;
 	}
 
@@ -144,6 +186,7 @@ public class ClienteViewHelper implements IViewHelper {
 		if (resultado.getMsg() == null && operacao.equals("VISUALIZAR")) {
 			Cliente cli = (Cliente) session.getAttribute("login");
 			request.setAttribute("cliente", cli);
+			loadingForm(request);
 			d = request.getRequestDispatcher("perfil.jsp");
 		}
 
@@ -178,37 +221,12 @@ public class ClienteViewHelper implements IViewHelper {
 	}
 
 	public void loadingForm(HttpServletRequest request) {
-		
-		
-		// AutorDAO autdao = new AutorDAO(null, null);
-		// EditoraDAO edao = new EditoraDAO(null, null);
-		// CategoriaDAO catdao = new CategoriaDAO(null, null);
-		// GrupoDAO grudao = new GrupoDAO(null, null);
-		//
-		// Autor a = new Autor();
-		// Editora e = new Editora();
-		// Categoria c = new Categoria();
-		// GrupoPrecificacao g = new GrupoPrecificacao();
-		//
-		// List<EntidadeDominio> autores = new ArrayList<EntidadeDominio>();
-		// List<EntidadeDominio> editoras = new ArrayList<EntidadeDominio>();
-		// List<EntidadeDominio> categorias = new ArrayList<EntidadeDominio>();
-		// List<EntidadeDominio> grupos = new ArrayList<EntidadeDominio>();
-		//
-		// try {
-		// grupos = grudao.consultar(g);
-		// autores = autdao.consultar(a);
-		// editoras = edao.consultar(e);
-		// categorias = catdao.consultar(c);
-		// } catch (SQLException e1) {
-		// // TODO Auto-generated catch block
-		// e1.printStackTrace();
-		// }
-		//
-		// request.getSession().setAttribute("autores", autores);
-		// request.getSession().setAttribute("editoras", editoras);
-		// request.getSession().setAttribute("categorias", categorias);
-		// request.getSession().setAttribute("grupos", grupos);
+        HttpSession session = request.getSession();
+	    Telefone telefone = new Telefone();
+	    telefone.setCliente((Cliente) session.getAttribute("login"));
 
+        ConsultarCommand consultarCommand = new ConsultarCommand();
+        telefone = (Telefone) consultarCommand.execute(telefone).getEntidades().get(0);
+        request.getSession().setAttribute("telefone", telefone);
 	}
 }
