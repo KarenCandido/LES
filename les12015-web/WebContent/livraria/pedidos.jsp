@@ -29,8 +29,7 @@
 						<td>Produtos</td>
 						<td>Valor</td>
 						<td>Status</td>
-						<td style="border: none"><input type="button"
-							id="bt_detalhes" value="DETALHES"></td>
+						<td style="border: none"><input type="button" id="bt_detalhes" value="DETALHES"></td>
 					</tr>
 				</table>
 

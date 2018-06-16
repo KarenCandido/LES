@@ -2,22 +2,21 @@ package les12015.dominio;
 
 import java.sql.Timestamp;
 
-public class Cliente extends EntidadeDominio {
+public class Cliente extends Usuario {
     private String nome;
     private Timestamp dataNascimento;
     private String cpf;
     private String genero;
     private int ranking;
     private boolean status;
-    private Usuario usuario;
     private Telefone telefone;
 
     public Cliente() {
     }
 
     public Cliente(Integer id, String email, String nome, String cpf) {
-        super(id);
-        this.usuario.setEmail(email);
+        setId(id);
+        this.setEmail(email);
         this.nome = nome;
         this.cpf = cpf;
     }
@@ -30,15 +29,7 @@ public class Cliente extends EntidadeDominio {
         this.telefone = telefone;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getNome() {
+        public String getNome() {
         return nome;
     }
 

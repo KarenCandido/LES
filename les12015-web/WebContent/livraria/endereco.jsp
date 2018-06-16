@@ -1,7 +1,4 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="les12015.dominio.ItemPedido"%>
-<%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <% request.getSession(); %><html>
@@ -21,7 +18,7 @@
     	<p class="titulo"> Endereços </p>
     	<div class="cad_endereco">
     	<form>
-            <input type="text" id="idEndereco" name="idEndereco" value="${telefone.getId()}" hidden>
+            <input type="text" id="idEndereco" name="idEndereco" value="${endereco.getId()}" hidden>
 
             <select id="tipo_endereco" name="tipo_endereco">
                 <option value="Cobrança" ${endereco.getTipoEndereco().equalsIgnoreCase("Cobrança") ? 'selected' : ''}> Endereço de Cobrança</option>

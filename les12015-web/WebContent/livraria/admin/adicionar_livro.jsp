@@ -20,27 +20,21 @@
         </div>
 
 		<ul>
-        	<a href="estatisticas.jsp"><li>Estatísticas</li></a>
-        	<a href="clientes.jsp"><li>Clientes</li></a>
-        	<a href="compras.jsp"><li>Compras</li></a>
-        	<a href="CRUDEstoque?&operacao=CONSULTAR"><li>Estoque</li></a>
-        	<a href="CRUDLivros?&operacao=CONSULTAR"><li>Livros</li></a>
-	    	<li>Sair</li>
-        
+            <a href="estatisticas.jsp"><li>Estatísticas</li></a>
+            <a href="CRUDCliente?&operacao=CONSULTAR"><li>Clientes</li></a>
+            <a href="compras.jsp"><li>Compras</li></a>
+            <a href="CRUDEstoque?&operacao=CONSULTAR"><li>Estoque</li></a>
+            <a href="CRUDLivros?&operacao=CONSULTAR"><li>Livros</li></a>
+            <li>Sair</li>
         </ul>
 	</div>
     <div class="centro">
     	<div class="add_produtos" id="wrapper">
             <p class="titulo"> Estoque </p>
         	<form>
-            <input type="hidden" id="idEstoque" name="idEstoque" value="${estoque.getId()}">
-            <select required id="idLivro" name="idLivro">
-                <c:forEach items="${livros}" var="l">
-                    <option value="${l.getId()}" ${l.getId() == estoque.getId() ? 'selected' : ''}>
-                        ${l.getTitulo()}
-                    </option>
-                </c:forEach>
-            </select><br>
+            <input type="hidden" id="idEstoque" name="idEstoque" value="${estoque.getId()}" />
+            <input type="text" required id="idLivro" name="idLivro" value="${livro.getTitulo()}" />
+             <br>
                <label>Quantidade</label>
                	<input type="text" id="qtdeEntrada" name="qtdeEntrada" value="${estoque.getQtdeEntrada()}" />
                <button type="button" id="aumentaAcrescimo">+</button>

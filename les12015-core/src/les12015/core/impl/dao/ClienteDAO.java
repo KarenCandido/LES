@@ -1,10 +1,9 @@
 
 package les12015.core.impl.dao;
 
-import les12015.controle.web.command.impl.AlterarCommand;
-import les12015.controle.web.command.impl.SalvarCommand;
 import les12015.dominio.Cliente;
 import les12015.dominio.EntidadeDominio;
+import les12015.dominio.Telefone;
 import les12015.dominio.Usuario;
 
 import java.sql.PreparedStatement;
@@ -16,8 +15,11 @@ import java.util.List;
 
 public class ClienteDAO extends AbstractJdbcDAO {
 
+	private TelefoneDAO telefoneDao;
+	
 	public ClienteDAO() {
 		super("tb_cliente", "id");
+		telefoneDao = new TelefoneDAO();
 	}
 
 	public void salvar(EntidadeDominio entidade) {
@@ -30,8 +32,8 @@ public class ClienteDAO extends AbstractJdbcDAO {
 			StringBuilder sql_insert_usuario = new StringBuilder();
 			sql_insert_usuario.append("INSERT INTO tb_usuario(email, senha, is_admin) VALUES (?, MD5(?),?);");
 			pst = connection.prepareStatement(sql_insert_usuario.toString(), Statement.RETURN_GENERATED_KEYS);
-			pst.setString(1, cliente.getUsuario().getEmail());
-			pst.setString(2, cliente.getUsuario().getSenha());
+			pst.setString(1, cliente.getEmail());
+			pst.setString(2, cliente.getSenha());
 			pst.setBoolean(3, false);
 
 			pst.executeUpdate();
@@ -40,7 +42,7 @@ public class ClienteDAO extends AbstractJdbcDAO {
 			int id = 0;
 			if (rs.next())
 				id = rs.getInt(1);
-			cliente.getUsuario().setId(id);
+			cliente.setId(id);
 
 			//
 			// Faz inserção do cliente
@@ -57,7 +59,7 @@ public class ClienteDAO extends AbstractJdbcDAO {
 			pst.setString(4, cliente.getGenero());
 			pst.setBoolean(5, cliente.isStatus());
 
-			pst.setInt(6, cliente.getUsuario().getId());
+			pst.setInt(6, cliente.getId());
 			pst.executeUpdate();
 
 			rs = pst.getGeneratedKeys();
@@ -67,8 +69,8 @@ public class ClienteDAO extends AbstractJdbcDAO {
 			cliente.setId(idCliente);
 
 			cliente.getTelefone().setCliente(cliente);
-            SalvarCommand salvarCommand = new SalvarCommand();
-            salvarCommand.execute(cliente.getTelefone());
+           
+			telefoneDao.salvar(cliente.getTelefone());
 
 			// Salva transação
 			connection.commit();
@@ -123,9 +125,12 @@ public class ClienteDAO extends AbstractJdbcDAO {
 			connection.commit();
 
             cliente.getTelefone().setCliente(cliente);
-            AlterarCommand alterarCommand = new AlterarCommand();
-            alterarCommand.execute(cliente.getTelefone());
-
+            
+            if(cliente.getTelefone().getId() == null) {
+            	telefoneDao.salvar(cliente.getTelefone());
+            } else {
+            	telefoneDao.alterar(cliente.getTelefone());
+            }
 		} catch (SQLException e) {
 			try {
 				connection.rollback();
@@ -160,7 +165,7 @@ public class ClienteDAO extends AbstractJdbcDAO {
 			connection.setAutoCommit(false);
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("UPDATE tb_livro SET (status)");
+			sql.append("UPDATE tb_cliente SET (status)");
 			sql.append(" = (?)");
 			sql.append(" WHERE id_livro = ?");
 
@@ -205,17 +210,14 @@ public class ClienteDAO extends AbstractJdbcDAO {
 		if (cliente == null) {
 			cliente = new Cliente();
 		}
-		if (cliente.getUsuario() == null) {
-            cliente.setUsuario(new Usuario());
-        }
-
+		
         String sql = "SELECT * FROM tb_cliente JOIN tb_usuario ON tb_usuario.id_usuario=tb_cliente.fk_usuario WHERE";
 
         if (cliente.getId() != null)
 			sql += " id=? AND";
 		else if (cliente.getNome() != null)
 			sql += " nome ilike ? AND";
-		else if (cliente.getUsuario().getId() != null)
+		else if (cliente.getId() != null)
             sql += " tb_cliente.fk_usuario=? AND";
         if (sql.endsWith(" AND"))
             sql = sql.substring(0, sql.length() - 4) + ";";
@@ -233,8 +235,8 @@ public class ClienteDAO extends AbstractJdbcDAO {
 			} else if (cliente.getNome() != null) {
 				pst.setString(i, "%" + cliente.getNome() + "%");
                 i++;
-			} else if (cliente.getUsuario().getId() != null){
-                pst.setInt(i, cliente.getUsuario().getId());
+			} else if (cliente.getId() != null){
+                pst.setInt(i, cliente.getId());
                 i++;
 			}
 
@@ -242,20 +244,26 @@ public class ClienteDAO extends AbstractJdbcDAO {
 			List<EntidadeDominio> clientes = new ArrayList<EntidadeDominio>();
 			while (rs.next()) {
 				Cliente c = new Cliente();
-				Usuario u = new Usuario();
 
 				c.setId(rs.getInt("id_cliente"));
 				c.setNome(rs.getString("nome"));
 				c.setDataNascimento(rs.getTimestamp("dt_nasc"));
-                u.setId(rs.getInt("id_usuario"));
-                u.setEmail(rs.getString("email"));
-                u.setSenha(rs.getString("senha"));
-                u.setAdmin(rs.getBoolean("is_admin"));
-				c.setUsuario(u);
+                c.setId(rs.getInt("id_usuario"));
+                c.setEmail(rs.getString("email"));
+                c.setSenha(rs.getString("senha"));
+                c.setAdmin(rs.getBoolean("is_admin"));
 				c.setCpf(rs.getString("cpf"));
 				c.setGenero(rs.getString("genero"));
 				c.setStatus(rs.getBoolean("status"));
-
+				
+				// consulta o telefone do cliente
+				Telefone telefone = new Telefone();
+				telefone.setCliente(c);
+				List<EntidadeDominio> telefones = telefoneDao.consultar(telefone);
+				if( ! telefones.isEmpty()) {
+					c.setTelefone( ( Telefone ) telefones.get(0));
+				}
+				
 				clientes.add(c);
 			}
 

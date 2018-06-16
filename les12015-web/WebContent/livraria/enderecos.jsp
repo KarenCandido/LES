@@ -22,7 +22,7 @@
     <div class="centro">
         <div class="enderecos">
 
-            <p class="Endereco"> Endereços </p>
+            <p class="titulo"> Endereços </p>
             <input type="text" id="busca_endereco" placeholder="Pesquisa"><br>
             <table>
                 <tr>
@@ -35,12 +35,11 @@
                     <tr>
                         <td>${e.getTipoEndereco()}</td>
                         <td>${e.getLogradouro()}</td>
-                        <td style="border:none;width:15%;"><a
-                                ///////////////href="CRUDLivros?&operacao=VISUALIZAR&idLivro=${l.getId()}"><input type="button"
+                        <td style="border:none;width:15%;"><a href="CRUDEndereco?&operacao=VISUALIZAR&idEndereco=${l.getId()}"><input type="button"
                                                                                                                   id="bt_detalhes"
                                                                                                    value="DETALHES"></a>
                         </td>
-                       ///////////////// <td style="border:none; width:15%;"><a href="CRUDLivros?&operacao=EXCLUIR&idLivro=${l.getId()}"
+                        <td style="border:none; width:15%;"><a href="CRUDEndereco?&operacao=EXCLUIR&idEndereco=${l.getId()}"
                                                                onclick="confirmAlert()"><input type="button"
                                                                                                id="bt_excluir"
                                                                                                onclick="confirmAlert()"
@@ -49,7 +48,7 @@
 
                 </c:forEach>
             </table>
-           ////////// <a href="CRUDLivros?&operacao=NOVO"><input type="button" id="add_produto" value="Adicionar Outro"></a>
+            <a href="CRUDEndereco?&operacao=NOVO"><input type="button" id="add_produto" value="Adicionar Outro"></a>
         </div>
     </div>
 </div>

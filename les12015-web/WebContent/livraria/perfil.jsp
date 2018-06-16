@@ -26,10 +26,10 @@
 			</center>
 			
 			<div class="cadastro_dados">
-			<form>
+			<form action="CRUDCliente" method="post">
 				<input type="text" id="idCliente" name="idCliente" value="${cliente.getId()}" hidden>
 
-				<input type="text" id="email" name="email" placeholder="Endereço de E-mail" value="${cliente.getUsuario().getEmail()}"><br>
+				<input type="text" id="email" name="email" placeholder="Endereço de E-mail" value="${cliente.getEmail()}"><br>
 				<input type="text" id="Nome" name="Nome" placeholder="Nome" value="${cliente.getNome()}">
 				<input type="text" id="CPF" name="CPF" placeholder="CPF" value="${cliente.getCpf()}">
 				<input type="text" id="DtNasc" name="DtNasc" placeholder="Data de nascimento"

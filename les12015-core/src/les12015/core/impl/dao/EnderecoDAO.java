@@ -1,7 +1,6 @@
 
 package les12015.core.impl.dao;
 
-import les12015.controle.web.command.impl.ConsultarCommand;
 import les12015.dominio.Cidade;
 import les12015.dominio.Cliente;
 import les12015.dominio.Endereco;
@@ -13,8 +12,11 @@ import java.util.List;
 
 public class EnderecoDAO extends AbstractJdbcDAO {
 
+	private CidadeDAO cidadeDao;
+	
 	protected EnderecoDAO(String table, String idTable) {
 		super("tb_endereco", "id");
+		cidadeDao = new CidadeDAO();
 	}
 
 	public EnderecoDAO(Connection cx) {
@@ -204,9 +206,9 @@ public class EnderecoDAO extends AbstractJdbcDAO {
 				e.setObservacao(rs.getString("obs"));
 				cli.setId(rs.getInt("fk_cliente"));
 				cid.setId(rs.getInt("fk_cidade"));
-		        ConsultarCommand consultarCommand = new ConsultarCommand();
+		        
 				
-				cid = (Cidade) consultarCommand.execute(cid).getEntidades().get(0);
+				cid = (Cidade) cidadeDao.consultar(cid).get(0);
 
 				e.setCliente(cli);
 				e.setCidade(cid);

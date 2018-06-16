@@ -5,13 +5,7 @@
 	id="WebApp_ID" version="2.5">
 	<display-name>les12015-web</display-name>
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
-		<welcome-file></welcome-file>
+			<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 
 	<servlet>
@@ -24,12 +18,15 @@
 		<servlet-name>Servlet</servlet-name>
 		<url-pattern>/Livraria/admin/CRUDLivros</url-pattern>
 		<url-pattern>/Livraria/admin/CRUDEstoque</url-pattern>
+		<url-pattern>/Livraria/admin/CRUDCliente</url-pattern>
 		<url-pattern>/Livraria/CRUDCliente</url-pattern>
 		<url-pattern>/Livraria/CRUDEndereco</url-pattern>
 		<url-pattern>/Livraria/CRUDCartao</url-pattern>
 		<url-pattern>/Livraria/CRUDCompra</url-pattern>
 		<url-pattern>/Livraria/ShowLivros</url-pattern>
 		<url-pattern>/Livraria/Usuario</url-pattern>
+		<url-pattern>/Livraria</url-pattern>
+		
 	</servlet-mapping>
 	
 </web-app>

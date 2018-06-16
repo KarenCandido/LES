@@ -20,7 +20,10 @@ public class LivroViewHelper implements IViewHelper {
 	public EntidadeDominio getEntidade(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		String operacao = request.getParameter("operacao");
-
+		if (operacao == null) {
+			operacao = "EXIBIR";
+		}
+		
 		Livro livro = null; // instancia livro
 		if (!operacao.equals("VISUALIZAR")) {
 
@@ -169,6 +172,9 @@ public class LivroViewHelper implements IViewHelper {
 
 		HttpSession session = request.getSession();
 		String operacao = request.getParameter("operacao");
+		if (operacao == null) {
+			operacao = "EXIBIR";
+		}
 
 		
 		// SALVAR LIVRO

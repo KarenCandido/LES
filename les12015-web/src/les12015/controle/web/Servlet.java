@@ -65,13 +65,19 @@ public class Servlet extends HttpServlet {
 		 * no web.xml e sendo utilizada no action do html
 		 */
 
-//		vhs.put("/les12015-web/Livraria/admin/CRUDLivros", new LivroViewHelper());
-//        vhs.put("/les12015-web/Livraria/admin/CRUDEstoque", new EstoqueViewHelper());
-//        vhs.put("/les12015-web/Livraria/CRUDCliente", new ClienteViewHelper());
-//		vhs.put("/les12015-web/Livraria/CRUDCompra", new PedidoViewHelper());
-//		vhs.put("/les12015-web/Livraria/ShowLivros", new LivroViewHelper());
-//		vhs.put("/les12015-web/Livraria/Usuario", new UsuarioViewHelper());
-		vhs.put("/Livraria/admin/CRUDLivros", new LivroViewHelper());
+		vhs.put("/LES/Livraria/admin/CRUDLivros", new LivroViewHelper());
+        vhs.put("/LES/Livraria/admin/CRUDEstoque", new EstoqueViewHelper());
+        vhs.put("/LES/Livraria/admin/CRUDCliente", new ClienteAdminViewHelper());
+        vhs.put("/LES/Livraria/CRUDCliente", new ClienteViewHelper());
+		vhs.put("/LES/Livraria/CRUDCompra", new PedidoViewHelper());
+		vhs.put("/LES/Livraria/ShowLivros", new LivroViewHelper());
+		vhs.put("/LES/Livraria/Usuario", new UsuarioViewHelper());
+		vhs.put("/LES/Livraria/CRUDEndereco", new EnderecoViewHelper());
+		vhs.put("/LES/Livraria/CRUDCartao", new CartaoViewHelper());
+		vhs.put("/LES/Livraria", new LivroViewHelper());
+
+		
+		/*vhs.put("/Livraria/admin/CRUDLivros", new LivroViewHelper());
         vhs.put("/Livraria/admin/CRUDEstoque", new EstoqueViewHelper());
         vhs.put("/Livraria/CRUDCliente", new ClienteViewHelper());
 		vhs.put("/Livraria/CRUDCompra", new PedidoViewHelper());
@@ -79,7 +85,7 @@ public class Servlet extends HttpServlet {
 		vhs.put("/Livraria/Usuario", new UsuarioViewHelper());
 		vhs.put("/Livraria/CRUDEndereco", new EnderecoViewHelper());
 		vhs.put("/Livraria/CRUDCartao", new CartaoViewHelper());
-
+*/
 	}
 
 	/**
@@ -125,6 +131,9 @@ public class Servlet extends HttpServlet {
 
 		// Obtêm a operação executada
 		String operacao = request.getParameter("operacao");
+		if (operacao == null) {
+			operacao = "EXIBIR";
+		}
 
 		// Obtêm o command para executar a respectiva operação
 		ICommand command = commands.get(operacao);

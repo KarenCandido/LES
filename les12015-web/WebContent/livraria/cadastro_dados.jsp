@@ -21,9 +21,9 @@
 	<div class="wrapper">
 		<p class="titulo">Cadastro de dados</p>
 		<div class="cadastro_dados">
-		<form>
-			<input type="text" id="email" name="email" placeholder="Endereço de E-mail" value="${cliente.getUsuario().getEmail()}"><br>
-			<input type="text" id="senha" name="senha" placeholder="Senha" value="${cliente.getUsuario().getSenha()}"><br>
+		<form action="CRUDCliente" method="post" >
+			<input type="text" id="email" name="email" placeholder="Endereço de E-mail" value="${cliente.getEmail()}"><br>
+			<input type="text" id="senha" name="senha" placeholder="Senha" value="${cliente.getSenha()}"><br>
 			<input type="text" id="Nome" name="Nome" placeholder="Nome" value="${cliente.getNome()}">
 			<input type="text" id="CPF" name="CPF" placeholder="CPF" value="${cliente.getCpf()}">
 			<input type="text" id="DtNasc" name="DtNasc" placeholder="Data de nascimento"
@@ -39,12 +39,8 @@
 			<input type="text" id="Telefone" name="Telefone" placeholder="Telefone" value="${telefone.getNumero()}"><br>
 			
 			<input type="button" id="bt_cancelar" value="Cancelar">
-			<c:if test="${cliente.getId() != null}">
-                   <input type='submit' id='bt_alterar' value='ALTERAR' id='operacao' name='operacao'>
-            </c:if>
-            <c:if test="${cliente.getId() == null}">
-                   <input type='submit' id='bt_salvar' value='SALVAR' id='operacao' name='operacao'>
-            </c:if>
+			<input type='submit' value='SALVAR' id='operacao' name='operacao' value= "${cliente.getId() == null}" >
+		
 		</form>
 		</div>
 	</div>

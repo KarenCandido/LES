@@ -18,7 +18,7 @@
 
     <div class="centro">
         <div class="cartoes">
-            <p class="Cartao"> Cartoes </p>
+            <p class="titulo"> Cartoes </p>
             <input type="text" id="busca_clientes" placeholder="Pesquisa"><br>
             <table>
                 <tr>
@@ -32,13 +32,13 @@
                         <td>${c.getNomeImpresso()}</td>
                         <td>${c.getBandeiraCartao()}</td>
                         <td style="border:none;width:15%;"><a
-                                \\\\\\\\\\\\\ href="CRUDLivros?&operacao=VISUALIZAR&idLivro=${l.getId()}"><input
+                                \\\\\\\\\\\\\ href="CRUDCartao?&operacao=VISUALIZAR&idCartao=${l.getId()}"><input
                                 type="button"
                                 id="bt_detalhes"
                                 value="DETALHES"></a>
                         </td>
                         \\\\\\\\\\\\
-                        <td style="border:none; width:15%;"><a href="CRUDLivros?&operacao=EXCLUIR&idLivro=${l.getId()}"
+                        <td style="border:none; width:15%;"><a href="CRUDCartao?&operacao=EXCLUIR&idCartao=${l.getId()}"
                                                                onclick="confirmAlert()"><input type="button"
                                                                                                id="bt_excluir"
                                                                                                onclick="confirmAlert()"
@@ -47,7 +47,7 @@
 
                 </c:forEach>
             </table>
-            \\\\\\\\\\\\\\\\ <a href="CRUDLivros?&operacao=NOVO"><input type="button" id="add_produto"
+            \\\\\\\\\\\\\\\\ <a href="CRUDCartao?&operacao=NOVO"><input type="button" id="add_produto"
                                                                         value="Adicionar Outro"></a>
         </div>
     </div>

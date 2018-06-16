@@ -54,9 +54,7 @@ public class ClienteViewHelper implements IViewHelper {
 			String tipo = request.getParameter("tipo");
 
 			cliente = new Cliente();
-			usuario = new Usuario();
-            telefone = new Telefone();
-
+			telefone = new Telefone();
 
 			if (id != null && !id.isEmpty()) {
 				cliente.setId(Integer.parseInt(id));
@@ -68,10 +66,10 @@ public class ClienteViewHelper implements IViewHelper {
 				cliente.setDataNascimento(Timestamp.valueOf(dtNasc));
 			}
 			if (email != null && !email.isEmpty()) {
-				usuario.setEmail(email);
+				cliente.setEmail(email);
 			}
 			if (senha != null && !senha.isEmpty()) {
-				usuario.setSenha(senha);
+				cliente.setSenha(senha);
 			}
 			if (cpf != null && !cpf.isEmpty()) {
 				cliente.setCpf(cpf);
@@ -118,24 +116,24 @@ public class ClienteViewHelper implements IViewHelper {
 			} else {
 				cliente = new Cliente();
 			}
-            @SuppressWarnings("unchecked")
-            List<Telefone> telefones = (List<Telefone>) session.getAttribute("telefones");
-            txtId = request.getParameter("idTelefone");
-            id = 0;
+			@SuppressWarnings("unchecked")
+			List<Telefone> telefones = (List<Telefone>) session.getAttribute("telefones");
+			txtId = request.getParameter("idTelefone");
+			id = 0;
 
-            if (txtId != null && !txtId.trim().equals("")) {
-                id = Integer.parseInt(txtId);
-            }
+			if (txtId != null && !txtId.trim().equals("")) {
+				id = Integer.parseInt(txtId);
+			}
 
-            if (telefone != null) {
-                for (Telefone t : telefones) {
-                    if (t.getId() == id) {
-                        telefone = t;
-                    }
-                }
-            } else {
-                telefone = new Telefone();
-            }
+			if (telefone != null) {
+				for (Telefone t : telefones) {
+					if (t.getId() == id) {
+						telefone = t;
+					}
+				}
+			} else {
+				telefone = new Telefone();
+			}
 		}
 
 		cliente.setTelefone(telefone);
@@ -221,12 +219,15 @@ public class ClienteViewHelper implements IViewHelper {
 	}
 
 	public void loadingForm(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-	    Telefone telefone = new Telefone();
-	    telefone.setCliente((Cliente) session.getAttribute("login"));
+		HttpSession session = request.getSession();
+		Telefone telefone = new Telefone();
+		telefone.setCliente((Cliente) session.getAttribute("login"));
 
-        ConsultarCommand consultarCommand = new ConsultarCommand();
-        telefone = (Telefone) consultarCommand.execute(telefone).getEntidades().get(0);
-        request.getSession().setAttribute("telefone", telefone);
+		ConsultarCommand consultarCommand = new ConsultarCommand();
+		List<EntidadeDominio> entidades = consultarCommand.execute(telefone).getEntidades();
+		if( ! entidades.isEmpty()) {
+			telefone = (Telefone) entidades.get(0);
+			request.getSession().setAttribute("telefone", telefone);
+		}
 	}
 }
