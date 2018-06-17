@@ -49,7 +49,7 @@ public class ClienteDAO extends AbstractJdbcDAO {
 			//
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO tb_cliente(nome, dt_nasc, cpf, genero, status, fk_usuario)" +
+			sql.append("INSERT INTO tb_cliente(nome, dt_nasc, cpf, genero, status, id_cliente)" +
 					" VALUES (?, ?, ?, ?, ?, ?)");
 
 			pst = connection.prepareStatement(sql.toString());
@@ -58,18 +58,20 @@ public class ClienteDAO extends AbstractJdbcDAO {
 			pst.setString(3, cliente.getCpf());
 			pst.setString(4, cliente.getGenero());
 			pst.setBoolean(5, cliente.isStatus());
-
-			pst.setInt(6, cliente.getId());
+			
+			pst.setInt(6,  cliente.getId());
 			pst.executeUpdate();
 
-			rs = pst.getGeneratedKeys();
+			/*rs = pst.getGeneratedKeys();
 			int idCliente = 0;
 			if (rs.next())
 				idCliente = rs.getInt(1);
-			cliente.setId(idCliente);
+			cliente.setId(idCliente);*/
 
 			cliente.getTelefone().setCliente(cliente);
-           
+           	
+			telefoneDao.connection = connection;
+			telefoneDao.ctrlTransaction = false;
 			telefoneDao.salvar(cliente.getTelefone());
 
 			// Salva transação
@@ -122,15 +124,16 @@ public class ClienteDAO extends AbstractJdbcDAO {
 			pst.setBoolean(5, cliente.isStatus());
 			pst.setInt(6, cliente.getId());
 			pst.executeUpdate();
-			connection.commit();
 
             cliente.getTelefone().setCliente(cliente);
-            
+            telefoneDao.connection = connection;
+			telefoneDao.ctrlTransaction = false;
             if(cliente.getTelefone().getId() == null) {
             	telefoneDao.salvar(cliente.getTelefone());
             } else {
             	telefoneDao.alterar(cliente.getTelefone());
             }
+            connection.commit();
 		} catch (SQLException e) {
 			try {
 				connection.rollback();
@@ -211,21 +214,22 @@ public class ClienteDAO extends AbstractJdbcDAO {
 			cliente = new Cliente();
 		}
 		
-        String sql = "SELECT * FROM tb_cliente JOIN tb_usuario ON tb_usuario.id_usuario=tb_cliente.fk_usuario WHERE";
+        String sql = "SELECT * FROM tb_cliente JOIN tb_usuario ON tb_usuario.id_usuario=tb_cliente.id_cliente WHERE";
 
         if (cliente.getId() != null)
 			sql += " id=? AND";
 		else if (cliente.getNome() != null)
 			sql += " nome ilike ? AND";
 		else if (cliente.getId() != null)
-            sql += " tb_cliente.fk_usuario=? AND";
+            sql += " tb_cliente.id_cliente=? AND";
         if (sql.endsWith(" AND"))
             sql = sql.substring(0, sql.length() - 4) + ";";
         else
-            sql = "SELECT * FROM tb_cliente JOIN tb_usuario ON tb_usuario.id_usuario=tb_cliente.fk_usuario";
+            sql = "SELECT * FROM tb_cliente JOIN tb_usuario ON tb_usuario.id_usuario=tb_cliente.id_cliente";
 
 		try {
 			openConnection();
+			connection.setAutoCommit(false);
 			pst = connection.prepareStatement(sql);
             int i = 1;
 

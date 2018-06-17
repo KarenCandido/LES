@@ -51,7 +51,9 @@ public class TelefoneDAO extends AbstractJdbcDAO {
 				idTel = rs.getInt(1);
 			tel.setId(idTel);
 
-			connection.commit();
+			if(ctrlTransaction) {
+				connection.commit();
+			}
 
 		} catch (SQLException e) {
 			try {
@@ -101,7 +103,9 @@ public class TelefoneDAO extends AbstractJdbcDAO {
 
 			pst.executeUpdate();
 
-			connection.commit();
+			if(ctrlTransaction) {
+				connection.commit();
+			}
 		} catch (SQLException e) {
 			try {
 				connection.rollback();

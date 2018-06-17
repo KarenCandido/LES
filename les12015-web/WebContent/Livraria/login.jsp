@@ -27,6 +27,9 @@
 					Ainda não é cadastrado? <a href="cadastro_dados.jsp">Clique aqui!</a>
 			</div>
 		</form>
+		<c:if test="${mensagem != null}">
+			<c:out value="${mensagem}" />
+		</c:if>
 	</div>
 	<div class="rodape"></div>
 </body>

@@ -26,7 +26,7 @@
 			</center>
 			
 			<div class="cadastro_dados">
-			<form action="CRUDCliente" method="post">
+			<form action="CRUDCliente" method="post" >
 				<input type="text" id="idCliente" name="idCliente" value="${cliente.getId()}" hidden>
 
 				<input type="text" id="email" name="email" placeholder="Endereço de E-mail" value="${cliente.getEmail()}"><br>
